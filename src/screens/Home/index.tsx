@@ -1,8 +1,10 @@
 import * as React from "react";
 import { TextInput, FlatList } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
+import { useTheme } from "styled-components";
 
 //Components Folder
+import Header from "../../components/Header";
 import Input from "../../components/Input";
 import PokeCard from "../../components/PokeCard";
 
@@ -19,6 +21,9 @@ const Home: React.FC = () => {
   //Community Hooks
   const keyboard = useKeyboard();
 
+  //Theme Hook
+  const theme = useTheme();
+
   function inputOnBlur() {
     if (keyboard.keyboardShown === false) {
       inputRef.current?.blur();
@@ -31,6 +36,8 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      <Header rightIcon="settings" backgroundColor={theme.colors.background} />
+
       <Content>
         <Title>What are{"\n"}you looking for?</Title>
 

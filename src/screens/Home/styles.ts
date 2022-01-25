@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
-  margin-top: 72px;
+  margin-top: 40px;
   padding: 0 20px;
 `;
 

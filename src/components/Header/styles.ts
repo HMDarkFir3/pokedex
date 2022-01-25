@@ -1,19 +1,24 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
-//Icons
-import { Feather } from "@expo/vector-icons";
+//Interfaces
+interface ContainerProps {
+  backgroundColor: string;
+}
 
-export const Container = styled.View`
+export const Container = styled.View<ContainerProps>`
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   width: 100%;
+  height: 60px;
+
+  margin-top: ${getStatusBarHeight()}px;
+  padding: 0 20px;
+
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
-export const SettingsButton = styled.TouchableOpacity``;
-
-export const SettingsIcon = styled(Feather)`
-  font-size: ${RFValue(24)}px;
-  color: ${({ theme }) => theme.colors.icon_color};
-`;
+export const Button = styled.TouchableOpacity``;

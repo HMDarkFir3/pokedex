@@ -38,6 +38,23 @@ interface Moves {
   }[];
 }
 
+interface Sprites {
+  back_default: string | null;
+  back_female: string | null;
+  back_shiny: string | null;
+  back_shiny_female: string | null;
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
+  other: {
+    dream_world: {
+      front_default: string | null;
+      front_female: string | null;
+    };
+  };
+}
+
 interface Stats {
   base_stat: number;
   effort: number;
@@ -73,16 +90,7 @@ export interface PokemonDTO {
     name: string;
     url: string;
   };
-  sprites: {
-    back_default: string | null;
-    back_female: string | null;
-    back_shiny: string | null;
-    back_shiny_female: string | null;
-    front_default: string | null;
-    front_female: string | null;
-    front_shiny: string | null;
-    front_shiny_female: string | null;
-  };
+  sprites: Sprites;
   stats: Stats[];
   types: Types[];
   weight: number;
