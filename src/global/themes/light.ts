@@ -1,0 +1,3 @@
+const light = {
+  title: "light",
+};
