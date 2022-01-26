@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { SvgUri } from "react-native-svg";
 import { useTheme } from "styled-components";
@@ -10,21 +10,25 @@ import { usePoke } from "../../hooks/usePoke";
 
 //Components
 import Header from "../../components/Header";
-import PokemonTypeCard from "../../components/Lists/PokemonTypeCard";
+import PokeTypeCard from "../../components/Lists/PokeTypeCard";
+import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
+import { pokeDescriptionButton } from "../../utils/pokeDescriptionButton";
 
 //Styles
 import {
   Container,
-  Content,
-  PokemonHeader,
-  PokemonTitle,
-  PokemonName,
-  PokemonIndex,
-  PokemonType,
-  PokemonImage,
+  PokeContent,
+  PokeHeader,
+  PokeTitle,
+  PokeName,
+  PokeIndex,
+  PokeType,
+  PokeImage,
+  PokeDescriptions,
+  PokeDescritionButtonWrapper,
   LoadingContainer,
   Loading,
 } from "./styles";
@@ -38,6 +42,14 @@ const PokemonView: React.FC = () => {
 
   //States
   const [backgroundColor, setBackgroundColor] = React.useState<string>("");
+  const [descriptionSelected, setDescriptionSelected] =
+    React.useState<string>("0");
+
+  function handleDescriptionSelected(descriptionId: string) {
+    setDescriptionSelected(descriptionId);
+
+    console.log(descriptionSelected);
+  }
 
   useFocusEffect(
     React.useCallback(() => {
@@ -62,34 +74,57 @@ const PokemonView: React.FC = () => {
         backgroundColor={backgroundColor}
       />
 
-      <Content>
-        <PokemonHeader>
-          <PokemonTitle>
-            <PokemonName>{pokemon.name}</PokemonName>
-            <PokemonIndex>#{pokemon.id}</PokemonIndex>
-          </PokemonTitle>
+      <PokeContent>
+        <PokeHeader>
+          <PokeTitle>
+            <PokeName>{pokemon.name}</PokeName>
+            <PokeIndex>#{pokemon.id}</PokeIndex>
+          </PokeTitle>
 
-          <PokemonType>
+          <PokeType>
             <FlatList
               data={pokemonType}
               keyExtractor={(item) => String(item.slot)}
               renderItem={({ item, index }) => (
-                <PokemonTypeCard data={item} index={index} />
+                <PokeTypeCard data={item} index={index} />
               )}
               contentContainerStyle={{ marginTop: 8 }}
               horizontal={true}
             />
-          </PokemonType>
-        </PokemonHeader>
+          </PokeType>
+        </PokeHeader>
 
-        <PokemonImage>
+        <PokeImage>
           <SvgUri
             width={RFValue(175)}
             height={RFValue(175)}
             uri={pokemon.sprites.other.dream_world.front_default}
           />
-        </PokemonImage>
-      </Content>
+        </PokeImage>
+      </PokeContent>
+
+      <PokeDescriptions>
+        <PokeDescritionButtonWrapper>
+          <FlatList
+            data={pokeDescriptionButton}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <PokeDescritionButton
+                data={item}
+                isActive={descriptionSelected === String(item.id)}
+                backgroundColor={backgroundColor}
+                onPress={() => handleDescriptionSelected(String(item.id))}
+              />
+            )}
+            horizontal={true}
+            contentContainerStyle={{
+              justifyContent: "space-between",
+              marginTop: RFValue(44),
+              width: "100%",
+            }}
+          />
+        </PokeDescritionButtonWrapper>
+      </PokeDescriptions>
     </Container>
   );
 };

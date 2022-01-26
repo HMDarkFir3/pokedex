@@ -6,7 +6,7 @@ import { useTheme } from "styled-components";
 //Components Folder
 import Header from "../../components/Header";
 import Input from "../../components/Input";
-import PokeCard from "../../components/PokeCard";
+import PokeCard from "../../components/Lists/PokeCard";
 
 //Utils Folder
 import { pokeCards } from "../../utils/pokeCards";
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 
         <FlatList
           data={pokeCards}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           renderItem={({ item, index }) => (
             <PokeCard data={item} index={index} />
           )}

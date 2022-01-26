@@ -15,7 +15,7 @@ interface Props {
   index: number;
 }
 
-const PokemonTypeCard: React.FC<Props> = (props) => {
+const PokeTypeCard: React.FC<Props> = (props) => {
   const { index } = props;
   const { name } = props.data.type;
 
@@ -26,4 +26,4 @@ const PokemonTypeCard: React.FC<Props> = (props) => {
   );
 };
 
-export default PokemonTypeCard;
+export default PokeTypeCard;

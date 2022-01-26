@@ -12,18 +12,20 @@ export const Container = styled.View<ContainerProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
-export const Content = styled.View`
+export const PokeContent = styled.View`
+  width: 100%;
+
   padding: 0 20px;
 `;
 
-export const PokemonHeader = styled.View`
+export const PokeHeader = styled.View`
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
 `;
 
-export const PokemonTitle = styled.View`
+export const PokeTitle = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -31,20 +33,20 @@ export const PokemonTitle = styled.View`
   width: 100%;
 `;
 
-export const PokemonName = styled.Text`
+export const PokeName = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: ${RFValue(40)}px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const PokemonIndex = styled.Text`
+export const PokeIndex = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: ${RFValue(20)}px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const PokemonType = styled.View`
+export const PokeType = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -52,11 +54,27 @@ export const PokemonType = styled.View`
   width: 100%;
 `;
 
-export const PokemonImage = styled.View`
-  align-items: center;
+export const PokeImage = styled.View`
+  position: absolute;
+  top: ${RFValue(110)}px;
+  align-self: center;
 
-  margin-top: 20px;
+  z-index: 10;
 `;
+
+export const PokeDescriptions = styled.View`
+  width: 100%;
+  height: 100%;
+
+  margin-top: ${RFValue(154)}px;
+  padding: 0 20px;
+
+  background-color: ${({ theme }) => theme.colors.background};
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+`;
+
+export const PokeDescritionButtonWrapper = styled.View``;
 
 export const LoadingContainer = styled.View`
   flex: 1;

@@ -10,7 +10,7 @@ export interface RoutesProps {
   PokemonView: undefined;
 }
 
-const Routes = () => {
+const Routes: React.FC = () => {
   return (
     <NavigationContainer>
       <AppRoutes />

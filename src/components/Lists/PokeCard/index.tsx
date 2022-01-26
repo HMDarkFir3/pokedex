@@ -7,7 +7,7 @@ import { Container, Title } from "./styles";
 //Interfaces
 interface Props extends TouchableOpacityProps {
   data: {
-    id: string;
+    id: number;
     title: string;
     color: string;
   };
