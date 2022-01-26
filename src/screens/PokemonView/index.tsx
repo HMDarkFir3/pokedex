@@ -13,6 +13,7 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeAbilityCard from "../../components/Lists/PokeAbilityCard";
+import PokeSeparator from "../../components/PokeSeparator";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
@@ -145,14 +146,12 @@ const PokemonView: React.FC = () => {
           />
         </PokeDescritionButtonWrapper>
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ flex: 1, width: "100%" }}
-        >
+        <ScrollView showsVerticalScrollIndicator={false}>
           <PokeDescription>{pokemonDescription}</PokeDescription>
 
           <PokeAbilities>
             <PokeAbilitiesTitle>Abilities</PokeAbilitiesTitle>
+
             <FlatList
               data={pokemonAbilities}
               keyExtractor={(item) => String(item.slot)}
@@ -165,6 +164,8 @@ const PokemonView: React.FC = () => {
               horizontal={true}
             />
           </PokeAbilities>
+
+          <PokeSeparator />
 
           <PokeMeasurements>
             <PokeMeasure>
@@ -179,6 +180,8 @@ const PokemonView: React.FC = () => {
               </PokeMeasureValue>
             </PokeMeasure>
           </PokeMeasurements>
+
+          <PokeSeparator />
         </ScrollView>
       </PokeDescriptions>
     </Container>

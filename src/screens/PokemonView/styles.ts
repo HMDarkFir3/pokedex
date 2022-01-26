@@ -81,11 +81,11 @@ export const PokeDescriptions = styled.View`
   border-top-right-radius: 32px;
 `;
 
-export const PokeDescritionButtonWrapper = styled.View``;
+export const PokeDescritionButtonWrapper = styled.View`
+  margin-bottom: 20px;
+`;
 
 export const PokeDescription = styled.Text`
-  margin-top: 20px;
-
   text-align: justify;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(18)}px;
@@ -107,8 +107,6 @@ export const PokeAbilitiesTitle = styled.Text`
 export const PokeMeasurements = styled.View`
   flex-direction: row;
   justify-content: space-around;
-
-  margin-top: 20px;
 `;
 
 export const PokeMeasure = styled.View`
