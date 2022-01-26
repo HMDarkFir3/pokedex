@@ -1,8 +1,7 @@
 import * as React from "react";
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
-import { SvgUri } from "react-native-svg";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -13,6 +12,7 @@ import { usePoke } from "../../hooks/usePoke";
 import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
+import PokeAbilityCard from "../../components/Lists/PokeAbilityCard";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
@@ -32,13 +32,25 @@ import {
   PokeDescriptions,
   PokeDescritionButtonWrapper,
   PokeDescription,
+  PokeAbilities,
+  PokeAbilitiesTitle,
+  PokeMeasurements,
+  PokeMeasure,
+  PokeMeasureName,
+  PokeMeasureValue,
   LoadingContainer,
   Loading,
 } from "./styles";
 
 const PokemonView: React.FC = () => {
   //Hooks
-  const { pokemon, pokemonType, pokemonFlavorTextEntrie, loading } = usePoke();
+  const {
+    pokemon,
+    pokemonType,
+    pokemonFlavorTextEntrie,
+    pokemonAbilities,
+    loading,
+  } = usePoke();
 
   //Theme Hook
   const theme = useTheme();
@@ -127,14 +139,46 @@ const PokemonView: React.FC = () => {
             horizontal={true}
             contentContainerStyle={{
               justifyContent: "space-between",
-              marginTop: RFValue(44),
+              marginTop: RFValue(52),
               width: "100%",
             }}
           />
         </PokeDescritionButtonWrapper>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ flex: 1, width: "100%" }}
+        >
           <PokeDescription>{pokemonDescription}</PokeDescription>
+
+          <PokeAbilities>
+            <PokeAbilitiesTitle>Abilities</PokeAbilitiesTitle>
+            <FlatList
+              data={pokemonAbilities}
+              keyExtractor={(item) => String(item.slot)}
+              renderItem={({ item }) => (
+                <PokeAbilityCard
+                  data={item}
+                  backgroundColor={backgroundColor}
+                />
+              )}
+              horizontal={true}
+            />
+          </PokeAbilities>
+
+          <PokeMeasurements>
+            <PokeMeasure>
+              <PokeMeasureName>Height</PokeMeasureName>
+              <PokeMeasureValue>{pokemon.height / 10}m</PokeMeasureValue>
+            </PokeMeasure>
+
+            <PokeMeasure>
+              <PokeMeasureName>Weight</PokeMeasureName>
+              <PokeMeasureValue>
+                {Math.floor(pokemon.weight / 10)}kg
+              </PokeMeasureValue>
+            </PokeMeasure>
+          </PokeMeasurements>
         </ScrollView>
       </PokeDescriptions>
     </Container>

@@ -33,7 +33,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={dark}>
       <PokeProvider>
-        <StatusBar style="light" />
+        <StatusBar style="light" translucent={true} />
         <Routes />
       </PokeProvider>
     </ThemeProvider>

@@ -56,15 +56,15 @@ export const PokeType = styled.View`
 
 export const PokeImage = styled.View`
   position: absolute;
-  top: ${RFValue(60)}px;
+  top: ${RFValue(65)}px;
   align-self: center;
 
   z-index: 10;
 `;
 
 export const Image = styled.Image`
-  width: ${RFValue(225)}px;
-  height: ${RFValue(225)}px;
+  width: ${RFValue(220)}px;
+  height: ${RFValue(220)}px;
 `;
 
 export const PokeDescriptions = styled.View`
@@ -88,8 +88,43 @@ export const PokeDescription = styled.Text`
 
   text-align: justify;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(18)}px;
   color: ${({ theme }) => theme.colors.placeholder_text};
+`;
+
+export const PokeAbilities = styled.View`
+  margin-top: 20px;
+`;
+
+export const PokeAbilitiesTitle = styled.Text`
+  margin-bottom: 8px;
+
+  font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const PokeMeasurements = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+
+  margin-top: 20px;
+`;
+
+export const PokeMeasure = styled.View`
+  align-items: center;
+`;
+
+export const PokeMeasureName = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const PokeMeasureValue = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.light};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const LoadingContainer = styled.View`

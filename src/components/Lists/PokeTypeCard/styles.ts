@@ -26,7 +26,8 @@ export const Container = styled.View<ContainerProps>`
 `;
 
 export const Title = styled.Text`
+  text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(16)}px;
   color: ${({ theme }) => theme.colors.text};
 `;
