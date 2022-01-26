@@ -56,13 +56,20 @@ export const PokeType = styled.View`
 
 export const PokeImage = styled.View`
   position: absolute;
-  top: ${RFValue(110)}px;
+  top: ${RFValue(60)}px;
   align-self: center;
 
   z-index: 10;
 `;
 
+export const Image = styled.Image`
+  width: ${RFValue(225)}px;
+  height: ${RFValue(225)}px;
+`;
+
 export const PokeDescriptions = styled.View`
+  flex: 1;
+
   width: 100%;
   height: 100%;
 

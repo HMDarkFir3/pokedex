@@ -52,6 +52,10 @@ interface Sprites {
       front_default: string | null;
       front_female: string | null;
     };
+    home: {
+      front_default: string | null;
+      front_female: string | null;
+    };
   };
 }
 

@@ -4,7 +4,7 @@ export const pokeTypeColor = {
   dragon: "#755edf",
   electric: "#f5c038",
   fairy: "#f4b1f4",
-  fighting: "#382b38",
+  fighting: "#c03028",
   fire: "#ff673d",
   flying: "#a3b3f7",
   ghost: "#6060b2",

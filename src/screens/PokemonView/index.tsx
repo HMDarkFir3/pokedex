@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FlatList, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { ScrollView } from "react-native-gesture-handler";
 import { SvgUri } from "react-native-svg";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -27,6 +28,7 @@ import {
   PokeIndex,
   PokeType,
   PokeImage,
+  Image,
   PokeDescriptions,
   PokeDescritionButtonWrapper,
   PokeDescription,
@@ -105,13 +107,10 @@ const PokemonView: React.FC = () => {
         </PokeHeader>
 
         <PokeImage>
-          <SvgUri
-            width={RFValue(175)}
-            height={RFValue(175)}
-            uri={pokemon.sprites.other.dream_world.front_default}
-          />
+          <Image source={{ uri: pokemon.sprites.other.home.front_default }} />
         </PokeImage>
       </PokeContent>
+
       <PokeDescriptions>
         <PokeDescritionButtonWrapper>
           <FlatList
@@ -134,7 +133,9 @@ const PokemonView: React.FC = () => {
           />
         </PokeDescritionButtonWrapper>
 
-        <PokeDescription>{pokemonDescription}</PokeDescription>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <PokeDescription>{pokemonDescription}</PokeDescription>
+        </ScrollView>
       </PokeDescriptions>
     </Container>
   );
