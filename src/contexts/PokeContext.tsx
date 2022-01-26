@@ -11,6 +11,7 @@ import {
   PokemonSpeciesDTO,
   PokemonFlavorTextEntriesDTO,
   PokemonAbilitiesDTO,
+  PokemonStatsDTO,
 } from "../dtos";
 
 export const PokeContext = React.createContext({} as PokeContextData);
@@ -21,6 +22,7 @@ interface PokeContextData {
   pokemonType: PokemonTypeDTO[];
   pokemonFlavorTextEntrie: PokemonFlavorTextEntriesDTO[];
   pokemonAbilities: PokemonAbilitiesDTO[];
+  pokemonStats: PokemonStatsDTO[];
   loading: boolean;
   fetchPokemon: (pokemonName: string) => void;
 }
@@ -39,6 +41,7 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
   const [pokemonAbilities, setPokemonAbilities] = React.useState<
     PokemonAbilitiesDTO[]
   >([]);
+  const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   async function fetchPokemon(pokemonName: string) {
@@ -57,6 +60,7 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
       setPokemonType(pokemonResponse.data.types);
       setPokemonFlavorTextEntrie(speciesResponse.data.flavor_text_entries);
       setPokemonAbilities(pokemonResponse.data.abilities);
+      setPokemonStats(pokemonResponse.data.stats);
     } catch (error) {
       Alert.alert(error.message);
     } finally {
@@ -74,6 +78,7 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
         pokemonType,
         pokemonFlavorTextEntrie,
         pokemonAbilities,
+        pokemonStats,
         loading,
         fetchPokemon,
       }}

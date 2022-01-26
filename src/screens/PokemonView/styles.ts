@@ -125,6 +125,16 @@ export const PokeMeasureValue = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
+export const PokeStats = styled.View``;
+
+export const PokeStatTitle = styled.Text`
+  margin-bottom: 8px;
+
+  font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
 export const LoadingContainer = styled.View`
   flex: 1;
   align-items: center;

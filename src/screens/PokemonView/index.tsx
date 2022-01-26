@@ -13,6 +13,7 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeAbilityCard from "../../components/Lists/PokeAbilityCard";
+import PokeStatCard from "../../components/Lists/PokeStatCard";
 import PokeSeparator from "../../components/PokeSeparator";
 
 //Utils
@@ -39,6 +40,8 @@ import {
   PokeMeasure,
   PokeMeasureName,
   PokeMeasureValue,
+  PokeStats,
+  PokeStatTitle,
   LoadingContainer,
   Loading,
 } from "./styles";
@@ -50,6 +53,7 @@ const PokemonView: React.FC = () => {
     pokemonType,
     pokemonFlavorTextEntrie,
     pokemonAbilities,
+    pokemonStats,
     loading,
   } = usePoke();
 
@@ -78,8 +82,6 @@ const PokemonView: React.FC = () => {
           setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
         }
       });
-
-      console.log(pokemonDescription);
     }, [pokemonType, pokemonFlavorTextEntrie])
   );
 
@@ -180,6 +182,16 @@ const PokemonView: React.FC = () => {
               </PokeMeasureValue>
             </PokeMeasure>
           </PokeMeasurements>
+
+          <PokeSeparator />
+
+          <PokeStats>
+            <PokeStatTitle>Stats</PokeStatTitle>
+
+            {pokemonStats.map((item) => (
+              <PokeStatCard data={item} backgroundColor={backgroundColor} />
+            ))}
+          </PokeStats>
 
           <PokeSeparator />
         </ScrollView>
