@@ -76,6 +76,15 @@ export const PokeDescriptions = styled.View`
 
 export const PokeDescritionButtonWrapper = styled.View``;
 
+export const PokeDescription = styled.Text`
+  margin-top: 20px;
+
+  text-align: justify;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(20)}px;
+  color: ${({ theme }) => theme.colors.placeholder_text};
+`;
+
 export const LoadingContainer = styled.View`
   flex: 1;
   align-items: center;

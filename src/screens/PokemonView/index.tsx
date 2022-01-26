@@ -29,33 +29,43 @@ import {
   PokeImage,
   PokeDescriptions,
   PokeDescritionButtonWrapper,
+  PokeDescription,
   LoadingContainer,
   Loading,
 } from "./styles";
 
 const PokemonView: React.FC = () => {
   //Hooks
-  const { pokemon, pokemonType, loading } = usePoke();
+  const { pokemon, pokemonType, pokemonFlavorTextEntrie, loading } = usePoke();
 
   //Theme Hook
   const theme = useTheme();
 
   //States
   const [backgroundColor, setBackgroundColor] = React.useState<string>("");
+  const [pokemonDescription, setPokemonDescription] =
+    React.useState<string>("");
   const [descriptionSelected, setDescriptionSelected] =
     React.useState<string>("0");
 
   function handleDescriptionSelected(descriptionId: string) {
     setDescriptionSelected(descriptionId);
-
-    console.log(descriptionSelected);
   }
 
   useFocusEffect(
     React.useCallback(() => {
       const types = pokemonType.map((type) => type.type.name);
+
       setBackgroundColor(`${pokeTypeColor[types[0]]}`);
-    }, [pokemonType])
+
+      pokemonFlavorTextEntrie.some((description) => {
+        if (description.language.name === "en") {
+          setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
+        }
+      });
+
+      console.log(pokemonDescription);
+    }, [pokemonType, pokemonFlavorTextEntrie])
   );
 
   if (loading) {
@@ -102,7 +112,6 @@ const PokemonView: React.FC = () => {
           />
         </PokeImage>
       </PokeContent>
-
       <PokeDescriptions>
         <PokeDescritionButtonWrapper>
           <FlatList
@@ -124,6 +133,8 @@ const PokemonView: React.FC = () => {
             }}
           />
         </PokeDescritionButtonWrapper>
+
+        <PokeDescription>{pokemonDescription}</PokeDescription>
       </PokeDescriptions>
     </Container>
   );

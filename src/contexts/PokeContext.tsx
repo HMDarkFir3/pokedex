@@ -5,7 +5,12 @@ import { Alert } from "react-native";
 import api from "../services/api";
 
 //DTOS
-import { PokemonDTO, PokemonTypeDTO } from "../dtos";
+import {
+  PokemonDTO,
+  PokemonTypeDTO,
+  PokemonSpeciesDTO,
+  PokemonFlavorTextEntriesDTO,
+} from "../dtos";
 
 export const PokeContext = React.createContext({} as PokeContextData);
 
@@ -13,6 +18,7 @@ export const PokeContext = React.createContext({} as PokeContextData);
 interface PokeContextData {
   pokemon: PokemonDTO;
   pokemonType: PokemonTypeDTO[];
+  pokemonFlavorTextEntrie: PokemonFlavorTextEntriesDTO[];
   loading: boolean;
   fetchPokemon: (pokemonName: string) => void;
 }
@@ -25,18 +31,26 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
   //States
   const [pokemon, setPokemon] = React.useState<PokemonDTO>({} as PokemonDTO);
   const [pokemonType, setPokemonType] = React.useState<PokemonTypeDTO[]>([]);
+  const [pokemonFlavorTextEntrie, setPokemonFlavorTextEntrie] = React.useState<
+    PokemonFlavorTextEntriesDTO[]
+  >([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   async function fetchPokemon(pokemonName: string) {
     try {
       setLoading(true);
 
-      const response = await api.get<PokemonDTO>(
+      const pokemonResponse = await api.get<PokemonDTO>(
         `/pokemon/${pokemonName.toLowerCase()}`
       );
 
-      setPokemon(response.data);
-      setPokemonType(response.data.types);
+      const speciesResponse = await api.get<PokemonSpeciesDTO>(
+        `pokemon-species/${pokemonName.toLowerCase()}`
+      );
+
+      setPokemon(pokemonResponse.data);
+      setPokemonType(pokemonResponse.data.types);
+      setPokemonFlavorTextEntrie(speciesResponse.data.flavor_text_entries);
     } catch (error) {
       Alert.alert(error.message);
     } finally {
@@ -44,13 +58,18 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
     }
 
     //GET - Evolution - https://pokeapi.co/api/v2/evolution-chain/{id}/
-    //GET - Photos and Types - https://pokeapi.co/api/v2/pokemon-form/{id}/
     //GET - Encounters - https://pokeapi.co/api/v2/pokemon/{id}/encounters
   }
 
   return (
     <PokeContext.Provider
-      value={{ pokemon, pokemonType, loading, fetchPokemon }}
+      value={{
+        pokemon,
+        pokemonType,
+        pokemonFlavorTextEntrie,
+        loading,
+        fetchPokemon,
+      }}
     >
       {children}
     </PokeContext.Provider>
