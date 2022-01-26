@@ -188,8 +188,13 @@ const PokemonView: React.FC = () => {
           <PokeStats>
             <PokeStatTitle>Stats</PokeStatTitle>
 
-            {pokemonStats.map((item) => (
-              <PokeStatCard data={item} backgroundColor={backgroundColor} />
+            {pokemonStats.map((item, index) => (
+              <PokeStatCard
+                key={item.stat.name}
+                data={item}
+                backgroundColor={backgroundColor}
+                index={index}
+              />
             ))}
           </PokeStats>
 

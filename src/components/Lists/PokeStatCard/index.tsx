@@ -7,28 +7,42 @@ import { PokemonStatsDTO } from "../../../dtos";
 import { pokeStats } from "../../../utils/pokeStats";
 
 //Styles
-import { Container, Wrapper, Name, BaseValue, ProgressBar } from "./styles";
+import {
+  Container,
+  Wrapper,
+  Name,
+  BaseValue,
+  ProgressBar,
+  CurrentStat,
+} from "./styles";
 
 //Interfaces
 interface Props {
   data: PokemonStatsDTO;
   backgroundColor: string;
+  index: number;
 }
 
 const PokeStatCard: React.FC<Props> = (props) => {
-  const { backgroundColor } = props;
+  const { backgroundColor, index } = props;
   const { base_stat, stat } = props.data;
 
-  const formattedStat = stat.name.replace("-", "");
+  const formattedNameStat = stat.name.replace("-", "");
+  const formattedBaseStat = `${base_stat / 2}%`;
 
   return (
-    <Container>
+    <Container index={index}>
       <Wrapper>
-        <Name>{pokeStats[formattedStat]}</Name>
+        <Name>{pokeStats[formattedNameStat]}</Name>
         <BaseValue>{base_stat}</BaseValue>
       </Wrapper>
 
-      <ProgressBar />
+      <ProgressBar>
+        <CurrentStat
+          backgroundColor={backgroundColor}
+          stat={formattedBaseStat}
+        />
+      </ProgressBar>
     </Container>
   );
 };

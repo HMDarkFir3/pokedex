@@ -1,11 +1,28 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
+
 import { RFValue } from "react-native-responsive-fontsize";
 
-export const Container = styled.View`
+//Interfaces
+interface ContainerProps {
+  index: number;
+}
+
+interface CurrentStatProps {
+  backgroundColor: string;
+  stat: string;
+}
+
+export const Container = styled.View<ContainerProps>`
   flex-direction: row;
   align-items: center;
 
   width: 100%;
+
+  ${({ index }) =>
+    index !== 0 &&
+    css`
+      margin-top: 2px;
+    `}
 `;
 
 export const Wrapper = styled.View`
@@ -36,5 +53,15 @@ export const ProgressBar = styled.View`
   margin-left: 8px;
 
   background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 20px;
+`;
+
+export const CurrentStat = styled.View<CurrentStatProps>`
+  position: absolute;
+
+  height: 10px;
+  width: ${({ stat }) => stat};
+
+  background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 20px;
 `;
