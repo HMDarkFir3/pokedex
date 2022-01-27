@@ -32,6 +32,7 @@ interface Props {
 const PokeInfo: React.FC<Props> = (props) => {
   const { backgroundColor, pokemonDescription } = props;
 
+  //Hooks
   const { pokemon, pokemonAbilities, pokemonStats } = usePokemon();
 
   return (

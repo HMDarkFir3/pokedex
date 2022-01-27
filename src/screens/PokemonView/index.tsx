@@ -2,6 +2,12 @@ import * as React from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
+import {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withDelay,
+} from "react-native-reanimated";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -13,9 +19,6 @@ import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
 import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
-import PokeAbilityCard from "../../components/Lists/PokeAbilityCard";
-import PokeStatCard from "../../components/Lists/PokeStatCard";
-import PokeSeparator from "../../components/PokeSeparator";
 import PokeInfo from "../../components/PokeInfo";
 
 //Utils
@@ -35,34 +38,14 @@ import {
   Image,
   PokeDescriptions,
   PokeDescritionButtonWrapper,
-  PokeDescription,
-  PokeAbilities,
-  PokeAbilitiesTitle,
-  PokeMeasurements,
-  PokeMeasure,
-  PokeMeasureName,
-  PokeMeasureValue,
-  PokeStats,
-  PokeStatTitle,
-  PokeEvolutionWrapper,
-  PokeEvolutionName,
-  PokeVerticalSeparator,
-  PokeEvolutionLevel,
   LoadingContainer,
   Loading,
 } from "./styles";
 
 const PokemonView: React.FC = () => {
   //Hooks
-  const {
-    pokemon,
-    pokemonType,
-    pokemonFlavorTextEntrie,
-    pokemonAbilities,
-    pokemonStats,
-    pokemonSpecies,
-    loading,
-  } = usePokemon();
+  const { pokemon, pokemonType, pokemonFlavorTextEntrie, loading } =
+    usePokemon();
   const {
     pokemonEvolutionNames,
     pokemonEvolutionLevels,
@@ -76,24 +59,71 @@ const PokemonView: React.FC = () => {
   const [backgroundColor, setBackgroundColor] = React.useState<string>("");
   const [pokemonDescription, setPokemonDescription] =
     React.useState<string>("");
-  const [descriptionSelected, setDescriptionSelected] = React.useState<
-    "info" | "evolution" | "move"
-  >("info");
+  const [descriptionSelected, setDescriptionSelected] =
+    React.useState<string>("info");
 
-  async function handleDescriptionSelected(descriptionType) {
+  //Animations
+  const pokeImageOpacity = useSharedValue<number>(1);
+  const pokeImageZIndex = useSharedValue<number>(10);
+  const pokeDescriptionsPosition = useSharedValue<number>(RFValue(154));
+
+  const animatedPokeImageStyle = useAnimatedStyle(() => {
+    return {
+      opacity: pokeImageOpacity.value,
+      zIndex: pokeImageZIndex.value,
+    };
+  });
+
+  const animatedPokeDescriptionsPosition = useAnimatedStyle(() => {
+    return {
+      marginTop: pokeDescriptionsPosition.value,
+    };
+  });
+
+  async function handleDescriptionSelected(descriptionType: string) {
     switch (descriptionType) {
       case "info": {
+        ("worklet");
+        pokeImageOpacity.value = withDelay(
+          300,
+          withTiming(1, {
+            duration: 400,
+          })
+        );
+        pokeImageZIndex.value = withDelay(
+          300,
+          withTiming(10, { duration: 400 })
+        );
+        pokeDescriptionsPosition.value = withTiming(RFValue(154), {
+          duration: 750,
+        });
+
         setDescriptionSelected("info");
         break;
       }
 
       case "evolution": {
+        ("worklet");
+        pokeImageOpacity.value = withTiming(0, { duration: 400 });
+        pokeImageZIndex.value = withTiming(0, { duration: 400 });
+        pokeDescriptionsPosition.value = withTiming(RFValue(20), {
+          duration: 750,
+        });
+
+        fetchPokemonEvolution();
         setDescriptionSelected("evolution");
         break;
       }
 
-      case "move": {
-        setDescriptionSelected("move");
+      case "moves": {
+        ("worklet");
+        pokeImageOpacity.value = withTiming(0, { duration: 400 });
+        pokeImageZIndex.value = withTiming(0, { duration: 400 });
+        pokeDescriptionsPosition.value = withTiming(RFValue(20), {
+          duration: 750,
+        });
+
+        setDescriptionSelected("moves");
         break;
       }
     }
@@ -145,12 +175,12 @@ const PokemonView: React.FC = () => {
           </PokeType>
         </PokeHeader>
 
-        <PokeImage>
+        <PokeImage style={animatedPokeImageStyle}>
           <Image source={{ uri: pokemon.sprites.other.home.front_default }} />
         </PokeImage>
       </PokeContent>
 
-      <PokeDescriptions>
+      <PokeDescriptions style={animatedPokeDescriptionsPosition}>
         <PokeDescritionButtonWrapper>
           <FlatList
             data={pokeDescriptionButton}
@@ -173,10 +203,12 @@ const PokemonView: React.FC = () => {
         </PokeDescritionButtonWrapper>
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <PokeInfo
-            backgroundColor={backgroundColor}
-            pokemonDescription={pokemonDescription}
-          />
+          {descriptionSelected === "info" && (
+            <PokeInfo
+              backgroundColor={backgroundColor}
+              pokemonDescription={pokemonDescription}
+            />
+          )}
         </ScrollView>
       </PokeDescriptions>
     </Container>

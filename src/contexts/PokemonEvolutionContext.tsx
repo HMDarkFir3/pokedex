@@ -59,8 +59,6 @@ const PokemonProvider: React.FC<PokemonEvolutionProviderProps> = ({
     try {
       setLoading(true);
 
-      console.log(pokemonSpecies.evolution_chain.url);
-
       await api
         .get<PokemonEvolutionDTO[]>(`${pokemonSpecies.evolution_chain.url}`)
         .then((response) => {

@@ -9,6 +9,6 @@ export const pokeDescriptionButton = [
   },
   {
     id: 2,
-    title: "move",
+    title: "moves",
   },
 ];

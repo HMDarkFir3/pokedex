@@ -8,7 +8,11 @@ interface ContainerProps {
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
-  padding: 4px 20px;
+  align-items: center;
+
+  width: ${RFValue(100)}px;
+
+  padding: 2px 0;
 
   border-radius: 20px;
 
