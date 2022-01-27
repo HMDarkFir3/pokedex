@@ -1,8 +1,13 @@
 import styled from "styled-components/native";
+import Animated from "react-native-reanimated";
 import { RFValue } from "react-native-responsive-fontsize";
 
 //Interfaces
 interface ContainerProps {
+  backgroundColor: string;
+}
+
+interface PokeVerticalSeparator {
   backgroundColor: string;
 }
 
@@ -27,6 +32,7 @@ export const PokeHeader = styled.View`
 
 export const PokeTitle = styled.View`
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
@@ -54,7 +60,7 @@ export const PokeType = styled.View`
   width: 100%;
 `;
 
-export const PokeImage = styled.View`
+export const PokeImage = styled(Animated.View)`
   position: absolute;
   top: ${RFValue(65)}px;
   align-self: center;
@@ -67,7 +73,7 @@ export const Image = styled.Image`
   height: ${RFValue(220)}px;
 `;
 
-export const PokeDescriptions = styled.View`
+export const PokeDescriptions = styled(Animated.View)`
   flex: 1;
 
   width: 100%;
@@ -125,12 +131,42 @@ export const PokeMeasureValue = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const PokeStats = styled.View``;
+export const PokeStats = styled.View`
+  margin-bottom: 20px;
+`;
 
 export const PokeStatTitle = styled.Text`
   margin-bottom: 8px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const PokeEvolutionWrapper = styled.View`
+  align-items: center;
+
+  margin-bottom: 20px;
+`;
+
+export const PokeEvolutionName = styled.Text`
+  text-transform: capitalize;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(16)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const PokeVerticalSeparator = styled.View<PokeVerticalSeparator>`
+  width: 1px;
+  height: 40px;
+
+  margin: 12px;
+
+  background-color: ${({ backgroundColor }) => backgroundColor};
+`;
+
+export const PokeEvolutionLevel = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.light};
   font-size: ${RFValue(16)}px;
   color: ${({ theme }) => theme.colors.text};
 `;

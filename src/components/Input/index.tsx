@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
 //Hooks
-import { usePoke } from "../../hooks/usePoke";
+import { usePokemon } from "../../hooks/usePokemon";
 
 //Styles
 import { Container, SearchButton, SearchIcon, CustomInput } from "./styles";
@@ -19,7 +19,7 @@ const Input: React.ForwardRefRenderFunction<TextInput, Props> = (
   const { ...rest } = props;
 
   //Hooks
-  const { fetchPokemon } = usePoke();
+  const { fetchPokemon } = usePokemon();
 
   //States
   const [search, setSearch] = React.useState<string>("");

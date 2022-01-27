@@ -14,27 +14,31 @@ import {
   PokemonStatsDTO,
 } from "../dtos";
 
-export const PokeContext = React.createContext({} as PokeContextData);
+export const PokemonContext = React.createContext({} as PokemonContextData);
 
 //Interfaces
-interface PokeContextData {
+interface PokemonContextData {
   pokemon: PokemonDTO;
   pokemonType: PokemonTypeDTO[];
+  pokemonSpecies: PokemonSpeciesDTO;
   pokemonFlavorTextEntrie: PokemonFlavorTextEntriesDTO[];
   pokemonAbilities: PokemonAbilitiesDTO[];
   pokemonStats: PokemonStatsDTO[];
   loading: boolean;
-  fetchPokemon: (pokemonName: string) => void;
+  fetchPokemon: (pokemonId: string) => void;
 }
 
-interface PokeProviderProps {
+interface PokemonProviderProps {
   children: React.ReactNode;
 }
 
-const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
-  //States
+const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
+  //Pokemon States
   const [pokemon, setPokemon] = React.useState<PokemonDTO>({} as PokemonDTO);
   const [pokemonType, setPokemonType] = React.useState<PokemonTypeDTO[]>([]);
+  const [pokemonSpecies, setPokemonSpecies] = React.useState<PokemonSpeciesDTO>(
+    {} as PokemonSpeciesDTO
+  );
   const [pokemonFlavorTextEntrie, setPokemonFlavorTextEntrie] = React.useState<
     PokemonFlavorTextEntriesDTO[]
   >([]);
@@ -44,38 +48,40 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
   const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  async function fetchPokemon(pokemonName: string) {
+  async function fetchPokemon(pokemonId: string) {
     try {
       setLoading(true);
 
-      const pokemonResponse = await api.get<PokemonDTO>(
-        `/pokemon/${pokemonName.toLowerCase()}`
-      );
+      await api
+        .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
+        .then((pokemonResponse) => {
+          setPokemon(pokemonResponse.data);
+          setPokemonType(pokemonResponse.data.types);
+          setPokemonAbilities(pokemonResponse.data.abilities);
+          setPokemonStats(pokemonResponse.data.stats);
+        });
 
-      const speciesResponse = await api.get<PokemonSpeciesDTO>(
-        `pokemon-species/${pokemonName.toLowerCase()}`
-      );
-
-      setPokemon(pokemonResponse.data);
-      setPokemonType(pokemonResponse.data.types);
-      setPokemonFlavorTextEntrie(speciesResponse.data.flavor_text_entries);
-      setPokemonAbilities(pokemonResponse.data.abilities);
-      setPokemonStats(pokemonResponse.data.stats);
+      await api
+        .get<PokemonSpeciesDTO>(`pokemon-species/${pokemonId.toLowerCase()}/`)
+        .then((speciesResponse) => {
+          setPokemonSpecies(speciesResponse.data);
+          setPokemonFlavorTextEntrie(speciesResponse.data.flavor_text_entries);
+        });
     } catch (error) {
       Alert.alert(error.message);
     } finally {
       setLoading(false);
     }
 
-    //GET - Evolution - https://pokeapi.co/api/v2/evolution-chain/{id}/
     //GET - Encounters - https://pokeapi.co/api/v2/pokemon/{id}/encounters
   }
 
   return (
-    <PokeContext.Provider
+    <PokemonContext.Provider
       value={{
         pokemon,
         pokemonType,
+        pokemonSpecies,
         pokemonFlavorTextEntrie,
         pokemonAbilities,
         pokemonStats,
@@ -84,8 +90,8 @@ const PokeProvider: React.FC<PokeProviderProps> = ({ children }) => {
       }}
     >
       {children}
-    </PokeContext.Provider>
+    </PokemonContext.Provider>
   );
 };
 
-export default PokeProvider;
+export default PokemonProvider;

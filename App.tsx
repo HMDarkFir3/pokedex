@@ -11,7 +11,8 @@ import {
 } from "@expo-google-fonts/roboto";
 
 //Contexts
-import PokeProvider from "./src/contexts/PokeContext";
+import PokemonProvider from "./src/contexts/PokemonContext";
+import PokemonEvolutionProvider from "./src/contexts/PokemonEvolutionContext";
 
 //Routes Folder
 import Routes from "./src/routes";
@@ -32,10 +33,12 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={dark}>
-      <PokeProvider>
-        <StatusBar style="light" translucent={true} />
-        <Routes />
-      </PokeProvider>
+      <PokemonProvider>
+        <PokemonEvolutionProvider>
+          <StatusBar style="light" translucent={true} />
+          <Routes />
+        </PokemonEvolutionProvider>
+      </PokemonProvider>
     </ThemeProvider>
   );
 };

@@ -6,7 +6,8 @@ import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 
 //Hooks
-import { usePoke } from "../../hooks/usePoke";
+import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
 
 //Components
 import Header from "../../components/Header";
@@ -15,6 +16,7 @@ import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeAbilityCard from "../../components/Lists/PokeAbilityCard";
 import PokeStatCard from "../../components/Lists/PokeStatCard";
 import PokeSeparator from "../../components/PokeSeparator";
+import PokeInfo from "../../components/PokeInfo";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
@@ -42,6 +44,10 @@ import {
   PokeMeasureValue,
   PokeStats,
   PokeStatTitle,
+  PokeEvolutionWrapper,
+  PokeEvolutionName,
+  PokeVerticalSeparator,
+  PokeEvolutionLevel,
   LoadingContainer,
   Loading,
 } from "./styles";
@@ -54,8 +60,14 @@ const PokemonView: React.FC = () => {
     pokemonFlavorTextEntrie,
     pokemonAbilities,
     pokemonStats,
+    pokemonSpecies,
     loading,
-  } = usePoke();
+  } = usePokemon();
+  const {
+    pokemonEvolutionNames,
+    pokemonEvolutionLevels,
+    fetchPokemonEvolution,
+  } = usePokemonEvolution();
 
   //Theme Hook
   const theme = useTheme();
@@ -64,11 +76,27 @@ const PokemonView: React.FC = () => {
   const [backgroundColor, setBackgroundColor] = React.useState<string>("");
   const [pokemonDescription, setPokemonDescription] =
     React.useState<string>("");
-  const [descriptionSelected, setDescriptionSelected] =
-    React.useState<string>("0");
+  const [descriptionSelected, setDescriptionSelected] = React.useState<
+    "info" | "evolution" | "move"
+  >("info");
 
-  function handleDescriptionSelected(descriptionId: string) {
-    setDescriptionSelected(descriptionId);
+  async function handleDescriptionSelected(descriptionType) {
+    switch (descriptionType) {
+      case "info": {
+        setDescriptionSelected("info");
+        break;
+      }
+
+      case "evolution": {
+        setDescriptionSelected("evolution");
+        break;
+      }
+
+      case "move": {
+        setDescriptionSelected("move");
+        break;
+      }
+    }
   }
 
   useFocusEffect(
@@ -85,7 +113,7 @@ const PokemonView: React.FC = () => {
     }, [pokemonType, pokemonFlavorTextEntrie])
   );
 
-  if (loading) {
+  if (loading && descriptionSelected === "info") {
     return (
       <LoadingContainer>
         <Loading size="large" color={theme.colors.text} />
@@ -95,11 +123,7 @@ const PokemonView: React.FC = () => {
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <Header
-        leftIcon="chevron-left"
-        rightIcon="heart"
-        backgroundColor={backgroundColor}
-      />
+      <Header leftIcon="chevron-left" backgroundColor={backgroundColor} />
 
       <PokeContent>
         <PokeHeader>
@@ -134,9 +158,9 @@ const PokemonView: React.FC = () => {
             renderItem={({ item }) => (
               <PokeDescritionButton
                 data={item}
-                isActive={descriptionSelected === String(item.id)}
+                isActive={descriptionSelected === item.title}
                 backgroundColor={backgroundColor}
-                onPress={() => handleDescriptionSelected(String(item.id))}
+                onPress={() => handleDescriptionSelected(item.title)}
               />
             )}
             horizontal={true}
@@ -149,56 +173,10 @@ const PokemonView: React.FC = () => {
         </PokeDescritionButtonWrapper>
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <PokeDescription>{pokemonDescription}</PokeDescription>
-
-          <PokeAbilities>
-            <PokeAbilitiesTitle>Abilities</PokeAbilitiesTitle>
-
-            <FlatList
-              data={pokemonAbilities}
-              keyExtractor={(item) => String(item.slot)}
-              renderItem={({ item }) => (
-                <PokeAbilityCard
-                  data={item}
-                  backgroundColor={backgroundColor}
-                />
-              )}
-              horizontal={true}
-            />
-          </PokeAbilities>
-
-          <PokeSeparator />
-
-          <PokeMeasurements>
-            <PokeMeasure>
-              <PokeMeasureName>Height</PokeMeasureName>
-              <PokeMeasureValue>{pokemon.height / 10}m</PokeMeasureValue>
-            </PokeMeasure>
-
-            <PokeMeasure>
-              <PokeMeasureName>Weight</PokeMeasureName>
-              <PokeMeasureValue>
-                {Math.floor(pokemon.weight / 10)}kg
-              </PokeMeasureValue>
-            </PokeMeasure>
-          </PokeMeasurements>
-
-          <PokeSeparator />
-
-          <PokeStats>
-            <PokeStatTitle>Stats</PokeStatTitle>
-
-            {pokemonStats.map((item, index) => (
-              <PokeStatCard
-                key={item.stat.name}
-                data={item}
-                backgroundColor={backgroundColor}
-                index={index}
-              />
-            ))}
-          </PokeStats>
-
-          <PokeSeparator />
+          <PokeInfo
+            backgroundColor={backgroundColor}
+            pokemonDescription={pokemonDescription}
+          />
         </ScrollView>
       </PokeDescriptions>
     </Container>
