@@ -5,7 +5,7 @@ import { Alert } from "react-native";
 import api from "../services/api";
 
 //DTOS
-import { PokemonEvolutionDTO } from "../dtos";
+import { PokemonEvolutionDTO, PokemonEvolutionChainDTO } from "../dtos";
 
 //Hooks
 import { usePokemon } from "../hooks/usePokemon";
@@ -16,16 +16,7 @@ export const PokemonEvolutionContext = React.createContext(
 
 //Interfaces
 interface PokemonEvolutionContextData {
-  pokemonEvolution: PokemonEvolutionDTO[];
-  pokemonEvolutionNames: {
-    first_name: string[] | null;
-    mid_name: string[][] | null;
-    last_name: string[][][] | null;
-  };
-  pokemonEvolutionLevels: {
-    first_level: number[][][] | null;
-    last_level: number[][][][] | null;
-  };
+  pokemonEvolutionChain: PokemonEvolutionChainDTO[];
   loading: boolean;
   fetchPokemonEvolution: () => void;
 }
@@ -41,34 +32,39 @@ const PokemonProvider: React.FC<PokemonEvolutionProviderProps> = ({
   const { pokemonSpecies } = usePokemon();
 
   //Evolution States
-  const [pokemonEvolution, setPokemonEvolution] = React.useState<
-    PokemonEvolutionDTO[]
+  const [pokemonEvolutionChain, setPokemonEvolutionChain] = React.useState<
+    PokemonEvolutionChainDTO[]
   >([]);
-  const [pokemonEvolutionNames, setPokemonEvolutionNames] = React.useState<{
-    first_name: string[] | null;
-    mid_name: string[][] | null;
-    last_name: string[][][] | null;
-  }>({ first_name: [""], mid_name: [[""]], last_name: [[[""]]] });
-  const [pokemonEvolutionLevels, setPokemonEvolutionLevels] = React.useState<{
-    first_level: number[][][] | null;
-    last_level: number[][][][] | null;
-  }>({ first_level: null, last_level: null });
+
   const [loading, setLoading] = React.useState<boolean>(false);
 
   async function fetchPokemonEvolution() {
     try {
       setLoading(true);
 
+      if (pokemonEvolutionChain.length >= 1) {
+        setPokemonEvolutionChain([]);
+      }
+
       await api
-        .get<PokemonEvolutionDTO[]>(`${pokemonSpecies.evolution_chain.url}`)
+        .get(`${pokemonSpecies.evolution_chain.url}`)
         .then((response) => {
-          setPokemonEvolution(response.data);
-        })
-        .then(() => {
-          //console.log(pokemonEvolution);
+          let evoData = response.data.chain;
+
+          do {
+            let evoDetails = evoData["evolution_details"][0];
+
+            pokemonEvolutionChain.push({
+              species_name: evoData.species.name,
+              min_level: !evoDetails ? 1 : evoDetails.min_level,
+              trigger_name: !evoDetails ? null : evoDetails.trigger.name,
+              item: !evoDetails ? null : evoDetails.item,
+            });
+
+            evoData = evoData["evolves_to"][0];
+          } while (!!evoData && evoData.hasOwnProperty("evolves_to"));
         });
     } catch (error) {
-      Alert.alert(error.message);
     } finally {
       setLoading(false);
     }
@@ -77,9 +73,7 @@ const PokemonProvider: React.FC<PokemonEvolutionProviderProps> = ({
   return (
     <PokemonEvolutionContext.Provider
       value={{
-        pokemonEvolution,
-        pokemonEvolutionNames,
-        pokemonEvolutionLevels,
+        pokemonEvolutionChain,
         loading,
         fetchPokemonEvolution,
       }}

@@ -20,6 +20,7 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeInfo from "../../components/PokeInfo";
+import PokeEvolutionChain from "../../components/PokeEvolutionChain";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
@@ -44,13 +45,14 @@ import {
 
 const PokemonView: React.FC = () => {
   //Hooks
-  const { pokemon, pokemonType, pokemonFlavorTextEntrie, loading } =
-    usePokemon();
   const {
-    pokemonEvolutionNames,
-    pokemonEvolutionLevels,
-    fetchPokemonEvolution,
-  } = usePokemonEvolution();
+    pokemon,
+    pokemonType,
+    pokemonFlavorTextEntrie,
+    pokemonSpecies,
+    loading,
+  } = usePokemon();
+  const { fetchPokemonEvolution } = usePokemonEvolution();
 
   //Theme Hook
   const theme = useTheme();
@@ -80,18 +82,18 @@ const PokemonView: React.FC = () => {
     };
   });
 
-  async function handleDescriptionSelected(descriptionType: string) {
+  function handleDescriptionSelected(descriptionType: string) {
     switch (descriptionType) {
       case "info": {
         ("worklet");
         pokeImageOpacity.value = withDelay(
-          300,
+          600,
           withTiming(1, {
-            duration: 400,
+            duration: 600,
           })
         );
         pokeImageZIndex.value = withDelay(
-          300,
+          400,
           withTiming(10, { duration: 400 })
         );
         pokeDescriptionsPosition.value = withTiming(RFValue(154), {
@@ -104,21 +106,20 @@ const PokemonView: React.FC = () => {
 
       case "evolution": {
         ("worklet");
-        pokeImageOpacity.value = withTiming(0, { duration: 400 });
-        pokeImageZIndex.value = withTiming(0, { duration: 400 });
+        pokeImageOpacity.value = withTiming(0, { duration: 200 });
+        pokeImageZIndex.value = withTiming(0, { duration: 200 });
         pokeDescriptionsPosition.value = withTiming(RFValue(20), {
           duration: 750,
         });
 
-        fetchPokemonEvolution();
         setDescriptionSelected("evolution");
         break;
       }
 
       case "moves": {
         ("worklet");
-        pokeImageOpacity.value = withTiming(0, { duration: 400 });
-        pokeImageZIndex.value = withTiming(0, { duration: 400 });
+        pokeImageOpacity.value = withTiming(0, { duration: 200 });
+        pokeImageZIndex.value = withTiming(0, { duration: 200 });
         pokeDescriptionsPosition.value = withTiming(RFValue(20), {
           duration: 750,
         });
@@ -141,6 +142,12 @@ const PokemonView: React.FC = () => {
         }
       });
     }, [pokemonType, pokemonFlavorTextEntrie])
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchPokemonEvolution();
+    }, [pokemonSpecies])
   );
 
   if (loading && descriptionSelected === "info") {
@@ -208,6 +215,10 @@ const PokemonView: React.FC = () => {
               backgroundColor={backgroundColor}
               pokemonDescription={pokemonDescription}
             />
+          )}
+
+          {descriptionSelected === "evolution" && (
+            <PokeEvolutionChain backgroundColor={backgroundColor} />
           )}
         </ScrollView>
       </PokeDescriptions>

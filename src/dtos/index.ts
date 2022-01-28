@@ -5,6 +5,7 @@ import { PokemonFlavorTextEntriesDTO } from "./PokemonFlavorTextEntriesDTO";
 import { PokemonAbilitiesDTO } from "./PokemonAbilitiesDTO";
 import { PokemonStatsDTO } from "./PokemonStatsDTO";
 import { PokemonEvolutionDTO } from "./PokemonEvolutionDTO";
+import { PokemonEvolutionChainDTO } from "./PokemonEvolutionChainDTO";
 
 export {
   PokemonDTO,
@@ -14,4 +15,5 @@ export {
   PokemonAbilitiesDTO,
   PokemonStatsDTO,
   PokemonEvolutionDTO,
+  PokemonEvolutionChainDTO,
 };
