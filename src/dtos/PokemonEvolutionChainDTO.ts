@@ -1,4 +1,5 @@
 export interface PokemonEvolutionChainDTO {
+  id: number;
   item: {
     name: string;
     url: string;
@@ -6,5 +7,6 @@ export interface PokemonEvolutionChainDTO {
   min_level: number | null;
   species_name: string;
   trigger_name: string | null;
+  image_url?: string | null;
 }
 [];
