@@ -1,12 +1,10 @@
 import * as React from "react";
-import { Alert } from "react-native";
-import axios from "axios";
 
 //Services
 import api from "../services/api";
 
 //DTOS
-import { PokemonEvolutionDTO, PokemonEvolutionChainDTO } from "../dtos";
+import { PokemonEvolutionChainDTO } from "../dtos";
 
 //Hooks
 import { usePokemon } from "../hooks/usePokemon";
@@ -26,7 +24,7 @@ interface PokemonEvolutionProviderProps {
   children: React.ReactNode;
 }
 
-const PokemonProvider: React.FC<PokemonEvolutionProviderProps> = ({
+const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
   children,
 }) => {
   //Hooks
@@ -122,4 +120,4 @@ const PokemonProvider: React.FC<PokemonEvolutionProviderProps> = ({
   );
 };
 
-export default PokemonProvider;
+export default PokemonEvolutionProvider;

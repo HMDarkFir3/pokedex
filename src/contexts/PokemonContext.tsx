@@ -12,6 +12,7 @@ import {
   PokemonFlavorTextEntriesDTO,
   PokemonAbilitiesDTO,
   PokemonStatsDTO,
+  PokemonMovesDTO,
 } from "../dtos";
 
 export const PokemonContext = React.createContext({} as PokemonContextData);
@@ -24,6 +25,7 @@ interface PokemonContextData {
   pokemonFlavorTextEntrie: PokemonFlavorTextEntriesDTO[];
   pokemonAbilities: PokemonAbilitiesDTO[];
   pokemonStats: PokemonStatsDTO[];
+  pokemonMoves: PokemonMovesDTO[];
   loading: boolean;
   fetchPokemon: (pokemonId: string) => void;
 }
@@ -46,6 +48,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
     PokemonAbilitiesDTO[]
   >([]);
   const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
+  const [pokemonMoves, setPokemonMoves] = React.useState<PokemonMovesDTO[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const fetchPokemon = React.useCallback(
@@ -60,6 +63,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
             setPokemonType(pokemonResponse.data.types);
             setPokemonAbilities(pokemonResponse.data.abilities);
             setPokemonStats(pokemonResponse.data.stats);
+            setPokemonMoves(pokemonResponse.data.moves);
           });
 
         await api
@@ -79,10 +83,11 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
     [
       pokemon,
       pokemonType,
-      pokemonSpecies,
-      pokemonStats,
-      pokemonFlavorTextEntrie,
       pokemonAbilities,
+      pokemonStats,
+      pokemonMoves,
+      pokemonSpecies,
+      pokemonFlavorTextEntrie,
     ]
   );
 
@@ -91,10 +96,11 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
       value={{
         pokemon,
         pokemonType,
-        pokemonSpecies,
-        pokemonFlavorTextEntrie,
         pokemonAbilities,
         pokemonStats,
+        pokemonMoves,
+        pokemonSpecies,
+        pokemonFlavorTextEntrie,
         loading,
         fetchPokemon,
       }}

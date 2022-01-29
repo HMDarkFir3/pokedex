@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 //Interfaces`
-interface NameProps {
+interface LevelProps {
   backgroundColor: string;
 }
 
@@ -36,19 +36,19 @@ export const Image = styled.Image`
   height: ${RFValue(90)}px;
 `;
 
-export const Name = styled.Text<NameProps>`
+export const Name = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(18)}px;
-  color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Level = styled.Text`
+export const Level = styled.Text<LevelProps>`
   margin-left: 20px;
 
   text-transform: capitalize;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(18)}px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ backgroundColor }) => backgroundColor};
 `;

@@ -20,7 +20,8 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeInfo from "../../components/PokeInfo";
-import PokeEvolutionChain from "../../components/PokeEvolutionChain";
+import PokeEvolution from "../../components/PokeEvolution";
+import PokeMoves from "../../components/PokeMoves";
 
 //Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
@@ -48,11 +49,13 @@ const PokemonView: React.FC = () => {
   const {
     pokemon,
     pokemonType,
-    pokemonFlavorTextEntrie,
+    pokemonMoves,
     pokemonSpecies,
+    pokemonFlavorTextEntrie,
     loading,
   } = usePokemon();
-  const { fetchPokemonEvolution } = usePokemonEvolution();
+  const { pokemonEvolutionChain, fetchPokemonEvolution } =
+    usePokemonEvolution();
 
   //Theme Hook
   const theme = useTheme();
@@ -209,22 +212,46 @@ const PokemonView: React.FC = () => {
           />
         </PokeDescritionButtonWrapper>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {descriptionSelected === "info" && (
+        {descriptionSelected === "info" && (
+          <ScrollView showsVerticalScrollIndicator={false}>
             <PokeInfo
               backgroundColor={backgroundColor}
               pokemonDescription={pokemonDescription}
             />
-          )}
+          </ScrollView>
+        )}
 
-          {descriptionSelected === "evolution" && (
-            <PokeEvolutionChain
-              backgroundColor={backgroundColor}
-              pokemonCurrentName={pokemon.name}
-              handleDescriptionSelected={handleDescriptionSelected}
-            />
-          )}
-        </ScrollView>
+        {descriptionSelected === "evolution" && (
+          <FlatList
+            data={pokemonEvolutionChain}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <PokeEvolution
+                data={item}
+                backgroundColor={backgroundColor}
+                pokemonCurrentName={pokemon.name}
+                handleDescriptionSelected={handleDescriptionSelected}
+              />
+            )}
+            contentContainerStyle={{ marginTop: RFValue(-120) }}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
+
+        {descriptionSelected === "moves" && (
+          <FlatList
+            data={pokemonMoves}
+            keyExtractor={(item) => item.move.name}
+            renderItem={({ item, index }) => (
+              <PokeMoves
+                data={item}
+                index={index}
+                backgroundColor={backgroundColor}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
       </PokeDescriptions>
     </Container>
   );
