@@ -1,5 +1,4 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 
 //Routes
 import AppRoutes from "./app.routes";
@@ -7,15 +6,13 @@ import AppRoutes from "./app.routes";
 //Interfaces
 export interface RoutesProps {
   Home: undefined;
-  PokemonView: undefined;
+  PokemonView: {
+    descriptionSelected: string;
+  };
 }
 
 const Routes: React.FC = () => {
-  return (
-    <NavigationContainer>
-      <AppRoutes />
-    </NavigationContainer>
-  );
+  return <AppRoutes />;
 };
 
 export default Routes;

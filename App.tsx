@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "styled-components";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
@@ -32,14 +33,16 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeProvider theme={dark}>
-      <PokemonProvider>
-        <PokemonEvolutionProvider>
-          <StatusBar style="light" translucent={true} />
-          <Routes />
-        </PokemonEvolutionProvider>
-      </PokemonProvider>
-    </ThemeProvider>
+    <NavigationContainer>
+      <ThemeProvider theme={dark}>
+        <PokemonProvider>
+          <PokemonEvolutionProvider>
+            <StatusBar style="light" translucent={true} />
+            <Routes />
+          </PokemonEvolutionProvider>
+        </PokemonProvider>
+      </ThemeProvider>
+    </NavigationContainer>
   );
 };
 

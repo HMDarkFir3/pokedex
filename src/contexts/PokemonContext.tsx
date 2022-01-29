@@ -48,33 +48,43 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
   const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  async function fetchPokemon(pokemonId: string) {
-    try {
-      setLoading(true);
+  const fetchPokemon = React.useCallback(
+    async (pokemonId: string) => {
+      try {
+        setLoading(true);
 
-      await api
-        .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
-        .then((pokemonResponse) => {
-          setPokemon(pokemonResponse.data);
-          setPokemonType(pokemonResponse.data.types);
-          setPokemonAbilities(pokemonResponse.data.abilities);
-          setPokemonStats(pokemonResponse.data.stats);
-        });
+        await api
+          .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
+          .then((pokemonResponse) => {
+            setPokemon(pokemonResponse.data);
+            setPokemonType(pokemonResponse.data.types);
+            setPokemonAbilities(pokemonResponse.data.abilities);
+            setPokemonStats(pokemonResponse.data.stats);
+          });
 
-      await api
-        .get<PokemonSpeciesDTO>(`pokemon-species/${pokemonId.toLowerCase()}/`)
-        .then((speciesResponse) => {
-          setPokemonSpecies(speciesResponse.data);
-          setPokemonFlavorTextEntrie(speciesResponse.data.flavor_text_entries);
-        });
-    } catch (error) {
-      Alert.alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-
-    //GET - Encounters - https://pokeapi.co/api/v2/pokemon/{id}/encounters
-  }
+        await api
+          .get<PokemonSpeciesDTO>(`pokemon-species/${pokemonId.toLowerCase()}/`)
+          .then((speciesResponse) => {
+            setPokemonSpecies(speciesResponse.data);
+            setPokemonFlavorTextEntrie(
+              speciesResponse.data.flavor_text_entries
+            );
+          });
+      } catch (error) {
+        Alert.alert(error.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [
+      pokemon,
+      pokemonType,
+      pokemonSpecies,
+      pokemonStats,
+      pokemonFlavorTextEntrie,
+      pokemonAbilities,
+    ]
+  );
 
   return (
     <PokemonContext.Provider

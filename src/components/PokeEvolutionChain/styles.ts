@@ -3,21 +3,17 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 //Interfaces`
 interface NameProps {
-  textColor: string;
-}
-
-interface SeparatorProps {
-  textColor: string;
+  backgroundColor: string;
 }
 
 export const Container = styled.View`
-  margin-top: ${RFValue(-80)}px;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const Wrapper = styled.View`
-  flex-direction: row;
+export const Wrapper = styled.TouchableOpacity`
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   width: 100%;
 
@@ -25,6 +21,12 @@ export const Wrapper = styled.View`
 `;
 
 export const SubWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PokeImage = styled.View`
   align-items: center;
   justify-content: center;
 `;
@@ -38,30 +40,12 @@ export const Name = styled.Text<NameProps>`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(18)}px;
-  color: ${({ textColor }) => textColor};
-`;
-
-export const SeparatorWrapper = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Separator = styled.View<SeparatorProps>`
-  width: 99%;
-  height: 1px;
-
-  background-color: ${({ textColor }) => textColor};
-`;
-
-export const LevelWrapper = styled.View`
-  align-items: flex-end;
-  justify-content: center;
-
-  width: ${RFValue(80)}px;
+  color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 export const Level = styled.Text`
+  margin-left: 20px;
+
   text-transform: capitalize;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};

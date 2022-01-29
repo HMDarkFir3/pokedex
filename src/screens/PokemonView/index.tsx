@@ -150,7 +150,7 @@ const PokemonView: React.FC = () => {
     }, [pokemonSpecies])
   );
 
-  if (loading && descriptionSelected === "info") {
+  if (loading) {
     return (
       <LoadingContainer>
         <Loading size="large" color={theme.colors.text} />
@@ -218,7 +218,11 @@ const PokemonView: React.FC = () => {
           )}
 
           {descriptionSelected === "evolution" && (
-            <PokeEvolutionChain backgroundColor={backgroundColor} />
+            <PokeEvolutionChain
+              backgroundColor={backgroundColor}
+              pokemonCurrentName={pokemon.name}
+              handleDescriptionSelected={handleDescriptionSelected}
+            />
           )}
         </ScrollView>
       </PokeDescriptions>
