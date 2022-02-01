@@ -1,4 +1,4 @@
-export const pokeCards = [
+export const pokeSelection = [
   {
     id: 0,
     title: "Pokedex",

@@ -20,7 +20,7 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeInfo from "../../components/PokeInfo";
-import PokeEvolution from "../../components/PokeEvolution";
+import PokeEvolution from "../../components/Lists/PokeEvolution";
 import PokeMoves from "../../components/PokeMoves";
 
 //Utils

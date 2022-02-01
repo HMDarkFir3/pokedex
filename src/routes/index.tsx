@@ -9,6 +9,7 @@ export interface RoutesProps {
   PokemonView: {
     descriptionSelected: string;
   };
+  Pokedex: undefined;
 }
 
 const Routes: React.FC = () => {

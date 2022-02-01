@@ -13,7 +13,9 @@ import {
   PokemonAbilitiesDTO,
   PokemonStatsDTO,
   PokemonMovesDTO,
+  PokemonsDTO,
 } from "../dtos";
+import { Results } from "../dtos/PokemonsDTO";
 
 export const PokemonContext = React.createContext({} as PokemonContextData);
 
@@ -26,8 +28,10 @@ interface PokemonContextData {
   pokemonAbilities: PokemonAbilitiesDTO[];
   pokemonStats: PokemonStatsDTO[];
   pokemonMoves: PokemonMovesDTO[];
+  pokemons: Results[];
   loading: boolean;
   fetchPokemon: (pokemonId: string) => void;
+  fetchPokemons: () => void;
 }
 
 interface PokemonProviderProps {
@@ -49,6 +53,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
   >([]);
   const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
   const [pokemonMoves, setPokemonMoves] = React.useState<PokemonMovesDTO[]>([]);
+  const [pokemons, setPokemons] = React.useState<Results[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const fetchPokemon = React.useCallback(
@@ -91,6 +96,20 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
     ]
   );
 
+  async function fetchPokemons() {
+    try {
+      setLoading(true);
+      await api.get(`pokemon`).then((response) => {
+        console.log(response.data);
+        setPokemons(response.data.results);
+      });
+    } catch (error) {
+      Alert.alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <PokemonContext.Provider
       value={{
@@ -101,8 +120,10 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
         pokemonMoves,
         pokemonSpecies,
         pokemonFlavorTextEntrie,
+        pokemons,
         loading,
         fetchPokemon,
+        fetchPokemons,
       }}
     >
       {children}

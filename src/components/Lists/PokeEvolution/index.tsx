@@ -1,11 +1,12 @@
 import * as React from "react";
+import { TouchableOpacityProps } from "react-native";
 
 //DTOS
-import { PokemonEvolutionChainDTO } from "../../dtos";
+import { PokemonEvolutionChainDTO } from "../../../dtos";
 
 //Hooks
-import { usePokemon } from "../../hooks/usePokemon";
-import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
+import { usePokemon } from "../../../hooks/usePokemon";
+import { usePokemonEvolution } from "../../../hooks/usePokemonEvolution";
 
 //Styles
 import {
@@ -19,7 +20,7 @@ import {
 } from "./styles";
 
 //Interfaces
-interface Props {
+interface Props extends TouchableOpacityProps {
   data: PokemonEvolutionChainDTO;
   backgroundColor: string;
   pokemonCurrentName: string;

@@ -7,6 +7,7 @@ import { PokemonStatsDTO } from "./PokemonStatsDTO";
 import { PokemonEvolutionDTO } from "./PokemonEvolutionDTO";
 import { PokemonEvolutionChainDTO } from "./PokemonEvolutionChainDTO";
 import { PokemonMovesDTO } from "./PokemonMovesDTO";
+import { PokemonsDTO } from "./PokemonsDTO";
 
 export {
   PokemonDTO,
@@ -18,4 +19,5 @@ export {
   PokemonEvolutionDTO,
   PokemonEvolutionChainDTO,
   PokemonMovesDTO,
+  PokemonsDTO,
 };
