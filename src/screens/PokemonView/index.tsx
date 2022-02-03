@@ -20,7 +20,7 @@ import Header from "../../components/Header";
 import PokeTypeCard from "../../components/Lists/PokeTypeCard";
 import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
 import PokeInfo from "../../components/PokeInfo";
-import PokeEvolution from "../../components/Lists/PokeEvolution";
+import PokeEvolution from "../../components/PokeEvolution";
 import PokeMoves from "../../components/PokeMoves";
 
 //Utils
@@ -139,11 +139,16 @@ const PokemonView: React.FC = () => {
 
       setBackgroundColor(`${pokeTypeColor[types[0]]}`);
 
-      pokemonFlavorTextEntrie.some((description) => {
-        if (description.language.name === "en") {
-          setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
-        }
-      });
+      if (pokemonFlavorTextEntrie.length > 0) {
+        pokemonFlavorTextEntrie.some((description) => {
+          if (description.language.name === "en") {
+            setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
+            return;
+          }
+        });
+      } else {
+        setPokemonDescription("");
+      }
     }, [pokemonType, pokemonFlavorTextEntrie])
   );
 
@@ -235,6 +240,9 @@ const PokemonView: React.FC = () => {
             )}
             contentContainerStyle={{ marginTop: RFValue(-120) }}
             showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => (
+              <PokeName>Esse pokemon nao possui evolucao.</PokeName>
+            )}
           />
         )}
 

@@ -71,6 +71,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
             setPokemonMoves(pokemonResponse.data.moves);
           });
 
+        setPokemonSpecies({} as PokemonSpeciesDTO);
         await api
           .get<PokemonSpeciesDTO>(`pokemon-species/${pokemonId.toLowerCase()}/`)
           .then((speciesResponse) => {
@@ -80,7 +81,8 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
             );
           });
       } catch (error) {
-        Alert.alert(error.message);
+        setPokemonSpecies({} as PokemonSpeciesDTO);
+        setPokemonFlavorTextEntrie([]);
       } finally {
         setLoading(false);
       }

@@ -102,6 +102,7 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
           fetchEvolutionImages(evoChain);
         });
     } catch (error) {
+      setPokemonEvolutionChain([]);
     } finally {
       setLoading(false);
     }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 
 //Hooks
 import { usePokemon } from "../../hooks/usePokemon";
@@ -37,9 +37,11 @@ const PokeInfo: React.FC<Props> = (props) => {
 
   return (
     <Container>
-      <Description>{pokemonDescription}</Description>
+      {pokemonDescription !== "" && (
+        <Description>{pokemonDescription}</Description>
+      )}
 
-      <Abilities>
+      <Abilities pokemonDescription={!!pokemonDescription}>
         <AbilitiesTitle>Abilities</AbilitiesTitle>
 
         <FlatList

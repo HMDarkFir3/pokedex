@@ -1,5 +1,10 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
+
+//Interfaces
+interface AbilitiesProps {
+  pokemonDescription: boolean;
+}
 
 export const Container = styled.View``;
 
@@ -10,8 +15,14 @@ export const Description = styled.Text`
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 
-export const Abilities = styled.View`
+export const Abilities = styled.View<AbilitiesProps>`
   margin-top: 20px;
+
+  ${({ pokemonDescription }) =>
+    !pokemonDescription &&
+    css`
+      margin-top: 0;
+    `}
 `;
 
 export const AbilitiesTitle = styled.Text`
