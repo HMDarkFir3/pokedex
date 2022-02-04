@@ -5,7 +5,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 //Interfaces
 interface ContainerProps {
   color: string;
-  index: number;
+  //index: number;
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
@@ -13,22 +13,14 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
 
   margin-bottom: 10px;
 
-  ${({ index }) =>
-    index % 2 === 0
-      ? css`
-          margin-right: 5px;
-        `
-      : css`
-          margin-left: 5px;
-        `}
-
-  padding: 20px;
+  padding: 12px;
 
   background-color: ${({ color }) => color};
-  border-radius: 16px;
+  border-radius: 20px;
 `;
 
 export const Title = styled.Text`
+  text-align: center;
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: ${RFValue(16)}px;
   color: ${({ theme }) => theme.colors.text};

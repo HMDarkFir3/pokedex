@@ -191,7 +191,9 @@ const PokemonView: React.FC = () => {
         </PokeHeader>
 
         <PokeImage style={animatedPokeImageStyle}>
-          <Image source={{ uri: pokemon.sprites.other.home.front_default }} />
+          <Image
+            source={{ uri: pokemon?.sprites?.other.home?.front_default }}
+          />
         </PokeImage>
       </PokeContent>
 
@@ -240,9 +242,6 @@ const PokemonView: React.FC = () => {
             )}
             contentContainerStyle={{ marginTop: RFValue(-120) }}
             showsVerticalScrollIndicator={false}
-            ListEmptyComponent={() => (
-              <PokeName>Esse pokemon nao possui evolucao.</PokeName>
-            )}
           />
         )}
 

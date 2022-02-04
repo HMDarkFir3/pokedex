@@ -6,10 +6,9 @@ import AppRoutes from "./app.routes";
 //Interfaces
 export interface RoutesProps {
   Home: undefined;
-  PokemonView: {
-    descriptionSelected: string;
-  };
+  PokemonView: undefined;
   Pokedex: undefined;
+  ErrorView: undefined;
 }
 
 const Routes: React.FC = () => {

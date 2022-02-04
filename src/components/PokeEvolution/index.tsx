@@ -37,6 +37,8 @@ const PokeEvolution: React.FC<Props> = (props) => {
   const { fetchPokemon } = usePokemon();
   const { pokemonEvolutionChain } = usePokemonEvolution();
 
+  const [evolutionType, setEvolutionType] = React.useState<string>("");
+
   const handlePokemon = React.useCallback(
     (pokemonName: string) => {
       fetchPokemon(pokemonName);
@@ -44,6 +46,14 @@ const PokeEvolution: React.FC<Props> = (props) => {
     },
     [pokemonEvolutionChain]
   );
+
+  React.useEffect(() => {
+    if (min_level) {
+      setEvolutionType(`Level ${String(min_level)}`);
+    } else if (item) {
+      setEvolutionType(item?.name.replace("-", " "));
+    }
+  }, []);
 
   return (
     <Container>
@@ -54,13 +64,17 @@ const PokeEvolution: React.FC<Props> = (props) => {
       >
         <SubWrapper>
           <PokeImage>
-            <Image source={{ uri: image_url }} />
+            <Image
+              source={{
+                uri: image_url
+                  ? image_url
+                  : "https://img1.gratispng.com/20171220/dxe/question-mark-png-5a3a85e2667e64.6782850215137848024198.jpg",
+              }}
+            />
             <Name>{species_name}</Name>
           </PokeImage>
 
-          <Level backgroundColor={backgroundColor}>
-            {!!min_level ? `Level ${min_level}` : item?.name.replace("-", " ")}
-          </Level>
+          <Level backgroundColor={backgroundColor}>{evolutionType}</Level>
         </SubWrapper>
       </Wrapper>
     </Container>

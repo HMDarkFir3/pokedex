@@ -36,9 +36,9 @@ const Input: React.ForwardRefRenderFunction<TextInput, Props> = (
       return;
     }
 
-    setSearch("");
     fetchPokemon(search);
-    navigate("PokemonView", { descriptionSelected: "info" });
+    setSearch("");
+    navigate("PokemonView");
   }
 
   return (
@@ -46,6 +46,7 @@ const Input: React.ForwardRefRenderFunction<TextInput, Props> = (
       <SearchButton activeOpacity={0.7} onPress={handleSearch}>
         <SearchIcon name="search" />
       </SearchButton>
+
       <CustomInput
         {...rest}
         ref={ref}

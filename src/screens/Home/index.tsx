@@ -43,7 +43,7 @@ const Home: React.FC = () => {
 
         <Input
           ref={inputRef}
-          placeholder="Search pokemons, items, etc"
+          placeholder="Search pokemon: name or index"
           onBlur={inputOnBlur}
         />
 
@@ -56,7 +56,6 @@ const Home: React.FC = () => {
           contentContainerStyle={{
             marginTop: 20,
           }}
-          numColumns={2}
         />
       </Content>
     </Container>

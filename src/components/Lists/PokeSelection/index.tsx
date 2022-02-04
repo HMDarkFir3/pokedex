@@ -29,20 +29,14 @@ const PokeSelection: React.FC<Props> = (props) => {
   const { navigate } = useNavigation();
 
   function handleSelection() {
-    switch (title) {
-      case "Pokedex": {
-        fetchPokemons();
-        navigate("Pokedex");
-        break;
-      }
-    }
+    fetchPokemons();
+    navigate("Pokedex");
   }
 
   return (
     <Container
       {...rest}
       color={color}
-      index={index}
       activeOpacity={0.7}
       onPress={handleSelection}
     >

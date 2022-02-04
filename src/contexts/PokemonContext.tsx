@@ -13,7 +13,6 @@ import {
   PokemonAbilitiesDTO,
   PokemonStatsDTO,
   PokemonMovesDTO,
-  PokemonsDTO,
 } from "../dtos";
 import { Results } from "../dtos/PokemonsDTO";
 
@@ -30,6 +29,7 @@ interface PokemonContextData {
   pokemonMoves: PokemonMovesDTO[];
   pokemons: Results[];
   loading: boolean;
+
   fetchPokemon: (pokemonId: string) => void;
   fetchPokemons: () => void;
 }
@@ -56,53 +56,45 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
   const [pokemons, setPokemons] = React.useState<Results[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const fetchPokemon = React.useCallback(
-    async (pokemonId: string) => {
-      try {
-        setLoading(true);
+  async function fetchPokemon(pokemonId: string) {
+    try {
+      setLoading(true);
 
-        await api
-          .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
-          .then((pokemonResponse) => {
-            setPokemon(pokemonResponse.data);
-            setPokemonType(pokemonResponse.data.types);
-            setPokemonAbilities(pokemonResponse.data.abilities);
-            setPokemonStats(pokemonResponse.data.stats);
-            setPokemonMoves(pokemonResponse.data.moves);
-          });
+      await api
+        .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
+        .then(async (pokemonResponse) => {
+          setPokemon(pokemonResponse.data);
+          setPokemonType(pokemonResponse.data.types);
+          setPokemonAbilities(pokemonResponse.data.abilities);
+          setPokemonStats(pokemonResponse.data.stats);
+          setPokemonMoves(pokemonResponse.data.moves);
 
-        setPokemonSpecies({} as PokemonSpeciesDTO);
-        await api
-          .get<PokemonSpeciesDTO>(`pokemon-species/${pokemonId.toLowerCase()}/`)
-          .then((speciesResponse) => {
-            setPokemonSpecies(speciesResponse.data);
-            setPokemonFlavorTextEntrie(
-              speciesResponse.data.flavor_text_entries
-            );
-          });
-      } catch (error) {
-        setPokemonSpecies({} as PokemonSpeciesDTO);
-        setPokemonFlavorTextEntrie([]);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [
-      pokemon,
-      pokemonType,
-      pokemonAbilities,
-      pokemonStats,
-      pokemonMoves,
-      pokemonSpecies,
-      pokemonFlavorTextEntrie,
-    ]
-  );
+          await api
+            .get<PokemonSpeciesDTO>(pokemonResponse.data.species.url)
+            .then((speciesResponse) => {
+              setPokemonSpecies(speciesResponse.data);
+              setPokemonFlavorTextEntrie(
+                speciesResponse.data.flavor_text_entries
+              );
+            });
+        });
+    } catch (error) {
+      setPokemon({} as PokemonDTO);
+      setPokemonType([]);
+      setPokemonAbilities([]);
+      setPokemonStats([]);
+      setPokemonMoves([]);
+      setPokemonSpecies({} as PokemonSpeciesDTO);
+      setPokemonFlavorTextEntrie([]);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   async function fetchPokemons() {
     try {
       setLoading(true);
-      await api.get(`pokemon`).then((response) => {
-        console.log(response.data);
+      await api.get(`pokemon?limit=1106&offset=0`).then((response) => {
         setPokemons(response.data.results);
       });
     } catch (error) {
@@ -124,6 +116,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
         pokemonFlavorTextEntrie,
         pokemons,
         loading,
+
         fetchPokemon,
         fetchPokemons,
       }}

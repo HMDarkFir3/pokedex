@@ -37,6 +37,8 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
   const [loading, setLoading] = React.useState<boolean>(false);
 
   async function fetchEvolutionImages(evolutionChain) {
+    console.log(evolutionChain);
+
     for (let i = 0; i < evolutionChain.length; i++) {
       const response = await api.get(
         `pokemon-species/${evolutionChain[i].species_name}`

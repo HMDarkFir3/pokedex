@@ -58,7 +58,6 @@ export const Level = styled.Text<LevelProps>`
 `;
 
 export const NotEvolution = styled.View<NotEvolution>`
-  text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(18)}px;
   color: ${({ backgroundColor }) => backgroundColor};
