@@ -36,6 +36,7 @@ export const Pokedex: FC = () => {
         contentContainerStyle={{
           paddingHorizontal: 20,
         }}
+        showsVerticalScrollIndicator={false}
       />
     </Container>
   );
