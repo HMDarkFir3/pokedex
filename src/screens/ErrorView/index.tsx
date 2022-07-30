@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { FC } from "react";
 
 import { Container, Image, ErrorTitle } from "./styles";
 
-const ErrorView: React.FC = () => {
+export const ErrorView: FC = () => {
   return (
     <Container>
       <Image
@@ -14,5 +14,3 @@ const ErrorView: React.FC = () => {
     </Container>
   );
 };
-
-export default ErrorView;

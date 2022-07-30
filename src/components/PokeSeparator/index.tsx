@@ -1,9 +1,7 @@
-import * as React from "react";
+import React, { FC } from "react";
 
 import { Container } from "./styles";
 
-const PokeSeparator: React.FC = () => {
+export const PokeSeparator: FC = () => {
   return <Container />;
 };
-
-export default PokeSeparator;

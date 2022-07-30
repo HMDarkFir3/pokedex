@@ -1,14 +1,11 @@
-import * as React from "react";
+import React, { useEffect, FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 
-//DTOS
 import { PokemonEvolutionChainDTO } from "../../dtos";
 
-//Hooks
 import { usePokemon } from "../../hooks/usePokemon";
 import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
 
-//Styles
 import {
   Container,
   Wrapper,
@@ -20,7 +17,6 @@ import {
   NotEvolution,
 } from "./styles";
 
-//Interfaces
 interface Props extends TouchableOpacityProps {
   data: PokemonEvolutionChainDTO;
   backgroundColor: string;
@@ -28,12 +24,11 @@ interface Props extends TouchableOpacityProps {
   handleDescriptionSelected: (descriptionType: string) => void;
 }
 
-const PokeEvolution: React.FC<Props> = (props) => {
+export const PokeEvolution: FC<Props> = (props) => {
   const { backgroundColor, pokemonCurrentName, handleDescriptionSelected } =
     props;
   const { species_name, image_url, min_level, item } = props.data;
 
-  //Hooks
   const { fetchPokemon } = usePokemon();
   const { pokemonEvolutionChain } = usePokemonEvolution();
 
@@ -47,7 +42,7 @@ const PokeEvolution: React.FC<Props> = (props) => {
     [pokemonEvolutionChain]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (min_level) {
       setEvolutionType(`Level ${String(min_level)}`);
     } else if (item) {
@@ -80,5 +75,3 @@ const PokeEvolution: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeEvolution;

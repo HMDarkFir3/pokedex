@@ -1,10 +1,8 @@
-import * as React from "react";
+import React, { FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 
-//Styles
 import { Container, Title } from "./styles";
 
-//Interfaces
 interface Props extends TouchableOpacityProps {
   data: {
     id: number;
@@ -14,7 +12,7 @@ interface Props extends TouchableOpacityProps {
   backgroundColor: string;
 }
 
-const PokeDescritionButton: React.FC<Props> = (props) => {
+export const PokeDescritionButton: FC<Props> = (props) => {
   const { isActive, backgroundColor, ...rest } = props;
   const { title } = props.data;
 
@@ -29,5 +27,3 @@ const PokeDescritionButton: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeDescritionButton;

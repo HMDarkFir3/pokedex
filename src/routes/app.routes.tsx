@@ -1,15 +1,15 @@
-import * as React from "react";
+import React, { FC } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Screens
-import Home from "../screens/Home";
-import PokemonView from "../screens/PokemonView";
-import Pokedex from "../screens/Pokedex";
-import ErrorView from "../screens/ErrorView";
+import { Home } from "../screens/Home";
+import { PokemonView } from "../screens/PokemonView";
+import { Pokedex } from "../screens/Pokedex";
+import { ErrorView } from "../screens/ErrorView";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-const AppRoutes: React.FC = () => {
+export const AppRoutes: FC = () => {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="Home" component={Home} />
@@ -19,5 +19,3 @@ const AppRoutes: React.FC = () => {
     </Navigator>
   );
 };
-
-export default AppRoutes;

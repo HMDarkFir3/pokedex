@@ -1,19 +1,15 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-//DTOS
 import { PokemonMovesDTO } from "../../dtos";
 
-//Styles
 import { Container, Separator, Wrapper, Name, LearnedLevel } from "./styles";
-
-//Interfaces
 interface Props {
   data: PokemonMovesDTO;
   index: number;
   backgroundColor: string;
 }
 
-const PokeMoves: React.FC<Props> = (props) => {
+export const PokeMoves: FC<Props> = (props) => {
   const { index, backgroundColor } = props;
   const { move, version_group_details } = props.data;
 
@@ -27,5 +23,3 @@ const PokeMoves: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeMoves;

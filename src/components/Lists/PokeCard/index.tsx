@@ -1,23 +1,19 @@
-import * as React from "react";
+import React, { FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-//DTOS
 import { Results } from "../../../dtos/PokemonsDTO";
 
-//Hooks
 import { usePokemon } from "../../../hooks/usePokemon";
 
-//Styles
 import { Container, Image, Wrapper, Name, Index } from "./styles";
 
-//Interfaces
 interface Props extends TouchableOpacityProps {
   data: Results;
   index: number;
 }
 
-const PokeCard: React.FC<Props> = (props) => {
+export const PokeCard: FC<Props> = (props) => {
   const { index, ...rest } = props;
   const { name } = props.data;
 
@@ -53,5 +49,3 @@ const PokeCard: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeCard;

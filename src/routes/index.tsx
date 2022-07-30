@@ -1,18 +1,7 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-//Routes
-import AppRoutes from "./app.routes";
+import { AppRoutes } from "./app.routes";
 
-//Interfaces
-export interface RoutesProps {
-  Home: undefined;
-  PokemonView: undefined;
-  Pokedex: undefined;
-  ErrorView: undefined;
-}
-
-const Routes: React.FC = () => {
+export const Routes: FC = () => {
   return <AppRoutes />;
 };
-
-export default Routes;

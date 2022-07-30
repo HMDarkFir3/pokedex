@@ -1,44 +1,38 @@
-import * as React from "react";
+import React, { useState, createContext, FC, ReactNode } from "react";
 
-//Services
 import api from "../services/api";
 
-//DTOS
 import { PokemonEvolutionChainDTO } from "../dtos";
 
-//Hooks
 import { usePokemon } from "../hooks/usePokemon";
 
-export const PokemonEvolutionContext = React.createContext(
+export const PokemonEvolutionContext = createContext(
   {} as PokemonEvolutionContextData
 );
 
-//Interfaces
 interface PokemonEvolutionContextData {
   pokemonEvolutionChain: PokemonEvolutionChainDTO[];
-  loading: boolean;
+  isLoading: boolean;
   fetchPokemonEvolution: () => void;
 }
 
 interface PokemonEvolutionProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
+export const PokemonEvolutionProvider: FC<PokemonEvolutionProviderProps> = ({
   children,
 }) => {
   //Hooks
   const { pokemonSpecies } = usePokemon();
 
   //Evolution States
-  const [pokemonEvolutionChain, setPokemonEvolutionChain] = React.useState<
+  const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<
     PokemonEvolutionChainDTO[]
   >([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function fetchEvolutionImages(evolutionChain) {
-    console.log(evolutionChain);
-
     for (let i = 0; i < evolutionChain.length; i++) {
       const response = await api.get(
         `pokemon-species/${evolutionChain[i].species_name}`
@@ -54,7 +48,7 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
 
   async function fetchPokemonEvolution() {
     try {
-      setLoading(true);
+      setIsLoading(true);
 
       if (pokemonEvolutionChain.length >= 1) {
         setPokemonEvolutionChain([]);
@@ -106,7 +100,7 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
     } catch (error) {
       setPokemonEvolutionChain([]);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -114,7 +108,7 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
     <PokemonEvolutionContext.Provider
       value={{
         pokemonEvolutionChain,
-        loading,
+        isLoading,
         fetchPokemonEvolution,
       }}
     >
@@ -122,5 +116,3 @@ const PokemonEvolutionProvider: React.FC<PokemonEvolutionProviderProps> = ({
     </PokemonEvolutionContext.Provider>
   );
 };
-
-export default PokemonEvolutionProvider;

@@ -1,13 +1,13 @@
-import * as React from "react";
-import { FlatList, View } from "react-native";
+import React, { FC } from "react";
+import { FlatList } from "react-native";
 
 //Hooks
 import { usePokemon } from "../../hooks/usePokemon";
 
 //Components
-import PokeAbilityCard from "../Lists/PokeAbilityCard";
-import PokeStatCard from "../Lists/PokeStatCard";
-import PokeSeparator from "../../components/PokeSeparator";
+import { PokeAbilityCard } from "../Lists/PokeAbilityCard";
+import { PokeStatCard } from "../Lists/PokeStatCard";
+import { PokeSeparator } from "../../components/PokeSeparator";
 
 //Styles
 import {
@@ -29,10 +29,9 @@ interface Props {
   pokemonDescription: string;
 }
 
-const PokeInfo: React.FC<Props> = (props) => {
+export const PokeInfo: FC<Props> = (props) => {
   const { backgroundColor, pokemonDescription } = props;
 
-  //Hooks
   const { pokemon, pokemonAbilities, pokemonStats } = usePokemon();
 
   return (
@@ -86,5 +85,3 @@ const PokeInfo: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeInfo;

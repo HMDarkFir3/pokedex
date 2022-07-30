@@ -1,21 +1,17 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-//DTOS
 import { PokemonTypeDTO } from "../../../dtos/PokemonTypeDTO";
 
-//Utils
 import { pokeTypeColor } from "../../../utils/pokeTypeColor";
 
-//Styles
 import { Container, Title } from "./styles";
 
-//Interfaces
 interface Props {
   data: PokemonTypeDTO;
   index: number;
 }
 
-const PokeTypeCard: React.FC<Props> = (props) => {
+export const PokeTypeCard: FC<Props> = (props) => {
   const { index } = props;
   const { name } = props.data.type;
 
@@ -25,5 +21,3 @@ const PokeTypeCard: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeTypeCard;

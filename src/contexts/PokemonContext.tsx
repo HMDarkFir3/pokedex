@@ -1,10 +1,8 @@
-import * as React from "react";
+import React, { useState, createContext, FC, ReactNode } from "react";
 import { Alert } from "react-native";
 
-//Services
 import api from "../services/api";
 
-//DTOS
 import {
   PokemonDTO,
   PokemonTypeDTO,
@@ -16,9 +14,8 @@ import {
 } from "../dtos";
 import { Results } from "../dtos/PokemonsDTO";
 
-export const PokemonContext = React.createContext({} as PokemonContextData);
+export const PokemonContext = createContext({} as PokemonContextData);
 
-//Interfaces
 interface PokemonContextData {
   pokemon: PokemonDTO;
   pokemonType: PokemonTypeDTO[];
@@ -28,37 +25,36 @@ interface PokemonContextData {
   pokemonStats: PokemonStatsDTO[];
   pokemonMoves: PokemonMovesDTO[];
   pokemons: Results[];
-  loading: boolean;
-
+  isLoading: boolean;
   fetchPokemon: (pokemonId: string) => void;
   fetchPokemons: () => void;
 }
 
 interface PokemonProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
+export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
   //Pokemon States
-  const [pokemon, setPokemon] = React.useState<PokemonDTO>({} as PokemonDTO);
-  const [pokemonType, setPokemonType] = React.useState<PokemonTypeDTO[]>([]);
-  const [pokemonSpecies, setPokemonSpecies] = React.useState<PokemonSpeciesDTO>(
+  const [pokemon, setPokemon] = useState<PokemonDTO>({} as PokemonDTO);
+  const [pokemonType, setPokemonType] = useState<PokemonTypeDTO[]>([]);
+  const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpeciesDTO>(
     {} as PokemonSpeciesDTO
   );
-  const [pokemonFlavorTextEntrie, setPokemonFlavorTextEntrie] = React.useState<
+  const [pokemonFlavorTextEntrie, setPokemonFlavorTextEntrie] = useState<
     PokemonFlavorTextEntriesDTO[]
   >([]);
-  const [pokemonAbilities, setPokemonAbilities] = React.useState<
+  const [pokemonAbilities, setPokemonAbilities] = useState<
     PokemonAbilitiesDTO[]
   >([]);
-  const [pokemonStats, setPokemonStats] = React.useState<PokemonStatsDTO[]>([]);
-  const [pokemonMoves, setPokemonMoves] = React.useState<PokemonMovesDTO[]>([]);
-  const [pokemons, setPokemons] = React.useState<Results[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [pokemonStats, setPokemonStats] = useState<PokemonStatsDTO[]>([]);
+  const [pokemonMoves, setPokemonMoves] = useState<PokemonMovesDTO[]>([]);
+  const [pokemons, setPokemons] = useState<Results[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function fetchPokemon(pokemonId: string) {
     try {
-      setLoading(true);
+      setIsLoading(true);
 
       await api
         .get<PokemonDTO>(`pokemon/${pokemonId.toLowerCase()}/`)
@@ -87,20 +83,20 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
       setPokemonSpecies({} as PokemonSpeciesDTO);
       setPokemonFlavorTextEntrie([]);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
   async function fetchPokemons() {
     try {
-      setLoading(true);
+      setIsLoading(true);
       await api.get(`pokemon?limit=1106&offset=0`).then((response) => {
         setPokemons(response.data.results);
       });
     } catch (error) {
       Alert.alert(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
@@ -115,8 +111,7 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
         pokemonSpecies,
         pokemonFlavorTextEntrie,
         pokemons,
-        loading,
-
+        isLoading,
         fetchPokemon,
         fetchPokemons,
       }}
@@ -125,5 +120,3 @@ const PokemonProvider: React.FC<PokemonProviderProps> = ({ children }) => {
     </PokemonContext.Provider>
   );
 };
-
-export default PokemonProvider;

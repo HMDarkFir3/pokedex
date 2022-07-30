@@ -1,37 +1,26 @@
-import * as React from "react";
+import React, { FC, ComponentProps } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
-
-//Styles
-import { Container, Button } from "./styles";
-
-//Icons
 import { Feather } from "@expo/vector-icons";
 
-//Interfaces
+import { Container, Button } from "./styles";
+
 interface Props {
-  leftIcon?: React.ComponentProps<typeof Feather>["name"];
-  rightIcon?: React.ComponentProps<typeof Feather>["name"];
+  leftIcon?: ComponentProps<typeof Feather>["name"];
+  rightIcon?: ComponentProps<typeof Feather>["name"];
   backgroundColor: string;
 }
 
-const Header: React.FC<Props> = (props) => {
+export const Header: FC<Props> = (props) => {
   const { leftIcon, rightIcon, backgroundColor } = props;
 
-  //Navigation Hook
   const { goBack } = useNavigation();
-
-  //Theme Hook
   const theme = useTheme();
-
-  function handleGoBack() {
-    goBack();
-  }
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <Button activeOpacity={0.7} onPress={handleGoBack}>
+      <Button activeOpacity={0.7} onPress={() => goBack()}>
         <Feather
           name={leftIcon}
           size={RFValue(24)}
@@ -49,5 +38,3 @@ const Header: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default Header;

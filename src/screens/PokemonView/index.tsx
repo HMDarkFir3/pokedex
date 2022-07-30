@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useCallback, FC } from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -11,23 +11,19 @@ import {
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 
-//Hooks
 import { usePokemon } from "../../hooks/usePokemon";
 import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
 
-//Components
-import Header from "../../components/Header";
-import PokeTypeCard from "../../components/Lists/PokeTypeCard";
-import PokeDescritionButton from "../../components/Lists/PokeDescriptionButton";
-import PokeInfo from "../../components/PokeInfo";
-import PokeEvolution from "../../components/PokeEvolution";
-import PokeMoves from "../../components/PokeMoves";
+import { Header } from "../../components/Header";
+import { PokeTypeCard } from "../../components/Lists/PokeTypeCard";
+import { PokeDescritionButton } from "../../components/Lists/PokeDescriptionButton";
+import { PokeInfo } from "../../components/PokeInfo";
+import { PokeEvolution } from "../../components/PokeEvolution";
+import { PokeMoves } from "../../components/PokeMoves";
 
-//Utils
 import { pokeTypeColor } from "../../utils/pokeTypeColor";
 import { pokeDescriptionButton } from "../../utils/pokeDescriptionButton";
 
-//Styles
 import {
   Container,
   PokeContent,
@@ -44,15 +40,14 @@ import {
   Loading,
 } from "./styles";
 
-const PokemonView: React.FC = () => {
-  //Hooks
+export const PokemonView: FC = () => {
   const {
     pokemon,
     pokemonType,
     pokemonMoves,
     pokemonSpecies,
     pokemonFlavorTextEntrie,
-    loading,
+    isLoading,
   } = usePokemon();
   const { pokemonEvolutionChain, fetchPokemonEvolution } =
     usePokemonEvolution();
@@ -61,11 +56,10 @@ const PokemonView: React.FC = () => {
   const theme = useTheme();
 
   //States
-  const [backgroundColor, setBackgroundColor] = React.useState<string>("");
-  const [pokemonDescription, setPokemonDescription] =
-    React.useState<string>("");
+  const [backgroundColor, setBackgroundColor] = useState<string>("");
+  const [pokemonDescription, setPokemonDescription] = useState<string>("");
   const [descriptionSelected, setDescriptionSelected] =
-    React.useState<string>("info");
+    useState<string>("info");
 
   //Animations
   const pokeImageOpacity = useSharedValue<number>(1);
@@ -134,7 +128,7 @@ const PokemonView: React.FC = () => {
   }
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       const types = pokemonType.map((type) => type.type.name);
 
       setBackgroundColor(`${pokeTypeColor[types[0]]}`);
@@ -153,12 +147,12 @@ const PokemonView: React.FC = () => {
   );
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       fetchPokemonEvolution();
     }, [pokemonSpecies])
   );
 
-  if (loading) {
+  if (isLoading) {
     return (
       <LoadingContainer>
         <Loading size="large" color={theme.colors.text} />
@@ -263,5 +257,3 @@ const PokemonView: React.FC = () => {
     </Container>
   );
 };
-
-export default PokemonView;

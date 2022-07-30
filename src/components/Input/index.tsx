@@ -1,21 +1,15 @@
-import * as React from "react";
+import React, { forwardRef, ForwardRefRenderFunction } from "react";
 import { TextInput, TextInputProps, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
-//Hooks
 import { usePokemon } from "../../hooks/usePokemon";
 
-//Styles
 import { Container, SearchButton, SearchIcon, CustomInput } from "./styles";
 
-//Interfaces
 interface Props extends TextInputProps {}
 
-const Input: React.ForwardRefRenderFunction<TextInput, Props> = (
-  props,
-  ref
-) => {
+const Input: ForwardRefRenderFunction<TextInput, Props> = (props, ref) => {
   const { ...rest } = props;
 
   //Hooks
@@ -59,4 +53,4 @@ const Input: React.ForwardRefRenderFunction<TextInput, Props> = (
   );
 };
 
-export default React.forwardRef(Input);
+export default forwardRef(Input);

@@ -1,28 +1,22 @@
-import * as React from "react";
+import React, { useEffect, useRef, FC } from "react";
 import { TextInput, FlatList } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useTheme } from "styled-components";
 
-//Components
-import Header from "../../components/Header";
+import { Header } from "../../components/Header";
 import Input from "../../components/Input";
-import PokeSelection from "../../components/Lists/PokeSelection";
+import { PokeSelection } from "../../components/Lists/PokeSelection";
 
-//Utils
 import { pokeSelection } from "../../utils/pokeSelection";
 
-//Styles
 import { Container, Content, Title } from "./styles";
 
-const Home: React.FC = () => {
-  //Community Hooks
+export const Home: FC = () => {
   const keyboard = useKeyboard();
 
-  //Theme Hook
   const theme = useTheme();
 
-  //Refs
-  const inputRef = React.useRef<TextInput>(null);
+  const inputRef = useRef<TextInput>(null);
 
   function inputOnBlur() {
     if (keyboard.keyboardShown === false) {
@@ -30,7 +24,7 @@ const Home: React.FC = () => {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputOnBlur();
   }, [keyboard.keyboardShown]);
 
@@ -61,5 +55,3 @@ const Home: React.FC = () => {
     </Container>
   );
 };
-
-export default Home;

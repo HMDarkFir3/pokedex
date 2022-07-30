@@ -1,22 +1,17 @@
-import * as React from "react";
+import React, { FC } from "react";
 import { FlatList } from "react-native";
 import { useTheme } from "styled-components";
 
-//Hooks
 import { usePokemon } from "../../hooks/usePokemon";
 
-//Components
-import Header from "../../components/Header";
-import PokeCard from "../../components/Lists/PokeCard";
+import { Header } from "../../components/Header";
+import { PokeCard } from "../../components/Lists/PokeCard";
 
-//Styles
 import { Container } from "./styles";
 
-const Pokedex: React.FC = () => {
-  //Hooks
+export const Pokedex: FC = () => {
   const { pokemons } = usePokemon();
 
-  //Theme Hooks
   const theme = useTheme();
 
   return (
@@ -37,5 +32,3 @@ const Pokedex: React.FC = () => {
     </Container>
   );
 };
-
-export default Pokedex;

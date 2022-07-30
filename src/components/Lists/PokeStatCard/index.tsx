@@ -1,9 +1,7 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-//DTOS
 import { PokemonStatsDTO } from "../../../dtos";
 
-//Utils
 import { pokeStats } from "../../../utils/pokeStats";
 
 //Styles
@@ -16,14 +14,13 @@ import {
   CurrentStat,
 } from "./styles";
 
-//Interfaces
 interface Props {
   data: PokemonStatsDTO;
   backgroundColor: string;
   index: number;
 }
 
-const PokeStatCard: React.FC<Props> = (props) => {
+export const PokeStatCard: FC<Props> = (props) => {
   const { backgroundColor, index } = props;
   const { base_stat, stat } = props.data;
 
@@ -46,5 +43,3 @@ const PokeStatCard: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeStatCard;

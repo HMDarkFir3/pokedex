@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
+import React, { FC } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "styled-components";
 import AppLoading from "expo-app-loading";
@@ -11,17 +11,14 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 
-//Contexts
-import PokemonProvider from "./src/contexts/PokemonContext";
-import PokemonEvolutionProvider from "./src/contexts/PokemonEvolutionContext";
+import { PokemonProvider } from "./src/contexts/PokemonContext";
+import { PokemonEvolutionProvider } from "./src/contexts/PokemonEvolutionContext";
 
-//Routes Folder
-import Routes from "./src/routes";
+import { Routes } from "./src/routes";
 
-//Global Folder
 import { dark } from "./src/global/themes/dark";
 
-const App: React.FC = () => {
+export const App: FC = () => {
   let [fontsLoaded] = useFonts({
     Roboto_300Light,
     Roboto_400Regular,
@@ -45,5 +42,3 @@ const App: React.FC = () => {
     </NavigationContainer>
   );
 };
-
-export default App;

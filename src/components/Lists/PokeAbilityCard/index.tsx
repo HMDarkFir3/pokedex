@@ -1,18 +1,15 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-//DTOS
 import { PokemonAbilitiesDTO } from "../../../dtos";
 
-//Styles
 import { Container, Title } from "./styles";
 
-//Interfaces
 interface Props {
   data: PokemonAbilitiesDTO;
   backgroundColor: string;
 }
 
-const PokeAbilityCard: React.FC<Props> = (props) => {
+export const PokeAbilityCard: FC<Props> = (props) => {
   const { backgroundColor } = props;
   const { ability } = props.data;
 
@@ -22,5 +19,3 @@ const PokeAbilityCard: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeAbilityCard;

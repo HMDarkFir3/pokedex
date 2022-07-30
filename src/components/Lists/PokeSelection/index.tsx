@@ -1,14 +1,11 @@
-import * as React from "react";
+import React, { FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-//Hooks
 import { usePokemon } from "../../../hooks/usePokemon";
 
-//Styles
 import { Container, Title } from "./styles";
 
-//Interfaces
 interface Props extends TouchableOpacityProps {
   data: {
     id: number;
@@ -18,14 +15,12 @@ interface Props extends TouchableOpacityProps {
   index: number;
 }
 
-const PokeSelection: React.FC<Props> = (props) => {
+export const PokeSelection: FC<Props> = (props) => {
   const { index, ...rest } = props;
   const { title, color } = props.data;
 
-  //Hooks
   const { fetchPokemons } = usePokemon();
 
-  //Navigation Hooks
   const { navigate } = useNavigation();
 
   function handleSelection() {
@@ -44,5 +39,3 @@ const PokeSelection: React.FC<Props> = (props) => {
     </Container>
   );
 };
-
-export default PokeSelection;
