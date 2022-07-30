@@ -52,16 +52,13 @@ export const PokemonView: FC = () => {
   const { pokemonEvolutionChain, fetchPokemonEvolution } =
     usePokemonEvolution();
 
-  //Theme Hook
   const theme = useTheme();
 
-  //States
-  const [backgroundColor, setBackgroundColor] = useState<string>("");
+  const [backgroundColor, setBackgroundColor] = useState<string>("red");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
   const [descriptionSelected, setDescriptionSelected] =
     useState<string>("info");
 
-  //Animations
   const pokeImageOpacity = useSharedValue<number>(1);
   const pokeImageZIndex = useSharedValue<number>(10);
   const pokeDescriptionsPosition = useSharedValue<number>(RFValue(154));

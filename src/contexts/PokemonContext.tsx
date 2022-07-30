@@ -1,7 +1,7 @@
 import React, { useState, createContext, FC, ReactNode } from "react";
 import { Alert } from "react-native";
 
-import api from "../services/api";
+import { api } from "../services/api";
 
 import {
   PokemonDTO,
@@ -26,8 +26,8 @@ interface PokemonContextData {
   pokemonMoves: PokemonMovesDTO[];
   pokemons: Results[];
   isLoading: boolean;
-  fetchPokemon: (pokemonId: string) => void;
-  fetchPokemons: () => void;
+  fetchPokemon: (pokemonId: string) => Promise<boolean>;
+  fetchPokemons: () => Promise<void>;
 }
 
 interface PokemonProviderProps {
@@ -35,7 +35,6 @@ interface PokemonProviderProps {
 }
 
 export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
-  //Pokemon States
   const [pokemon, setPokemon] = useState<PokemonDTO>({} as PokemonDTO);
   const [pokemonType, setPokemonType] = useState<PokemonTypeDTO[]>([]);
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpeciesDTO>(
@@ -74,6 +73,8 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
               );
             });
         });
+
+      return true;
     } catch (error) {
       setPokemon({} as PokemonDTO);
       setPokemonType([]);
@@ -82,6 +83,8 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
       setPokemonMoves([]);
       setPokemonSpecies({} as PokemonSpeciesDTO);
       setPokemonFlavorTextEntrie([]);
+
+      return false;
     } finally {
       setIsLoading(false);
     }

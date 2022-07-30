@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, FC } from "react";
-import { TextInput, FlatList } from "react-native";
+import { TextInput } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
+import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+
+import { usePokemon } from "../../hooks/usePokemon";
 
 import { Header } from "../../components/Header";
 import Input from "../../components/Input";
-import { PokeSelection } from "../../components/Lists/PokeSelection";
-
-import { pokeSelection } from "../../utils/pokeSelection";
+import { PokeSelection } from "../../components/PokeSelection";
 
 import { Container, Content, Title } from "./styles";
 
 export const Home: FC = () => {
   const keyboard = useKeyboard();
-
+  const { navigate } = useNavigation();
+  const { fetchPokemons } = usePokemon();
   const theme = useTheme();
 
   const inputRef = useRef<TextInput>(null);
@@ -41,14 +43,13 @@ export const Home: FC = () => {
           onBlur={inputOnBlur}
         />
 
-        <FlatList
-          data={pokeSelection}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item, index }) => (
-            <PokeSelection data={item} index={index} />
-          )}
-          contentContainerStyle={{
-            marginTop: 20,
+        <PokeSelection
+          style={{ marginTop: 16 }}
+          title="Pokédex"
+          backgroundColor={theme.colors.pokedex}
+          onPress={() => {
+            fetchPokemons();
+            navigate("Pokedex");
           }}
         />
       </Content>

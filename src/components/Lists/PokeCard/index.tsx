@@ -17,10 +17,8 @@ export const PokeCard: FC<Props> = (props) => {
   const { index, ...rest } = props;
   const { name } = props.data;
 
-  //Hooks
   const { fetchPokemon } = usePokemon();
 
-  //Navigation Hooks
   const { navigate } = useNavigation();
 
   function handlePokemon(pokemonId: string) {

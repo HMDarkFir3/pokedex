@@ -12,32 +12,37 @@ interface Props extends TextInputProps {}
 const Input: ForwardRefRenderFunction<TextInput, Props> = (props, ref) => {
   const { ...rest } = props;
 
-  //Hooks
-  const { fetchPokemon } = usePokemon();
+  const { isLoading, fetchPokemon } = usePokemon();
 
-  //States
   const [search, setSearch] = React.useState<string>("");
 
-  //Navigation Hook
   const { navigate } = useNavigation();
 
-  //Theme Hook
   const theme = useTheme();
 
-  function handleSearch() {
+  async function handleSearch() {
     if (search.trim() === "") {
       Alert.alert("Warning!", "Please, blank field.");
       return;
     }
 
-    fetchPokemon(search);
+    const response = await fetchPokemon(search);
+
     setSearch("");
-    navigate("PokemonView");
+    if (response) {
+      navigate("PokemonView");
+    } else {
+      navigate("ErrorView");
+    }
   }
 
   return (
     <Container>
-      <SearchButton activeOpacity={0.7} onPress={handleSearch}>
+      <SearchButton
+        activeOpacity={0.7}
+        onPress={handleSearch}
+        disabled={isLoading}
+      >
         <SearchIcon name="search" />
       </SearchButton>
 

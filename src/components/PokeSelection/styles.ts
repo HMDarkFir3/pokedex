@@ -1,21 +1,16 @@
-import styled, { css } from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
+import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
-//Interfaces
 interface ContainerProps {
-  color: string;
-  //index: number;
+  backgroundColor: string;
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
-  flex: 1;
-
   margin-bottom: 10px;
 
-  padding: 12px;
+  padding: 8px 0;
 
-  background-color: ${({ color }) => color};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 20px;
 `;
 

@@ -7,12 +7,20 @@ import { usePokemon } from "../../hooks/usePokemon";
 import { Header } from "../../components/Header";
 import { PokeCard } from "../../components/Lists/PokeCard";
 
-import { Container } from "./styles";
+import { Container, LoadingContainer, Loading } from "./styles";
 
 export const Pokedex: FC = () => {
-  const { pokemons } = usePokemon();
+  const { pokemons, isLoading } = usePokemon();
 
   const theme = useTheme();
+
+  if (isLoading) {
+    return (
+      <LoadingContainer>
+        <Loading size="large" color={theme.colors.text} />
+      </LoadingContainer>
+    );
+  }
 
   return (
     <Container>

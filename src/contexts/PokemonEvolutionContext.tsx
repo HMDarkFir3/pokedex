@@ -1,6 +1,6 @@
 import React, { useState, createContext, FC, ReactNode } from "react";
 
-import api from "../services/api";
+import { api } from "../services/api";
 
 import { PokemonEvolutionChainDTO } from "../dtos";
 

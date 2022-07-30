@@ -8,6 +8,8 @@ export const dark = {
     text: "#ffffff",
     placeholder_text: "#494d51",
     icon_color: "#ffffff",
+
+    pokedex: "#159f6e",
   },
 
   fonts: {
