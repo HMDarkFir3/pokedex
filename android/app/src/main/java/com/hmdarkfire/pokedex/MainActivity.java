@@ -1,4 +1,4 @@
-package com.pokedex;
+package com.hmdarkfire.pokedex;
 
 import android.os.Build;
 import android.os.Bundle;

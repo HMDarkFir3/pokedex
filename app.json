@@ -3,9 +3,20 @@
     "name": "pokedex",
     "slug": "pokedex",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#C73434"
+    },
+    "android": {
+      "package": "com.hmdarkfire.pokedex",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#C73434"
+      }
+    }
   },
   "name": "pokedex"
 }
