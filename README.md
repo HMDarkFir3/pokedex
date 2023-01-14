@@ -17,6 +17,7 @@
 ---
 
 ## 📋 About
+
 Application that shows a list of Pokémon and their specifications. <br>
 API documentation used: [PokéAPI](https://pokeapi.co/)
 
