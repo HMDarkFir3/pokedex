@@ -57,6 +57,8 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org)
 - [React Navigation](https://reactnavigation.org)
 - [Axios](https://github.com/axios/axios)
+- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- [Styled Components](https://styled-components.com)
 
 ---
 
