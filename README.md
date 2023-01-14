@@ -7,9 +7,9 @@
 </h1>
 
 <p align="center" >
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/hmdarkfir3/breaking-bad?style=for-the-badge">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/hmdarkfir3/pokedex?style=for-the-badge">
   
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hmdarkfir3/breaking-bad?style=for-the-badge">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hmdarkfir3/pokedex?style=for-the-badge">
   
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" />
 </p>
