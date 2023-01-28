@@ -24,7 +24,7 @@ export interface PokemonContextData {
   pokemonMoves: PokemonMovesDTO[];
   pokemons: Results[];
   isLoading: boolean;
-  fetchPokemon: (pokemonId: string) => Promise<boolean>;
+  fetchPokemon: (pokemonId: string) => Promise<void>;
   fetchPokemons: () => Promise<void>;
 }
 
@@ -71,8 +71,6 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
               );
             });
         });
-
-      return true;
     } catch (error) {
       setPokemon({} as PokemonDTO);
       setPokemonType([]);
@@ -81,8 +79,6 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
       setPokemonMoves([]);
       setPokemonSpecies({} as PokemonSpeciesDTO);
       setPokemonFlavorTextEntrie([]);
-
-      return false;
     } finally {
       setIsLoading(false);
     }

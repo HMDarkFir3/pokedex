@@ -1,7 +1,9 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { TextInput } from "react-native";
 
-import { Feather } from "@expo/vector-icons";
+interface SearchButtonProps {
+  variant: "primary" | "secondary";
+}
 
 export const Container = styled.View`
   flex-direction: row;
@@ -10,25 +12,34 @@ export const Container = styled.View`
   width: 100%;
   height: 48px;
 
-  padding: 0 20px;
-
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) =>
+    theme.colors.components.input.backgroundPrimary};
   border-radius: 24px;
 `;
 
-export const SearchButton = styled.TouchableOpacity``;
+export const SearchButton = styled.TouchableOpacity<SearchButtonProps>`
+  align-items: center;
+  justify-content: center;
 
-export const SearchIcon = styled(Feather)`
-  margin-right: 20px;
+  width: 48px;
+  height: 48px;
 
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.placeholder_text};
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+
+  ${({ variant, theme }) =>
+    variant === "secondary" &&
+    css`
+      background-color: ${theme.colors.components.input.backgroundSecondary};
+    `}
 `;
 
 export const CustomInput = styled(TextInput)`
   flex: 1;
 
+  padding: 0 20px;
+
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.input.text};
 `;

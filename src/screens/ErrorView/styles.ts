@@ -5,10 +5,13 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-around;
 
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) =>
+    theme.colors.screens.errorView.backgroundPrimary};
 `;
 
-export const Header = styled.View``;
+export const Header = styled.View`
+  align-items: center;
+`;
 
 export const Image = styled.Image`
   width: 240px;
@@ -20,7 +23,7 @@ export const Image = styled.Image`
 export const ErrorTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 28px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.screens.errorView.text};
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -30,7 +33,7 @@ export const BackButton = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
 
-  background-color: ${({ theme }) => theme.colors.background};
-  border: solid 1px ${({ theme }) => theme.colors.pokedex};
+  background-color: ${({ theme }) =>
+    theme.colors.screens.errorView.backgroundSecondary};
   border-radius: 8px;
 `;

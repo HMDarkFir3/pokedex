@@ -4,7 +4,7 @@ export declare global {
       Home: undefined;
       PokemonView: undefined;
       Pokedex: undefined;
-      ErrorView: undefined;
+      ErrorView: { message: string };
     }
   }
 }

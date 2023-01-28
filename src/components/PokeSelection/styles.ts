@@ -18,5 +18,5 @@ export const Title = styled.Text`
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeSelection.text};
 `;
