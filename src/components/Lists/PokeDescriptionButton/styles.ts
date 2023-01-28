@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 
 interface ContainerProps {
   isActive: boolean;
   backgroundColor: string;
 }
 
-export const Container = styled.TouchableOpacity<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   align-items: center;
 
   width: 100px;
