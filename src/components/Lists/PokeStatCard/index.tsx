@@ -4,7 +4,6 @@ import { PokemonStatsDTO } from "@dtos/PokemonStatsDTO";
 
 import { pokeStats } from "@utils/pokeStats";
 
-//Styles
 import {
   Container,
   Wrapper,

@@ -1,15 +1,12 @@
 import { FC } from "react";
 import { FlatList } from "react-native";
 
-//Hooks
 import { usePokemon } from "@hooks/usePokemon";
 
-//Components
 import { PokeAbilityCard } from "@components/Lists/PokeAbilityCard";
 import { PokeStatCard } from "@components/Lists/PokeStatCard";
 import { PokeSeparator } from "@components/PokeSeparator";
 
-//Styles
 import {
   Container,
   Description,
@@ -23,7 +20,6 @@ import {
   StatTitle,
 } from "./styles";
 
-//Interfaces
 interface Props {
   backgroundColor: string;
   pokemonDescription: string;
