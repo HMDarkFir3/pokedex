@@ -1,8 +1,9 @@
+import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef, FC } from "react";
 import { TextInput, Alert } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useNavigation } from "@react-navigation/native";
-import { useTheme } from "styled-components";
+import { useTheme } from "styled-components/native";
 
 import { usePokemon } from "@hooks/usePokemon";
 
@@ -55,6 +56,8 @@ export const Home: FC = () => {
 
   return (
     <Container>
+      <StatusBar />
+
       <Content>
         <Title>What are{"\n"}you looking for?</Title>
 

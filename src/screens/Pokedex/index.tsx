@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { FC } from "react";
 import { FlatList } from "react-native";
 import { useTheme } from "styled-components/native";
@@ -20,6 +21,8 @@ export const Pokedex: FC = () => {
 
   return (
     <Container>
+      <StatusBar />
+
       <Header iconColor={colors.components.header.iconPrimary} />
 
       <FlatList

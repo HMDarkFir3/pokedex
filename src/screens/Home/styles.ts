@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 export const Container = styled.View`
   flex: 1;
@@ -7,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
-  margin-top: 120px;
+  margin-top: ${getStatusBarHeight() + 100}px;
   padding: 0 20px;
 `;
 

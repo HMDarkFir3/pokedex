@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { TextInput, TextInputProps, ActivityIndicator } from "react-native";
-import { useTheme } from "styled-components";
+import { useTheme } from "styled-components/native";
 import { MagnifyingGlass, PaperPlaneRight } from "phosphor-react-native";
 
 import { usePokemon } from "@hooks/usePokemon";

@@ -1,8 +1,6 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import React, { FC } from "react";
+import { FC } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { ThemeProvider } from "styled-components";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import {
@@ -11,12 +9,11 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 
+import { ThemeProvider } from "@contexts/ThemeContext";
 import { PokemonProvider } from "@contexts/PokemonContext";
 import { PokemonEvolutionProvider } from "@contexts/PokemonEvolutionContext";
 
 import { Routes } from "@routes/index";
-
-import { light } from "@themes/light";
 
 export const App: FC = () => {
   SplashScreen.preventAutoHideAsync();
@@ -33,10 +30,9 @@ export const App: FC = () => {
 
   return (
     <NavigationContainer>
-      <ThemeProvider theme={light}>
+      <ThemeProvider>
         <PokemonProvider>
           <PokemonEvolutionProvider>
-            <StatusBar style="light" translucent={true} />
             <Routes />
           </PokemonEvolutionProvider>
         </PokemonProvider>

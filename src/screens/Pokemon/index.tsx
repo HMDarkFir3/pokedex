@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useState, useCallback, FC } from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
@@ -152,6 +153,8 @@ export const Pokemon: FC = () => {
 
   return (
     <Container backgroundColor={backgroundColor}>
+      <StatusBar style="light" />
+
       <Header
         iconColor={
           theme.title === "dark"

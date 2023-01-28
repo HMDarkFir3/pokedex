@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { FC } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
@@ -21,6 +22,8 @@ export const Error: FC = () => {
 
   return (
     <Container>
+      <StatusBar />
+
       <Header>
         <Image
           source={{
