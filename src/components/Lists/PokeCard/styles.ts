@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(TouchableOpacity)`
   flex-direction: row;
   justify-content: space-between;
 
