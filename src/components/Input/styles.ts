@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
+import { TextInput } from "react-native";
 
-//Icons
 import { Feather } from "@expo/vector-icons";
 
 export const Container = styled.View`
@@ -25,7 +25,7 @@ export const SearchIcon = styled(Feather)`
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 
-export const CustomInput = styled.TextInput`
+export const CustomInput = styled(TextInput)`
   flex: 1;
 
   font-family: ${({ theme }) => theme.fonts.regular};
