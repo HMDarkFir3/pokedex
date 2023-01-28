@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { FlatList } from "react-native";
+import { useTheme } from "styled-components/native";
 
 import { usePokemon } from "@hooks/usePokemon";
 
@@ -11,6 +12,7 @@ import { Container } from "./styles";
 
 export const Pokedex: FC = () => {
   const { pokemons, isLoading } = usePokemon();
+  const { colors } = useTheme();
 
   if (isLoading) {
     return <Loading />;
@@ -18,7 +20,7 @@ export const Pokedex: FC = () => {
 
   return (
     <Container>
-      <Header />
+      <Header iconColor={colors.components.header.iconPrimary} />
 
       <FlatList
         data={pokemons}

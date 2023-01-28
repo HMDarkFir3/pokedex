@@ -11,12 +11,12 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 
-import { PokemonProvider } from "./src/contexts/PokemonContext";
-import { PokemonEvolutionProvider } from "./src/contexts/PokemonEvolutionContext";
+import { PokemonProvider } from "@contexts/PokemonContext";
+import { PokemonEvolutionProvider } from "@contexts/PokemonEvolutionContext";
 
-import { Routes } from "./src/routes";
+import { Routes } from "@routes/index";
 
-import { dark } from "./src/themes/dark";
+import { light } from "@themes/light";
 
 export const App: FC = () => {
   SplashScreen.preventAutoHideAsync();
@@ -33,7 +33,7 @@ export const App: FC = () => {
 
   return (
     <NavigationContainer>
-      <ThemeProvider theme={dark}>
+      <ThemeProvider theme={light}>
         <PokemonProvider>
           <PokemonEvolutionProvider>
             <StatusBar style="light" translucent={true} />

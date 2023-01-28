@@ -8,6 +8,7 @@ import {
   withTiming,
   withDelay,
 } from "react-native-reanimated";
+import { useTheme } from "styled-components/native";
 
 import { usePokemon } from "@hooks/usePokemon";
 import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
@@ -48,6 +49,7 @@ export const Pokemon: FC = () => {
   } = usePokemon();
   const { pokemonEvolutionChain, fetchPokemonEvolution } =
     usePokemonEvolution();
+  const theme = useTheme();
 
   const [backgroundColor, setBackgroundColor] = useState<string>("red");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
@@ -150,7 +152,13 @@ export const Pokemon: FC = () => {
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <Header />
+      <Header
+        iconColor={
+          theme.title === "dark"
+            ? theme.colors.components.header.iconPrimary
+            : theme.colors.components.header.iconSecondary
+        }
+      />
 
       <PokeContent>
         <PokeHeader>

@@ -37,10 +37,11 @@ export const dark = {
         text: "#ffffff",
       },
       header: {
-        icon: "#ffffff",
+        iconPrimary: "#ffffff",
+        iconSecondary: "#000000",
       },
       pokeCard: {
-        background: "#111111",
+        background: "#040404",
         text: "#cccccc",
         border: "#000000",
       },
@@ -49,7 +50,8 @@ export const dark = {
         border: "#ffffff",
       },
       pokeDescriptionButton: {
-        text: "#ffffff",
+        textPrimary: "#ffffff",
+        textSecondary: "#000000",
       },
       pokeInfo: {
         textPrimary: "#494d51",

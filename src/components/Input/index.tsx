@@ -35,6 +35,7 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
           <MagnifyingGlass
             size={24}
             color={colors.components.input.iconPrimary}
+            weight="bold"
           />
         </SearchButton>
       ) : (

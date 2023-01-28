@@ -23,7 +23,7 @@ export const PokeCard: FC<Props> = (props) => {
 
   function onPressPokemon(pokemonId: string) {
     fetchPokemon(pokemonId);
-    navigate("PokemonView");
+    navigate("Pokemon");
   }
 
   return (

@@ -6,6 +6,10 @@ interface ContainerProps {
   backgroundColor: string;
 }
 
+interface TitleProps {
+  isActive: boolean;
+}
+
 export const Container = styled(TouchableOpacity)<ContainerProps>`
   align-items: center;
 
@@ -22,9 +26,18 @@ export const Container = styled(TouchableOpacity)<ContainerProps>`
     `}
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<TitleProps>`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.components.pokeDescriptionButton.text};
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? theme.colors.components.pokeDescriptionButton.textSecondary
+      : theme.colors.components.pokeDescriptionButton.textPrimary};
+
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      color: ${theme.colors.components.pokeDescriptionButton.textPrimary};
+    `}
 `;

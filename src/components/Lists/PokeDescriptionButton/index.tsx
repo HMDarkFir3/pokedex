@@ -23,7 +23,7 @@ export const PokeDescritionButton: FC<Props> = (props) => {
       backgroundColor={backgroundColor}
       activeOpacity={0.7}
     >
-      <Title>{title}</Title>
+      <Title isActive={isActive}>{title}</Title>
     </Container>
   );
 };
