@@ -1,33 +1,24 @@
 import { FC } from "react";
 import { FlatList } from "react-native";
-import { useTheme } from "styled-components";
 
 import { usePokemon } from "@hooks/usePokemon";
 
 import { Header } from "@components/Header";
 import { PokeCard } from "@components/Lists/PokeCard";
+import { Loading } from "@components/Loading";
 
-import { Container, LoadingContainer, Loading } from "./styles";
+import { Container } from "./styles";
 
 export const Pokedex: FC = () => {
   const { pokemons, isLoading } = usePokemon();
 
-  const theme = useTheme();
-
   if (isLoading) {
-    return (
-      <LoadingContainer>
-        <Loading size="large" color={theme.colors.text} />
-      </LoadingContainer>
-    );
+    return <Loading />;
   }
 
   return (
     <Container>
-      <Header
-        leftIcon="chevron-left"
-        backgroundColor={theme.colors.background}
-      />
+      <Header />
 
       <FlatList
         data={pokemons}

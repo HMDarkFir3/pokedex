@@ -28,12 +28,12 @@ export const Name = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeMoves.text};
 `;
 
 export const LearnedLevel = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeMoves.text};
 `;

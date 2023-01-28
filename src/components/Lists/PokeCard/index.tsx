@@ -21,7 +21,7 @@ export const PokeCard: FC<Props> = (props) => {
 
   const { navigate } = useNavigation();
 
-  function handlePokemon(pokemonId: string) {
+  function onPressPokemon(pokemonId: string) {
     fetchPokemon(pokemonId);
     navigate("PokemonView");
   }
@@ -30,7 +30,7 @@ export const PokeCard: FC<Props> = (props) => {
     <Container
       {...rest}
       activeOpacity={0.7}
-      onPress={() => handlePokemon(name)}
+      onPress={() => onPressPokemon(name)}
     >
       <Image
         source={{

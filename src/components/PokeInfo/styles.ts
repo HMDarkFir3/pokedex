@@ -10,7 +10,7 @@ export const Description = styled.Text`
   text-align: justify;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.placeholder_text};
+  color: ${({ theme }) => theme.colors.components.pokeInfo.textPrimary};
 `;
 
 export const Abilities = styled.View<AbilitiesProps>`
@@ -28,7 +28,7 @@ export const AbilitiesTitle = styled.Text`
 
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeInfo.textSecondary};
 `;
 
 export const Measurements = styled.View`
@@ -43,13 +43,13 @@ export const Measure = styled.View`
 export const MeasureName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeInfo.textSecondary};
 `;
 
 export const MeasureValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.light};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeInfo.textSecondary};
 `;
 
 export const Stats = styled.View`
@@ -61,5 +61,5 @@ export const StatTitle = styled.Text`
 
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeInfo.textSecondary};
 `;

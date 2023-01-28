@@ -8,7 +8,6 @@ import {
   withTiming,
   withDelay,
 } from "react-native-reanimated";
-import { useTheme } from "styled-components";
 
 import { usePokemon } from "@hooks/usePokemon";
 import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
@@ -19,6 +18,7 @@ import { PokeDescritionButton } from "@components/Lists/PokeDescriptionButton";
 import { PokeInfo } from "@components/PokeInfo";
 import { PokeEvolution } from "@components/PokeEvolution";
 import { PokeMoves } from "@components/PokeMoves";
+import { Loading } from "@components/Loading";
 
 import { pokeTypeColor } from "@utils/pokeTypeColor";
 import { pokeDescriptionButton } from "@utils/pokeDescriptionButton";
@@ -35,11 +35,9 @@ import {
   Image,
   PokeDescriptions,
   PokeDescritionButtonWrapper,
-  LoadingContainer,
-  Loading,
 } from "./styles";
 
-export const PokemonView: FC = () => {
+export const Pokemon: FC = () => {
   const {
     pokemon,
     pokemonType,
@@ -50,8 +48,6 @@ export const PokemonView: FC = () => {
   } = usePokemon();
   const { pokemonEvolutionChain, fetchPokemonEvolution } =
     usePokemonEvolution();
-
-  const theme = useTheme();
 
   const [backgroundColor, setBackgroundColor] = useState<string>("red");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
@@ -75,7 +71,7 @@ export const PokemonView: FC = () => {
     };
   });
 
-  function handleDescriptionSelected(descriptionType: string) {
+  const onPressDescriptionSelected = (descriptionType: string) => {
     switch (descriptionType) {
       case "info": {
         ("worklet");
@@ -121,7 +117,7 @@ export const PokemonView: FC = () => {
         break;
       }
     }
-  }
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -149,16 +145,12 @@ export const PokemonView: FC = () => {
   );
 
   if (isLoading) {
-    return (
-      <LoadingContainer>
-        <Loading size="large" color={theme.colors.text} />
-      </LoadingContainer>
-    );
+    return <Loading />;
   }
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <Header leftIcon="chevron-left" backgroundColor={backgroundColor} />
+      <Header />
 
       <PokeContent>
         <PokeHeader>
@@ -197,7 +189,7 @@ export const PokemonView: FC = () => {
                 data={item}
                 isActive={descriptionSelected === item.title}
                 backgroundColor={backgroundColor}
-                onPress={() => handleDescriptionSelected(item.title)}
+                onPress={() => onPressDescriptionSelected(item.title)}
               />
             )}
             horizontal={true}
@@ -227,7 +219,7 @@ export const PokemonView: FC = () => {
                 data={item}
                 backgroundColor={backgroundColor}
                 pokemonCurrentName={pokemon.name}
-                handleDescriptionSelected={handleDescriptionSelected}
+                handleDescriptionSelected={onPressDescriptionSelected}
               />
             )}
             contentContainerStyle={{ marginTop: -120 }}

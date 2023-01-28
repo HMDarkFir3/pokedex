@@ -16,5 +16,5 @@ export const Title = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeTypeCard.text};
 `;

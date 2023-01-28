@@ -6,7 +6,7 @@ export const Container = styled.View`
   justify-content: space-around;
 
   background-color: ${({ theme }) =>
-    theme.colors.screens.errorView.backgroundPrimary};
+    theme.colors.screens.error.backgroundPrimary};
 `;
 
 export const Header = styled.View`
@@ -23,7 +23,7 @@ export const Image = styled.Image`
 export const ErrorTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 28px;
-  color: ${({ theme }) => theme.colors.screens.errorView.text};
+  color: ${({ theme }) => theme.colors.screens.error.text};
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -34,6 +34,6 @@ export const BackButton = styled.TouchableOpacity`
   height: 50px;
 
   background-color: ${({ theme }) =>
-    theme.colors.screens.errorView.backgroundSecondary};
+    theme.colors.screens.error.backgroundSecondary};
   border-radius: 8px;
 `;

@@ -1,12 +1,7 @@
 import styled from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
-//Interfaces
-interface ContainerProps {
-  backgroundColor: string;
-}
-
-export const Container = styled.View<ContainerProps>`
+export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -16,8 +11,6 @@ export const Container = styled.View<ContainerProps>`
 
   margin-top: ${getStatusBarHeight()}px;
   padding: 0 20px;
-
-  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 export const Button = styled.TouchableOpacity``;

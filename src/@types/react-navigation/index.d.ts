@@ -2,9 +2,9 @@ export declare global {
   namespace ReactNavigation {
     interface RootParamList {
       Home: undefined;
-      PokemonView: undefined;
+      Pokemon: undefined;
       Pokedex: undefined;
-      ErrorView: { message: string };
+      Error: { message: string };
     }
   }
 }

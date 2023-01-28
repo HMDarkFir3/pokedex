@@ -33,13 +33,13 @@ export const Wrapper = styled.View`
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeStatCard.textPrimary};
 `;
 
 export const BaseValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.placeholder_text};
+  color: ${({ theme }) => theme.colors.components.pokeStatCard.textSecondary};
 `;
 
 export const ProgressBar = styled.View`
@@ -49,7 +49,8 @@ export const ProgressBar = styled.View`
 
   margin-left: 8px;
 
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) =>
+    theme.colors.components.pokeStatCard.background};
   border-radius: 20px;
 `;
 

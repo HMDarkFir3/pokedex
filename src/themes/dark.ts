@@ -7,7 +7,15 @@ export const dark = {
         background: "#212121",
         text: "#ffffff",
       },
-      errorView: {
+      pokedex: {
+        background: "#212121",
+      },
+      pokemon: {
+        background: "#212121",
+        textPrimary: "#ffffff",
+        textSecondary: "#494d51",
+      },
+      error: {
         backgroundPrimary: "#212121",
         backgroundSecondary: "#159f6e",
         text: "#ffffff",
@@ -28,16 +36,47 @@ export const dark = {
         backgroundPokedex: "#159f6e",
         text: "#ffffff",
       },
+      header: {
+        icon: "#ffffff",
+      },
+      pokeCard: {
+        background: "#111111",
+        text: "#cccccc",
+        border: "#000000",
+      },
+      pokeTypeCard: {
+        text: "#ffffff",
+        border: "#ffffff",
+      },
+      pokeDescriptionButton: {
+        text: "#ffffff",
+      },
+      pokeInfo: {
+        textPrimary: "#494d51",
+        textSecondary: "#ffffff",
+      },
+      pokeAbilityCard: {
+        text: "#ffffff",
+      },
+      pokeSeparator: {
+        separator: "#494d51",
+      },
+      pokeStatCard: {
+        background: "#040404",
+        textPrimary: "#ffffff",
+        textSecondary: "#494d51",
+      },
+      pokeEvolution: {
+        text: "#ffffff",
+      },
+      pokeMoves: {
+        text: "#ffffff",
+      },
+      loading: {
+        background: "#212121",
+        loading: "#159f6e",
+      },
     },
-
-    background: "#212121",
-    primary: "#040404",
-
-    text: "#ffffff",
-    placeholder_text: "#494d51",
-    icon_color: "#ffffff",
-
-    pokedex: "#159f6e",
   },
 
   fonts: {

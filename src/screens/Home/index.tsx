@@ -36,9 +36,10 @@ export const Home: FC = () => {
 
     const response = await fetchPokemon(search);
 
-    if (response === undefined) {
-      navigate("ErrorView", { message: "Pokemon not found." });
-      return;
+    if (response) {
+      navigate("Pokemon");
+    } else {
+      navigate("Error", { message: "Pokemon not found." });
     }
   };
 

@@ -9,7 +9,7 @@ interface Params {
   message: string;
 }
 
-export const ErrorView: FC = () => {
+export const Error: FC = () => {
   const { goBack } = useNavigation();
   const { params } = useRoute();
   const { message } = params as Params;
@@ -33,7 +33,7 @@ export const ErrorView: FC = () => {
       <BackButton activeOpacity={0.7} onPress={onBackPress}>
         <Check
           size={24}
-          color={theme.colors.screens.errorView.icon}
+          color={theme.colors.screens.error.icon}
           weight="bold"
         />
       </BackButton>

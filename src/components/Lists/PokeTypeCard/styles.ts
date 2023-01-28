@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components/native";
 
-//Interfaces
 interface ContainerProps {
   backgroundColor: string;
   index: number;
@@ -20,7 +19,7 @@ export const Container = styled.View<ContainerProps>`
     index === 0 &&
     css`
       border-width: 1px;
-      border-color: ${theme.colors.text};
+      border-color: ${theme.colors.components.pokeTypeCard.border};
     `}
 `;
 
@@ -28,5 +27,5 @@ export const Title = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.components.pokeTypeCard.text};
 `;
