@@ -6,6 +6,7 @@ export const dark = {
       home: {
         background: "#212121",
         text: "#ffffff",
+        icon: "#fdb813",
       },
       pokedex: {
         background: "#212121",

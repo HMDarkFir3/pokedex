@@ -6,6 +6,7 @@ export const light = {
       home: {
         background: "#ffffff",
         text: "#000000",
+        icon: "#e6e4c3",
       },
       pokedex: {
         background: "#ffffff",

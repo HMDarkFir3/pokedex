@@ -19,3 +19,12 @@ export const Title = styled.Text`
   font-size: 36px;
   color: ${({ theme }) => theme.colors.screens.home.text};
 `;
+
+export const ToggleButton = styled.TouchableOpacity`
+  flex-direction: row;
+
+  position: absolute;
+
+  top: ${getStatusBarHeight() + 20}px;
+  right: 20px;
+`;

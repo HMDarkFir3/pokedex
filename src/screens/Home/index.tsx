@@ -3,20 +3,23 @@ import { useState, useEffect, useRef, FC } from "react";
 import { TextInput, Alert } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useNavigation } from "@react-navigation/native";
-import { useTheme } from "styled-components/native";
+import { useTheme as useStyledTheme } from "styled-components/native";
+import { Sun, Moon } from "phosphor-react-native";
 
 import { usePokemon } from "@hooks/usePokemon";
+import { useTheme } from "@hooks/useTheme";
 
 import { Input } from "@components/Input";
 import { PokeSelection } from "@components/PokeSelection";
 
-import { Container, Content, Title } from "./styles";
+import { Container, Content, Title, ToggleButton } from "./styles";
 
 export const Home: FC = () => {
+  const { isLoading, fetchPokemons, fetchPokemon } = usePokemon();
+  const { onToggleTheme } = useTheme();
   const keyboard = useKeyboard();
   const { navigate } = useNavigation();
-  const { isLoading, fetchPokemons, fetchPokemon } = usePokemon();
-  const theme = useTheme();
+  const theme = useStyledTheme();
 
   const [search, setSearch] = useState<string>("");
 
@@ -57,6 +60,18 @@ export const Home: FC = () => {
   return (
     <Container>
       <StatusBar />
+
+      <ToggleButton activeOpacity={0.7} onPress={onToggleTheme}>
+        {theme.title === "light" ? (
+          <Moon
+            size={32}
+            color={theme.colors.screens.home.icon}
+            weight="fill"
+          />
+        ) : (
+          <Sun size={32} color={theme.colors.screens.home.icon} weight="fill" />
+        )}
+      </ToggleButton>
 
       <Content>
         <Title>What are{"\n"}you looking for?</Title>
