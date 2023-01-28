@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.View`
   flex: 1;
@@ -12,15 +11,15 @@ export const Container = styled.View`
 export const Header = styled.View``;
 
 export const Image = styled.Image`
-  width: ${RFValue(240)}px;
-  height: ${RFValue(240)}px;
+  width: 240px;
+  height: 240px;
 
   margin-bottom: 20px;
 `;
 
 export const ErrorTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(28)}px;
+  font-size: 28px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -28,8 +27,8 @@ export const BackButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  width: ${RFValue(50)}px;
-  height: ${RFValue(50)}px;
+  width: 50px;
+  height: 50px;
 
   background-color: ${({ theme }) => theme.colors.background};
   border: solid 1px ${({ theme }) => theme.colors.pokedex};

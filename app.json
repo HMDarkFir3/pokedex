@@ -8,13 +8,18 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#C73434"
+      "backgroundColor": "#212121"
     },
     "android": {
       "package": "com.hmdarkfire.pokedex",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#C73434"
+        "backgroundColor": "#212121"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bc202d96-ccf6-4c54-bb6f-c354b6b26617"
       }
     }
   },

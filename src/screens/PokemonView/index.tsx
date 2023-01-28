@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FC } from "react";
+import { useState, useCallback, FC } from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -9,20 +9,19 @@ import {
   withDelay,
 } from "react-native-reanimated";
 import { useTheme } from "styled-components";
-import { RFValue } from "react-native-responsive-fontsize";
 
-import { usePokemon } from "../../hooks/usePokemon";
-import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
+import { usePokemon } from "@hooks/usePokemon";
+import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
 
-import { Header } from "../../components/Header";
-import { PokeTypeCard } from "../../components/Lists/PokeTypeCard";
-import { PokeDescritionButton } from "../../components/Lists/PokeDescriptionButton";
-import { PokeInfo } from "../../components/PokeInfo";
-import { PokeEvolution } from "../../components/PokeEvolution";
-import { PokeMoves } from "../../components/PokeMoves";
+import { Header } from "@components/Header";
+import { PokeTypeCard } from "@components/Lists/PokeTypeCard";
+import { PokeDescritionButton } from "@components/Lists/PokeDescriptionButton";
+import { PokeInfo } from "@components/PokeInfo";
+import { PokeEvolution } from "@components/PokeEvolution";
+import { PokeMoves } from "@components/PokeMoves";
 
-import { pokeTypeColor } from "../../utils/pokeTypeColor";
-import { pokeDescriptionButton } from "../../utils/pokeDescriptionButton";
+import { pokeTypeColor } from "@utils/pokeTypeColor";
+import { pokeDescriptionButton } from "@utils/pokeDescriptionButton";
 
 import {
   Container,
@@ -61,7 +60,7 @@ export const PokemonView: FC = () => {
 
   const pokeImageOpacity = useSharedValue<number>(1);
   const pokeImageZIndex = useSharedValue<number>(10);
-  const pokeDescriptionsPosition = useSharedValue<number>(RFValue(154));
+  const pokeDescriptionsPosition = useSharedValue<number>(154);
 
   const animatedPokeImageStyle = useAnimatedStyle(() => {
     return {
@@ -90,7 +89,7 @@ export const PokemonView: FC = () => {
           400,
           withTiming(10, { duration: 400 })
         );
-        pokeDescriptionsPosition.value = withTiming(RFValue(154), {
+        pokeDescriptionsPosition.value = withTiming(154, {
           duration: 750,
         });
 
@@ -102,7 +101,7 @@ export const PokemonView: FC = () => {
         ("worklet");
         pokeImageOpacity.value = withTiming(0, { duration: 200 });
         pokeImageZIndex.value = withTiming(0, { duration: 200 });
-        pokeDescriptionsPosition.value = withTiming(RFValue(20), {
+        pokeDescriptionsPosition.value = withTiming(20, {
           duration: 750,
         });
 
@@ -114,7 +113,7 @@ export const PokemonView: FC = () => {
         ("worklet");
         pokeImageOpacity.value = withTiming(0, { duration: 200 });
         pokeImageZIndex.value = withTiming(0, { duration: 200 });
-        pokeDescriptionsPosition.value = withTiming(RFValue(20), {
+        pokeDescriptionsPosition.value = withTiming(20, {
           duration: 750,
         });
 
@@ -204,7 +203,7 @@ export const PokemonView: FC = () => {
             horizontal={true}
             contentContainerStyle={{
               justifyContent: "space-between",
-              marginTop: RFValue(52),
+              marginTop: 52,
               width: "100%",
             }}
           />
@@ -231,7 +230,7 @@ export const PokemonView: FC = () => {
                 handleDescriptionSelected={handleDescriptionSelected}
               />
             )}
-            contentContainerStyle={{ marginTop: RFValue(-120) }}
+            contentContainerStyle={{ marginTop: -120 }}
             showsVerticalScrollIndicator={false}
           />
         )}

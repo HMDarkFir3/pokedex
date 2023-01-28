@@ -1,7 +1,6 @@
-import React, { FC, ComponentProps } from "react";
+import { FC, ComponentProps } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
-import { RFValue } from "react-native-responsive-fontsize";
 import { Feather } from "@expo/vector-icons";
 
 import { Container, Button } from "./styles";
@@ -21,19 +20,11 @@ export const Header: FC<Props> = (props) => {
   return (
     <Container backgroundColor={backgroundColor}>
       <Button activeOpacity={0.7} onPress={() => goBack()}>
-        <Feather
-          name={leftIcon}
-          size={RFValue(24)}
-          color={theme.colors.icon_color}
-        />
+        <Feather name={leftIcon} size={24} color={theme.colors.icon_color} />
       </Button>
 
       <Button activeOpacity={0.7}>
-        <Feather
-          name={rightIcon}
-          size={RFValue(24)}
-          color={theme.colors.icon_color}
-        />
+        <Feather name={rightIcon} size={24} color={theme.colors.icon_color} />
       </Button>
     </Container>
   );

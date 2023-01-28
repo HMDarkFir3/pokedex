@@ -1,10 +1,10 @@
-import React, { useEffect, FC } from "react";
+import { useState, useEffect, useCallback, FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 
-import { PokemonEvolutionChainDTO } from "../../dtos";
+import { PokemonEvolutionChainDTO } from "@dtos/PokemonEvolutionChainDTO";
 
-import { usePokemon } from "../../hooks/usePokemon";
-import { usePokemonEvolution } from "../../hooks/usePokemonEvolution";
+import { usePokemon } from "@hooks/usePokemon";
+import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
 
 import {
   Container,
@@ -32,9 +32,9 @@ export const PokeEvolution: FC<Props> = (props) => {
   const { fetchPokemon } = usePokemon();
   const { pokemonEvolutionChain } = usePokemonEvolution();
 
-  const [evolutionType, setEvolutionType] = React.useState<string>("");
+  const [evolutionType, setEvolutionType] = useState<string>("");
 
-  const handlePokemon = React.useCallback(
+  const handlePokemon = useCallback(
     (pokemonName: string) => {
       fetchPokemon(pokemonName);
       handleDescriptionSelected("info");

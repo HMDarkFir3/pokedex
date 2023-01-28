@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
-import { PokemonStatsDTO } from "../../../dtos";
+import { PokemonStatsDTO } from "@dtos/PokemonStatsDTO";
 
-import { pokeStats } from "../../../utils/pokeStats";
+import { pokeStats } from "@utils/pokeStats";
 
 //Styles
 import {

@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { FlatList } from "react-native";
 import { useTheme } from "styled-components";
 
-import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
-import { Header } from "../../components/Header";
-import { PokeCard } from "../../components/Lists/PokeCard";
+import { Header } from "@components/Header";
+import { PokeCard } from "@components/Lists/PokeCard";
 
 import { Container, LoadingContainer, Loading } from "./styles";
 

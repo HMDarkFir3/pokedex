@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 import Animated from "react-native-reanimated";
-import { RFValue } from "react-native-responsive-fontsize";
 
 //Interfaces
 interface ContainerProps {
@@ -42,13 +41,13 @@ export const PokeTitle = styled.View`
 export const PokeName = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(40)}px;
+  font-size: 40px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const PokeIndex = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(20)}px;
+  font-size: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -62,15 +61,15 @@ export const PokeType = styled.View`
 
 export const PokeImage = styled(Animated.View)`
   position: absolute;
-  top: ${RFValue(65)}px;
+  top: 65px;
   align-self: center;
 
   z-index: 10;
 `;
 
 export const Image = styled.Image`
-  width: ${RFValue(220)}px;
-  height: ${RFValue(220)}px;
+  width: 220px;
+  height: 220px;
 `;
 
 export const PokeDescriptions = styled(Animated.View)`
@@ -79,7 +78,7 @@ export const PokeDescriptions = styled(Animated.View)`
   width: 100%;
   height: 100%;
 
-  margin-top: ${RFValue(154)}px;
+  margin-top: 154px;
   padding: 0 20px;
 
   background-color: ${({ theme }) => theme.colors.background};
@@ -94,7 +93,7 @@ export const PokeDescritionButtonWrapper = styled.View`
 export const PokeDescription = styled.Text`
   text-align: justify;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 
@@ -106,7 +105,7 @@ export const PokeAbilitiesTitle = styled.Text`
   margin-bottom: 8px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -121,13 +120,13 @@ export const PokeMeasure = styled.View`
 
 export const PokeMeasureName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const PokeMeasureValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.light};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -139,7 +138,7 @@ export const PokeStatTitle = styled.Text`
   margin-bottom: 8px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -152,7 +151,7 @@ export const PokeEvolutionWrapper = styled.View`
 export const PokeEvolutionName = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -167,7 +166,7 @@ export const PokeVerticalSeparator = styled.View<PokeVerticalSeparator>`
 
 export const PokeEvolutionLevel = styled.Text`
   font-family: ${({ theme }) => theme.fonts.light};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
@@ -8,6 +8,8 @@ import { Container, Header, Image, ErrorTitle, BackButton } from "./styles";
 export const ErrorView: FC = () => {
   const { goBack } = useNavigation();
   const theme = useTheme();
+
+  const onBackPress = () => goBack();
 
   return (
     <Container>
@@ -20,7 +22,7 @@ export const ErrorView: FC = () => {
         <ErrorTitle>Ops..., ocorrer um erro!</ErrorTitle>
       </Header>
 
-      <BackButton activeOpacity={0.7} onPress={() => goBack()}>
+      <BackButton activeOpacity={0.7} onPress={onBackPress}>
         <Feather name="check" size={24} color={theme.colors.pokedex} />
       </BackButton>
     </Container>

@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -15,8 +14,8 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const Image = styled.Image`
-  width: ${RFValue(80)}px;
-  height: ${RFValue(80)}px;
+  width: 80px;
+  height: 80px;
 `;
 
 export const Wrapper = styled.View`
@@ -26,13 +25,13 @@ export const Wrapper = styled.View`
 export const Index = styled.Text`
   text-align: right;
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 
 export const Name = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;

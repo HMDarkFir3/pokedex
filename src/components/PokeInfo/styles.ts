@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
-//Interfaces
 interface AbilitiesProps {
   pokemonDescription: boolean;
 }
@@ -11,7 +9,7 @@ export const Container = styled.View``;
 export const Description = styled.Text`
   text-align: justify;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 
@@ -29,7 +27,7 @@ export const AbilitiesTitle = styled.Text`
   margin-bottom: 8px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -44,13 +42,13 @@ export const Measure = styled.View`
 
 export const MeasureName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const MeasureValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.light};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -62,6 +60,6 @@ export const StatTitle = styled.Text`
   margin-bottom: 8px;
 
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;

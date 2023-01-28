@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { Results } from "../../../dtos/PokemonsDTO";
+import { Results } from "@dtos/PokemonsDTO";
 
-import { usePokemon } from "../../../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
 import { Container, Image, Wrapper, Name, Index } from "./styles";
 

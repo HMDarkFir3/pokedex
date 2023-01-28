@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
 interface ContainerProps {
   backgroundColor: string;
@@ -17,6 +16,6 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
 export const Title = styled.Text`
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;

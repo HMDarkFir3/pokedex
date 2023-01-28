@@ -1,10 +1,8 @@
-import * as React from "react";
-import { PokemonEvolutionContext } from "../contexts/PokemonEvolutionContext";
+import { useContext } from "react";
+import {
+  PokemonEvolutionContext,
+  PokemonEvolutionContextData,
+} from "../contexts/PokemonEvolutionContext";
 
-const usePokemonEvolution = () => {
-  const content = React.useContext(PokemonEvolutionContext);
-
-  return content;
-};
-
-export { usePokemonEvolution };
+export const usePokemonEvolution = (): PokemonEvolutionContextData =>
+  useContext(PokemonEvolutionContext);

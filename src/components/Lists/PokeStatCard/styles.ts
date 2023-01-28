@@ -1,8 +1,5 @@
 import styled, { css } from "styled-components/native";
 
-import { RFValue } from "react-native-responsive-fontsize";
-
-//Interfaces
 interface ContainerProps {
   index: number;
 }
@@ -35,13 +32,13 @@ export const Wrapper = styled.View`
 
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const BaseValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(16)}px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.placeholder_text};
 `;
 

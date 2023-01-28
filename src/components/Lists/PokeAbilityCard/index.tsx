@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
-import { PokemonAbilitiesDTO } from "../../../dtos";
+import { PokemonAbilitiesDTO } from "@dtos/PokemonAbilitiesDTO";
 
 import { Container, Title } from "./styles";
 

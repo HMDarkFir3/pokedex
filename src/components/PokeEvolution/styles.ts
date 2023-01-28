@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
-//Interfaces`
 interface LevelProps {
   backgroundColor: string;
 }
@@ -36,14 +34,14 @@ export const PokeImage = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: ${RFValue(90)}px;
-  height: ${RFValue(90)}px;
+  width: 90px;
+  height: 90px;
 `;
 
 export const Name = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -53,12 +51,12 @@ export const Level = styled.Text<LevelProps>`
   text-transform: capitalize;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 export const NotEvolution = styled.View<NotEvolution>`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ backgroundColor }) => backgroundColor};
 `;

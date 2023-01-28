@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { FC } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "styled-components";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import {
   Roboto_300Light,
@@ -16,18 +16,20 @@ import { PokemonEvolutionProvider } from "./src/contexts/PokemonEvolutionContext
 
 import { Routes } from "./src/routes";
 
-import { dark } from "./src/global/themes/dark";
+import { dark } from "./src/themes/dark";
 
 export const App: FC = () => {
-  let [fontsLoaded] = useFonts({
+  SplashScreen.preventAutoHideAsync();
+
+  const [fontsLoaded] = useFonts({
     Roboto_300Light,
     Roboto_400Regular,
     Roboto_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  if (!fontsLoaded) return null;
+
+  SplashScreen.hideAsync();
 
   return (
     <NavigationContainer>

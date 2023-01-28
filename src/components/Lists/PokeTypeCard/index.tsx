@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
-import { PokemonTypeDTO } from "../../../dtos/PokemonTypeDTO";
+import { PokemonTypeDTO } from "@dtos/PokemonTypeDTO";
 
-import { pokeTypeColor } from "../../../utils/pokeTypeColor";
+import { pokeTypeColor } from "@utils/pokeTypeColor";
 
 import { Container, Title } from "./styles";
 

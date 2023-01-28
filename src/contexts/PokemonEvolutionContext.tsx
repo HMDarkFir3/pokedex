@@ -1,16 +1,16 @@
-import React, { useState, createContext, FC, ReactNode } from "react";
+import { useState, createContext, FC, ReactNode } from "react";
 
-import { api } from "../services/api";
+import { api } from "@services/api";
 
-import { PokemonEvolutionChainDTO } from "../dtos";
+import { PokemonEvolutionChainDTO } from "@dtos/PokemonEvolutionChainDTO";
 
-import { usePokemon } from "../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
 export const PokemonEvolutionContext = createContext(
   {} as PokemonEvolutionContextData
 );
 
-interface PokemonEvolutionContextData {
+export interface PokemonEvolutionContextData {
   pokemonEvolutionChain: PokemonEvolutionChainDTO[];
   isLoading: boolean;
   fetchPokemonEvolution: () => void;

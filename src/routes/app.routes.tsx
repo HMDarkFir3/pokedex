@@ -1,11 +1,10 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-//Screens
-import { Home } from "../screens/Home";
-import { PokemonView } from "../screens/PokemonView";
-import { Pokedex } from "../screens/Pokedex";
-import { ErrorView } from "../screens/ErrorView";
+import { Home } from "@screens/Home";
+import { PokemonView } from "@screens/PokemonView";
+import { Pokedex } from "@screens/Pokedex";
+import { ErrorView } from "@screens/ErrorView";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

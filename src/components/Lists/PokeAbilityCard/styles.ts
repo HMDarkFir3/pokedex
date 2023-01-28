@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
 
-//Interfaces
 interface ContainerProps {
   backgroundColor: string;
 }
@@ -17,6 +15,6 @@ export const Container = styled.View<ContainerProps>`
 export const Title = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.text};
 `;

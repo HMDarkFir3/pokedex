@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, FC } from "react";
+import { useEffect, useRef, FC } from "react";
 import { TextInput } from "react-native";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
-import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
-import { Header } from "../../components/Header";
-import Input from "../../components/Input";
-import { PokeSelection } from "../../components/PokeSelection";
+import Input from "@components/Input";
+import { PokeSelection } from "@components/PokeSelection";
 
 import { Container, Content, Title } from "./styles";
 
@@ -32,8 +31,6 @@ export const Home: FC = () => {
 
   return (
     <Container>
-      <Header rightIcon="settings" backgroundColor={theme.colors.background} />
-
       <Content>
         <Title>What are{"\n"}you looking for?</Title>
 

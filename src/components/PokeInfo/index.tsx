@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { FlatList } from "react-native";
 
 //Hooks
-import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
 //Components
-import { PokeAbilityCard } from "../Lists/PokeAbilityCard";
-import { PokeStatCard } from "../Lists/PokeStatCard";
-import { PokeSeparator } from "../../components/PokeSeparator";
+import { PokeAbilityCard } from "@components/Lists/PokeAbilityCard";
+import { PokeStatCard } from "@components/Lists/PokeStatCard";
+import { PokeSeparator } from "@components/PokeSeparator";
 
 //Styles
 import {

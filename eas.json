@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">= 2.1.0"
+  },
+  "build": {
+    "development": {
+      "env": {
+        "APP_ENV": "development"
+      },
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleDebug",
+        "buildType": "apk"
+      },
+      "developmentClient": true
+    },
+    "preview": {
+      "env": {
+        "APP_ENV": "preview"
+      },
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleRelease",
+        "buildType": "apk"
+      },
+      "developmentClient": false
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,9 +1,9 @@
-import React, { forwardRef, ForwardRefRenderFunction } from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 import { TextInput, TextInputProps, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
-import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemon } from "@hooks/usePokemon";
 
 import { Container, SearchButton, SearchIcon, CustomInput } from "./styles";
 
