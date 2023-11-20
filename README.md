@@ -41,7 +41,7 @@ $ cd pokedex
 
 ```bash
 # Install dependencies
-$ yarn install ou npm install
+$ yarn install or npm install
 
 # If you are using your cellphone how emulator, run
 $ npx expo start
@@ -50,7 +50,7 @@ $ npx expo start
 $ yarn android ou npm run android
 
 # If you are using the IOS emulator, run
-yarn ios ou npm run ios
+yarn ios or npm run ios
 ```
 
 ---
