@@ -12,8 +12,8 @@ export const AppRoutes: FC = () => {
   return (
     <Navigator screenOptions={{ headerShown: false, animation: "fade" }}>
       <Screen name="Home" component={Home} />
-      <Screen name="Pokemon" component={Pokemon} />
       <Screen name="Pokedex" component={Pokedex} />
+      <Screen name="Pokemon" component={Pokemon} />
       <Screen name="Error" component={Error} />
     </Navigator>
   );
