@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef, FC } from "react";
 import { TextInput, Alert } from "react-native";
-import { useKeyboard } from "@react-native-community/hooks";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme as useStyledTheme } from "styled-components/native";
 import { Sun, Moon } from "phosphor-react-native";
 
 import { usePokemon } from "@hooks/usePokemon";
 import { useTheme } from "@hooks/useTheme";
+import { useKeyboard } from "@hooks/useKeyboard";
 
 import { Input } from "@components/Input";
 import { PokeSelection } from "@components/PokeSelection";

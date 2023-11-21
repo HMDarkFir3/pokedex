@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { TextInput } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
 
 interface SearchButtonProps {
   variant: "primary" | "secondary";
@@ -17,15 +18,14 @@ export const Container = styled.View`
   border-radius: 24px;
 `;
 
-export const SearchButton = styled.TouchableOpacity<SearchButtonProps>`
+export const SearchButton = styled(RectButton)<SearchButtonProps>`
   align-items: center;
   justify-content: center;
 
   width: 48px;
   height: 48px;
 
-  border-top-right-radius: 24px;
-  border-bottom-right-radius: 24px;
+  border-radius: 24px;
 
   ${({ variant, theme }) =>
     variant === "secondary" &&

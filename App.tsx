@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 import { FC } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import {
@@ -33,7 +34,11 @@ export const App: FC = () => {
       <ThemeProvider>
         <PokemonProvider>
           <PokemonEvolutionProvider>
-            <Routes />
+            <GestureHandlerRootView
+              style={{ flex: 1, backgroundColor: "#212121" }}
+            >
+              <Routes />
+            </GestureHandlerRootView>
           </PokemonEvolutionProvider>
         </PokemonProvider>
       </ThemeProvider>

@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 export const Container = styled.View`
   flex: 1;
@@ -20,7 +21,7 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.screens.home.text};
 `;
 
-export const ToggleButton = styled.TouchableOpacity`
+export const ToggleButton = styled(BorderlessButton)`
   flex-direction: row;
 
   position: absolute;

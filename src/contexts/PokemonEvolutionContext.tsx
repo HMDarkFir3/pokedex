@@ -43,7 +43,7 @@ export const PokemonEvolutionProvider: FC<PokemonEvolutionProviderProps> = ({
       ] = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${response.data.id}.png`;
     }
 
-    setPokemonEvolutionChain((oldState) => [oldState, ...evolutionChain]);
+    setPokemonEvolutionChain([...evolutionChain]);
   }
 
   async function fetchPokemonEvolution() {

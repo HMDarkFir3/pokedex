@@ -1,25 +1,16 @@
 import styled from "styled-components/native";
+import { RectButton } from "react-native-gesture-handler";
 
 interface LevelProps {
-  backgroundColor: string;
+  textColor: string;
 }
 
-interface NotEvolution {
-  backgroundColor: string;
-}
-
-export const Container = styled.View`
+export const Container = styled(RectButton)`
   align-items: center;
   justify-content: center;
-`;
-
-export const Wrapper = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-
   width: 100%;
 
-  margin-bottom: 20px;
+  padding: 12px;
 `;
 
 export const SubWrapper = styled.View`
@@ -52,11 +43,5 @@ export const Level = styled.Text<LevelProps>`
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 18px;
-  color: ${({ backgroundColor }) => backgroundColor};
-`;
-
-export const NotEvolution = styled.View<NotEvolution>`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: 18px;
-  color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ textColor }) => textColor};
 `;

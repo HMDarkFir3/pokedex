@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { RectButton } from "react-native-gesture-handler";
 
 export const Container = styled.View`
   flex: 1;
@@ -26,7 +27,7 @@ export const ErrorTitle = styled.Text`
   color: ${({ theme }) => theme.colors.screens.error.text};
 `;
 
-export const BackButton = styled.TouchableOpacity`
+export const BackButton = styled(RectButton)`
   align-items: center;
   justify-content: center;
 

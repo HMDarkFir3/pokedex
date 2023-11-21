@@ -5,10 +5,6 @@ interface ContainerProps {
   backgroundColor: string;
 }
 
-interface PokeVerticalSeparator {
-  backgroundColor: string;
-}
-
 export const Container = styled.View<ContainerProps>`
   flex: 1;
 
@@ -78,11 +74,17 @@ export const PokeDescriptions = styled(Animated.View)`
   height: 100%;
 
   margin-top: 154px;
-  padding: 0 20px;
 
   background-color: ${({ theme }) => theme.colors.screens.pokemon.background};
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
+`;
+
+export const PokeDescriptionsWrapper = styled.View`
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PokeDescritionButtonWrapper = styled.View`

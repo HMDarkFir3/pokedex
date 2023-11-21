@@ -30,7 +30,7 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
         <SearchButton
           variant="primary"
           activeOpacity={0.7}
-          disabled={isLoading}
+          enabled={!isLoading}
         >
           <MagnifyingGlass
             size={24}
@@ -43,7 +43,7 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
           variant="secondary"
           activeOpacity={0.7}
           onPress={onSearch}
-          disabled={isLoading}
+          enabled={!isLoading}
         >
           {isLoading ? (
             <ActivityIndicator

@@ -36,6 +36,7 @@ import {
   PokeImage,
   Image,
   PokeDescriptions,
+  PokeDescriptionsWrapper,
   PokeDescritionButtonWrapper,
 } from "./styles";
 
@@ -54,8 +55,9 @@ export const Pokemon: FC = () => {
 
   const [backgroundColor, setBackgroundColor] = useState<string>("red");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
-  const [descriptionSelected, setDescriptionSelected] =
-    useState<string>("info");
+  const [descriptionSelected, setDescriptionSelected] = useState<
+    "info" | "evolution" | "moves"
+  >("info");
 
   const pokeImageOpacity = useSharedValue<number>(1);
   const pokeImageZIndex = useSharedValue<number>(10);
@@ -77,7 +79,6 @@ export const Pokemon: FC = () => {
   const onPressDescriptionSelected = (descriptionType: string) => {
     switch (descriptionType) {
       case "info": {
-        ("worklet");
         pokeImageOpacity.value = withDelay(
           600,
           withTiming(1, {
@@ -97,7 +98,6 @@ export const Pokemon: FC = () => {
       }
 
       case "evolution": {
-        ("worklet");
         pokeImageOpacity.value = withTiming(0, { duration: 200 });
         pokeImageZIndex.value = withTiming(0, { duration: 200 });
         pokeDescriptionsPosition.value = withTiming(20, {
@@ -109,7 +109,6 @@ export const Pokemon: FC = () => {
       }
 
       case "moves": {
-        ("worklet");
         pokeImageOpacity.value = withTiming(0, { duration: 200 });
         pokeImageZIndex.value = withTiming(0, { duration: 200 });
         pokeDescriptionsPosition.value = withTiming(20, {
@@ -199,21 +198,29 @@ export const Pokemon: FC = () => {
               <PokeDescritionButton
                 data={item}
                 isActive={descriptionSelected === item.title}
-                backgroundColor={backgroundColor}
+                backgroundColor={
+                  descriptionSelected === item.title
+                    ? backgroundColor
+                    : "transparent"
+                }
                 onPress={() => onPressDescriptionSelected(item.title)}
               />
             )}
             horizontal={true}
             contentContainerStyle={{
               justifyContent: "space-between",
-              marginTop: 52,
               width: "100%",
+              marginTop: 52,
+              paddingHorizontal: 20,
             }}
           />
         </PokeDescritionButtonWrapper>
 
         {descriptionSelected === "info" && (
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView
+            contentContainerStyle={{ paddingHorizontal: 20 }}
+            showsVerticalScrollIndicator={false}
+          >
             <PokeInfo
               backgroundColor={backgroundColor}
               pokemonDescription={pokemonDescription}
@@ -221,22 +228,24 @@ export const Pokemon: FC = () => {
           </ScrollView>
         )}
 
-        {descriptionSelected === "evolution" && (
-          <FlatList
-            data={pokemonEvolutionChain}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => (
-              <PokeEvolution
-                data={item}
-                backgroundColor={backgroundColor}
-                pokemonCurrentName={pokemon.name}
-                handleDescriptionSelected={onPressDescriptionSelected}
-              />
-            )}
-            contentContainerStyle={{ marginTop: -120 }}
-            showsVerticalScrollIndicator={false}
-          />
-        )}
+        <PokeDescriptionsWrapper>
+          {descriptionSelected === "evolution" && (
+            <FlatList
+              data={pokemonEvolutionChain}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => (
+                <PokeEvolution
+                  data={item}
+                  textColor={backgroundColor}
+                  pokemonCurrentName={pokemon.name}
+                  onDescriptionSelected={onPressDescriptionSelected}
+                />
+              )}
+              style={{ width: "100%" }}
+              showsVerticalScrollIndicator={false}
+            />
+          )}
+        </PokeDescriptionsWrapper>
 
         {descriptionSelected === "moves" && (
           <FlatList
@@ -250,6 +259,7 @@ export const Pokemon: FC = () => {
               />
             )}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 20 }}
           />
         )}
       </PokeDescriptions>
