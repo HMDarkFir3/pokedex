@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef, FC } from "react";
 import { TextInput, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -10,7 +9,7 @@ import { useTheme } from "@hooks/useTheme";
 import { useKeyboard } from "@hooks/useKeyboard";
 
 import { Input } from "@components/Input";
-import { PokeSelection } from "@components/PokeSelection";
+import { Button } from "@components/Buttons/Button";
 
 import { Container, Content, Title, ToggleButton } from "./styles";
 
@@ -19,7 +18,7 @@ export const Home: FC = () => {
   const { onToggleTheme } = useTheme();
   const keyboard = useKeyboard();
   const { navigate } = useNavigation();
-  const theme = useStyledTheme();
+  const { title, colors } = useStyledTheme();
 
   const [search, setSearch] = useState<string>("");
 
@@ -60,10 +59,10 @@ export const Home: FC = () => {
   return (
     <Container>
       <ToggleButton activeOpacity={0.7} onPress={onToggleTheme}>
-        {theme.title === "light" ? (
-          <Moon size={32} color={theme.colors.icon} weight="fill" />
+        {title === "light" ? (
+          <Moon size={32} color={colors.icon} weight="fill" />
         ) : (
-          <Sun size={32} color={theme.colors.icon} weight="fill" />
+          <Sun size={32} color={colors.icon} weight="fill" />
         )}
       </ToggleButton>
 
@@ -80,12 +79,10 @@ export const Home: FC = () => {
           editable={!isLoading}
         />
 
-        <PokeSelection
+        <Button
           style={{ marginTop: 16 }}
           title="Pokédex"
-          backgroundColor={
-            theme.colors.components.pokeSelection.backgroundPokedex
-          }
+          backgroundColor={colors.primary}
           onPress={onPressSelection}
         />
       </Content>

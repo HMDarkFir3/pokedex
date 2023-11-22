@@ -9,10 +9,7 @@ export const Loading: FC = () => {
 
   return (
     <Container>
-      <ActivityIndicator
-        size="large"
-        color={colors.components.loading.loading}
-      />
+      <ActivityIndicator size="large" color={colors.primary} />
     </Container>
   );
 };

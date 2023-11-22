@@ -13,25 +13,8 @@ export const Container = styled.View`
   width: 100%;
   height: 48px;
 
-  background-color: ${({ theme }) =>
-    theme.colors.components.input.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 24px;
-`;
-
-export const SearchButton = styled(RectButton)<SearchButtonProps>`
-  align-items: center;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-
-  border-radius: 24px;
-
-  ${({ variant, theme }) =>
-    variant === "secondary" &&
-    css`
-      background-color: ${theme.colors.components.input.backgroundSecondary};
-    `}
 `;
 
 export const CustomInput = styled(TextInput)`
@@ -41,5 +24,6 @@ export const CustomInput = styled(TextInput)`
 
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.components.input.text};
+  color: ${({ theme }) =>
+    theme.title === "light" ? theme.colors.text1000 : theme.colors.text100};
 `;

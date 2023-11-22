@@ -1,7 +1,8 @@
 import { useMemo, FC } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useTheme } from "styled-components/native";
 import { Check } from "phosphor-react-native";
+
+import { SmallButton } from "@components/Buttons/SmallButton";
 
 import { Container, Wrapper, Image, Title, BackButton } from "./styles";
 
@@ -13,7 +14,6 @@ export const Error: FC = () => {
   const { goBack } = useNavigation();
   const { params } = useRoute();
   const { message } = params as Params;
-  const theme = useTheme();
 
   const onBackPress = () => goBack();
 
@@ -30,9 +30,7 @@ export const Error: FC = () => {
         <Title>Ops..., {message}</Title>
       </Wrapper>
 
-      <BackButton onPress={onBackPress}>
-        <Check size={24} color={theme.colors.text100} weight="bold" />
-      </BackButton>
+      <SmallButton icon={Check} onPress={onBackPress} />
     </Container>
   );
 };

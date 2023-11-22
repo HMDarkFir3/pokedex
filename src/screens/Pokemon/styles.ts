@@ -11,20 +11,20 @@ export const Container = styled.View<ContainerProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
-export const PokeContent = styled.View`
+export const Content = styled.View`
   width: 100%;
 
   padding: 0 20px;
 `;
 
-export const PokeHeader = styled.View`
+export const Wrapper = styled.View`
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
 `;
 
-export const PokeTitle = styled.View`
+export const Title = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -33,20 +33,20 @@ export const PokeTitle = styled.View`
   width: 100%;
 `;
 
-export const PokeName = styled.Text`
+export const Name = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 40px;
   color: ${({ theme }) => theme.colors.text100};
 `;
 
-export const PokeIndex = styled.Text`
+export const Index = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 20px;
   color: ${({ theme }) => theme.colors.text100};
 `;
 
-export const PokeType = styled.View`
+export const TypeWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ export const PokeType = styled.View`
   width: 100%;
 `;
 
-export const PokeImage = styled(Animated.View)`
+export const AnimatedImage = styled(Animated.View)`
   position: absolute;
   top: 65px;
   align-self: center;
@@ -67,7 +67,7 @@ export const Image = styled.Image`
   height: 220px;
 `;
 
-export const PokeDescriptions = styled(Animated.View)`
+export const Descriptions = styled(Animated.View)`
   flex: 1;
 
   width: 100%;
@@ -80,13 +80,13 @@ export const PokeDescriptions = styled(Animated.View)`
   border-top-right-radius: 32px;
 `;
 
-export const PokeDescriptionsWrapper = styled.View`
+export const DescriptionsWrapper = styled.View`
   flex: 1;
 
   align-items: center;
   justify-content: center;
 `;
 
-export const PokeDescritionButtonWrapper = styled.View`
+export const DescritionButtonWrapper = styled.View`
   margin-bottom: 20px;
 `;

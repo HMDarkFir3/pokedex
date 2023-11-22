@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState, useCallback, FC } from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
@@ -15,11 +14,11 @@ import { usePokemon } from "@hooks/usePokemon";
 import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
 
 import { Header } from "@components/Header";
-import { PokeTypeCard } from "@components/Lists/PokeTypeCard";
-import { PokeDescritionButton } from "@components/Lists/PokeDescriptionButton";
-import { PokeInfo } from "@components/PokeInfo";
-import { PokeEvolution } from "@components/PokeEvolution";
-import { PokeMoves } from "@components/PokeMoves";
+import { TypeCard } from "@components/Cards/TypeCard";
+import { DescritionButton } from "@components/Cards/DescriptionCard";
+import { Info } from "@components/Info";
+import { Evolution } from "@components/Evolution";
+import { Moves } from "@components/Moves";
 import { Loading } from "@components/Loading";
 
 import { pokeTypeColor } from "@utils/pokeTypeColor";
@@ -27,18 +26,19 @@ import { pokeDescriptionButton } from "@utils/pokeDescriptionButton";
 
 import {
   Container,
-  PokeContent,
-  PokeHeader,
-  PokeTitle,
-  PokeName,
-  PokeIndex,
-  PokeType,
-  PokeImage,
+  Content,
+  Wrapper,
+  Title,
+  Name,
+  Index,
+  TypeWrapper,
+  AnimatedImage,
   Image,
-  PokeDescriptions,
-  PokeDescriptionsWrapper,
-  PokeDescritionButtonWrapper,
+  Descriptions,
+  DescriptionsWrapper,
+  DescritionButtonWrapper,
 } from "./styles";
+import { Separator } from "@components/Separator";
 
 export const Pokemon: FC = () => {
   const {
@@ -51,7 +51,7 @@ export const Pokemon: FC = () => {
   } = usePokemon();
   const { pokemonEvolutionChain, fetchPokemonEvolution } =
     usePokemonEvolution();
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   const [backgroundColor, setBackgroundColor] = useState<string>("red");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
@@ -152,50 +152,42 @@ export const Pokemon: FC = () => {
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <StatusBar style="light" />
+      <Header iconColor={colors.text100} />
 
-      <Header
-        iconColor={
-          theme.title === "dark"
-            ? theme.colors.components.header.iconPrimary
-            : theme.colors.components.header.iconSecondary
-        }
-      />
+      <Content>
+        <Wrapper>
+          <Title>
+            <Name>{pokemon.name}</Name>
+            <Index>#{pokemon.id}</Index>
+          </Title>
 
-      <PokeContent>
-        <PokeHeader>
-          <PokeTitle>
-            <PokeName>{pokemon.name}</PokeName>
-            <PokeIndex>#{pokemon.id}</PokeIndex>
-          </PokeTitle>
-
-          <PokeType>
+          <TypeWrapper>
             <FlatList
               data={pokemonType}
               keyExtractor={(item) => String(item.slot)}
               renderItem={({ item, index }) => (
-                <PokeTypeCard data={item} index={index} />
+                <TypeCard data={item} index={index} />
               )}
               contentContainerStyle={{ marginTop: 8 }}
               horizontal={true}
             />
-          </PokeType>
-        </PokeHeader>
+          </TypeWrapper>
+        </Wrapper>
 
-        <PokeImage style={animatedPokeImageStyle}>
+        <AnimatedImage style={animatedPokeImageStyle}>
           <Image
             source={{ uri: pokemon?.sprites?.other.home?.front_default }}
           />
-        </PokeImage>
-      </PokeContent>
+        </AnimatedImage>
+      </Content>
 
-      <PokeDescriptions style={animatedPokeDescriptionsPosition}>
-        <PokeDescritionButtonWrapper>
+      <Descriptions style={animatedPokeDescriptionsPosition}>
+        <DescritionButtonWrapper>
           <FlatList
             data={pokeDescriptionButton}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
-              <PokeDescritionButton
+              <DescritionButton
                 data={item}
                 isActive={descriptionSelected === item.title}
                 backgroundColor={
@@ -214,27 +206,27 @@ export const Pokemon: FC = () => {
               paddingHorizontal: 20,
             }}
           />
-        </PokeDescritionButtonWrapper>
+        </DescritionButtonWrapper>
 
         {descriptionSelected === "info" && (
           <ScrollView
             contentContainerStyle={{ paddingHorizontal: 20 }}
             showsVerticalScrollIndicator={false}
           >
-            <PokeInfo
+            <Info
               backgroundColor={backgroundColor}
               pokemonDescription={pokemonDescription}
             />
           </ScrollView>
         )}
 
-        <PokeDescriptionsWrapper>
+        <DescriptionsWrapper>
           {descriptionSelected === "evolution" && (
             <FlatList
               data={pokemonEvolutionChain}
               keyExtractor={(item) => String(item.id)}
               renderItem={({ item }) => (
-                <PokeEvolution
+                <Evolution
                   data={item}
                   textColor={backgroundColor}
                   pokemonCurrentName={pokemon.name}
@@ -245,24 +237,19 @@ export const Pokemon: FC = () => {
               showsVerticalScrollIndicator={false}
             />
           )}
-        </PokeDescriptionsWrapper>
+        </DescriptionsWrapper>
 
         {descriptionSelected === "moves" && (
           <FlatList
             data={pokemonMoves}
             keyExtractor={(item) => item.move.name}
-            renderItem={({ item, index }) => (
-              <PokeMoves
-                data={item}
-                index={index}
-                backgroundColor={backgroundColor}
-              />
-            )}
+            renderItem={({ item }) => <Moves data={item} />}
+            ItemSeparatorComponent={() => <Separator />}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 20 }}
           />
         )}
-      </PokeDescriptions>
+      </Descriptions>
     </Container>
   );
 };

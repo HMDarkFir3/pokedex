@@ -18,7 +18,8 @@ export const Title = styled.Text`
 
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 36px;
-  color: ${({ theme }) => theme.colors.text100};
+  color: ${({ theme }) =>
+    theme.title === "light" ? theme.colors.text1000 : theme.colors.text100};
 `;
 
 export const ToggleButton = styled(BorderlessButton)`

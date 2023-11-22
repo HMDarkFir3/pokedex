@@ -22,7 +22,8 @@ export const Image = styled.Image`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 28px;
-  color: ${({ theme }) => theme.colors.text100};
+  color: ${({ theme }) =>
+    theme.title === "light" ? theme.colors.text1000 : theme.colors.text100};
 `;
 
 export const BackButton = styled(RectButton)`
