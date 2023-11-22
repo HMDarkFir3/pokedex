@@ -13,7 +13,7 @@ import { useTheme } from "styled-components/native";
 import { usePokemon } from "@hooks/usePokemon";
 import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
 
-import { Header } from "@components/Header";
+import { BackButton } from "@components/Buttons/BackButton";
 import { TypeCard } from "@components/Cards/TypeCard";
 import { DescritionButton } from "@components/Cards/DescriptionCard";
 import { Info } from "@components/Info";
@@ -152,7 +152,7 @@ export const Pokemon: FC = () => {
 
   return (
     <Container backgroundColor={backgroundColor}>
-      <Header iconColor={colors.text100} />
+      <BackButton iconColor={colors.text100} />
 
       <Content>
         <Wrapper>

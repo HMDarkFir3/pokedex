@@ -4,7 +4,7 @@ import { useTheme } from "styled-components/native";
 
 import { usePokemon } from "@hooks/usePokemon";
 
-import { Header } from "@components/Header";
+import { BackButton } from "@components/Buttons/BackButton";
 import { PrimaryCard } from "@components/Cards/PrimaryCard";
 import { Loading } from "@components/Loading";
 
@@ -20,7 +20,7 @@ export const Pokedex: FC = () => {
 
   return (
     <Container>
-      <Header
+      <BackButton
         iconColor={title === "light" ? colors.text1000 : colors.text100}
       />
 

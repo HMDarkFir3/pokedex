@@ -34,9 +34,7 @@ export const App: FC = () => {
       <ThemeProvider>
         <PokemonProvider>
           <PokemonEvolutionProvider>
-            <GestureHandlerRootView
-              style={{ flex: 1, backgroundColor: "#212121" }}
-            >
+            <GestureHandlerRootView style={{ flex: 1 }}>
               <Routes />
             </GestureHandlerRootView>
           </PokemonEvolutionProvider>

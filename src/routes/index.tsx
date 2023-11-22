@@ -1,13 +1,16 @@
 import { FC } from "react";
-import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
+
+import { useTheme } from "styled-components/native";
 
 import { AppRoutes } from "@routes/app.routes";
 
 export const Routes: FC = () => {
+  const { colors } = useTheme();
+
   return (
-    <>
-      <StatusBar />
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <AppRoutes />
-    </>
+    </View>
   );
 };

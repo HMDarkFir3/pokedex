@@ -2,13 +2,13 @@ import { FC } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { CaretLeft } from "phosphor-react-native";
 
-import { Container, Button } from "./styles";
+import { Container } from "./styles";
 
 interface Props {
   iconColor: string;
 }
 
-export const Header: FC<Props> = (props) => {
+export const BackButton: FC<Props> = (props) => {
   const { iconColor } = props;
 
   const { goBack } = useNavigation();
@@ -16,10 +16,8 @@ export const Header: FC<Props> = (props) => {
   const onPressBack = () => goBack();
 
   return (
-    <Container>
-      <Button activeOpacity={0.7} onPress={onPressBack}>
-        <CaretLeft size={24} color={iconColor} />
-      </Button>
+    <Container onPress={onPressBack}>
+      <CaretLeft size={24} color={iconColor} />
     </Container>
   );
 };

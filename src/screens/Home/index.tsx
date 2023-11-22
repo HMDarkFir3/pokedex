@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FC } from "react";
-import { TextInput, Alert } from "react-native";
+import { TextInput, Alert, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme as useStyledTheme } from "styled-components/native";
 import { Sun, Moon } from "phosphor-react-native";
