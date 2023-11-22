@@ -2,27 +2,15 @@ export const light = {
   title: "light",
 
   colors: {
-    screens: {
-      home: {
-        background: "#ffffff",
-        text: "#000000",
-        icon: "#e6e4c3",
-      },
-      pokedex: {
-        background: "#ffffff",
-      },
-      pokemon: {
-        background: "#ffffff",
-        textPrimary: "#ffffff",
-        textSecondary: "#494d51",
-      },
-      error: {
-        backgroundPrimary: "#ffffff",
-        backgroundSecondary: "#159f6e",
-        text: "#000000",
-        icon: "#ffffff",
-      },
-    },
+    background: "#ffffff",
+
+    primary: "#159f6e",
+
+    text100: "#000000",
+    text700: "#494d51",
+
+    icon: "#e6e4c3",
+
     components: {
       input: {
         backgroundPrimary: "#e6e6e6",

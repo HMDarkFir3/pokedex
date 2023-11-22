@@ -59,17 +59,11 @@ export const Home: FC = () => {
 
   return (
     <Container>
-      <StatusBar />
-
       <ToggleButton activeOpacity={0.7} onPress={onToggleTheme}>
         {theme.title === "light" ? (
-          <Moon
-            size={32}
-            color={theme.colors.screens.home.icon}
-            weight="fill"
-          />
+          <Moon size={32} color={theme.colors.icon} weight="fill" />
         ) : (
-          <Sun size={32} color={theme.colors.screens.home.icon} weight="fill" />
+          <Sun size={32} color={theme.colors.icon} weight="fill" />
         )}
       </ToggleButton>
 

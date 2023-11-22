@@ -37,13 +37,13 @@ export const PokeName = styled.Text`
   text-transform: capitalize;
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 40px;
-  color: ${({ theme }) => theme.colors.screens.pokemon.textPrimary};
+  color: ${({ theme }) => theme.colors.text100};
 `;
 
 export const PokeIndex = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 20px;
-  color: ${({ theme }) => theme.colors.screens.pokemon.textPrimary};
+  color: ${({ theme }) => theme.colors.text100};
 `;
 
 export const PokeType = styled.View`
@@ -75,7 +75,7 @@ export const PokeDescriptions = styled(Animated.View)`
 
   margin-top: 154px;
 
-  background-color: ${({ theme }) => theme.colors.screens.pokemon.background};
+  background-color: ${({ theme }) => theme.colors.background};
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
 `;

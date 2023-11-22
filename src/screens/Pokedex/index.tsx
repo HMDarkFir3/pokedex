@@ -23,7 +23,7 @@ export const Pokedex: FC = () => {
     <Container>
       <StatusBar />
 
-      <Header iconColor={colors.components.header.iconPrimary} />
+      <Header iconColor={colors.text100} />
 
       <FlatList
         data={pokemons}

@@ -2,27 +2,15 @@ export const dark = {
   title: "dark",
 
   colors: {
-    screens: {
-      home: {
-        background: "#212121",
-        text: "#ffffff",
-        icon: "#fdb813",
-      },
-      pokedex: {
-        background: "#212121",
-      },
-      pokemon: {
-        background: "#212121",
-        textPrimary: "#ffffff",
-        textSecondary: "#494d51",
-      },
-      error: {
-        backgroundPrimary: "#212121",
-        backgroundSecondary: "#159f6e",
-        text: "#ffffff",
-        icon: "#ffffff",
-      },
-    },
+    background: "#212121",
+
+    primary: "#159f6e",
+
+    text100: "#ffffff",
+    text700: "#494d51",
+
+    icon: "#fdb813",
+
     components: {
       input: {
         backgroundPrimary: "#040404",
