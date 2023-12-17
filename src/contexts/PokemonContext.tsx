@@ -3,7 +3,7 @@ import { Alert } from "react-native";
 
 import { api } from "@/services/api";
 
-import { Results } from "@/dtos/PokemonsDTO";
+import { PokemonsDTO } from "@/dtos/PokemonsDTO";
 import { PokemonDTO } from "@/dtos/PokemonDTO";
 import { PokemonTypeDTO } from "@/dtos/PokemonTypeDTO";
 import { PokemonSpeciesDTO } from "@/dtos/PokemonSpeciesDTO";
@@ -22,10 +22,9 @@ export interface PokemonContextData {
   pokemonAbilities: PokemonAbilitiesDTO[];
   pokemonStats: PokemonStatsDTO[];
   pokemonMoves: PokemonMovesDTO[];
-  pokemons: Results[];
+  pokemons: PokemonsDTO.Response["results"];
   isLoading: boolean;
   fetchPokemon: (pokemonId: string) => Promise<boolean>;
-  fetchPokemons: () => Promise<void>;
 }
 
 interface PokemonProviderProps {
@@ -46,7 +45,7 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
   >([]);
   const [pokemonStats, setPokemonStats] = useState<PokemonStatsDTO[]>([]);
   const [pokemonMoves, setPokemonMoves] = useState<PokemonMovesDTO[]>([]);
-  const [pokemons, setPokemons] = useState<Results[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonsDTO.Response["results"]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function fetchPokemon(pokemonId: string) {
@@ -88,19 +87,6 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
     }
   }
 
-  async function fetchPokemons() {
-    try {
-      setIsLoading(true);
-      await api.get(`pokemon?limit=1106&offset=0`).then((response) => {
-        setPokemons(response.data.results);
-      });
-    } catch (error) {
-      Alert.alert(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   return (
     <PokemonContext.Provider
       value={{
@@ -114,7 +100,6 @@ export const PokemonProvider: FC<PokemonProviderProps> = ({ children }) => {
         pokemons,
         isLoading,
         fetchPokemon,
-        fetchPokemons,
       }}
     >
       {children}

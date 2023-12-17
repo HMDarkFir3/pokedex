@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FC } from "react";
-import { TextInput, Alert, StatusBar } from "react-native";
+import { TextInput, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme as useStyledTheme } from "styled-components/native";
 import { Sun, Moon } from "phosphor-react-native";
@@ -14,7 +14,7 @@ import { Button } from "@/components/Buttons/Button";
 import { Container, Content, Title, ToggleButton } from "./styles";
 
 export const Home: FC = () => {
-  const { isLoading, fetchPokemons, fetchPokemon } = usePokemon();
+  const { isLoading, fetchPokemon } = usePokemon();
   const { onToggleTheme } = useTheme();
   const keyboard = useKeyboard();
   const { navigate } = useNavigation();
@@ -24,10 +24,7 @@ export const Home: FC = () => {
 
   const inputRef = useRef<TextInput>(null);
 
-  const onPressSelection = () => {
-    fetchPokemons();
-    navigate("Pokedex");
-  };
+  const onPressSelection = () => navigate("Pokedex");
 
   const onPressSearch = async () => {
     if (search.trim() === "") {

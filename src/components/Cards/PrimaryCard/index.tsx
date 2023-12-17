@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { RectButtonProps } from "react-native-gesture-handler";
 
-import { Results } from "@/dtos/PokemonsDTO";
+import { PokemonsDTO } from "@/dtos/PokemonsDTO";
 
 import { Container, Image, Wrapper, Name, Index } from "./styles";
 
 interface Props extends RectButtonProps {
-  data: Results;
+  data: PokemonsDTO.Results;
   index: number;
 }
 

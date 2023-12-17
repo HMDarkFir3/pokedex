@@ -4,7 +4,7 @@ import { Check } from "phosphor-react-native";
 
 import { SmallButton } from "@/components/Buttons/SmallButton";
 
-import { Container, Wrapper, Image, Title, BackButton } from "./styles";
+import { Container, Wrapper, Image, Title } from "./styles";
 
 interface Params {
   message: string;

@@ -1,9 +1,10 @@
-import { useEffect, FC } from "react";
-import { FlatList } from "react-native";
+import { FC } from "react";
+import { FlatList, Text } from "react-native";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 
-import { usePokemon } from "@/hooks/usePokemon";
+import { getPokemons } from "@/services/pokemon";
 
 import { BackButton } from "@/components/Buttons/BackButton";
 import { PrimaryCard } from "@/components/Cards/PrimaryCard";
@@ -12,20 +13,19 @@ import { Loading } from "@/components/Loading";
 import { Container } from "./styles";
 
 export const Pokedex: FC = () => {
-  const { pokemons, isLoading, fetchPokemons } = usePokemon();
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["pokemons"],
+    queryFn: getPokemons,
+  });
   const { navigate } = useNavigation();
   const { title, colors } = useTheme();
 
   const onPressPokemon = (pokemonName: string) =>
     navigate("Pokemon", { pokemonName: pokemonName });
 
-  useEffect(() => {
-    if (pokemons.length === 0) {
-      fetchPokemons();
-    }
-  }, [fetchPokemons]);
+  if (isError) navigate("Error", { message: "Error on fetch pokemons." });
 
-  if (isLoading) return <Loading />;
+  if (isPending) return <Loading />;
 
   return (
     <Container>
@@ -34,7 +34,7 @@ export const Pokedex: FC = () => {
       />
 
       <FlatList
-        data={pokemons}
+        data={data}
         keyExtractor={(item) => item.name}
         renderItem={({ item, index }) => (
           <PrimaryCard
