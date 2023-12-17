@@ -63,6 +63,7 @@ The project was developed using the following technologies:
 - [Expo](https://docs.expo.io)
 - [TypeScript](https://www.typescriptlang.org)
 - [React Navigation](https://reactnavigation.org)
+- [React Query](https://tanstack.com/query/latest/docs/react/overview)
 - [Axios](https://github.com/axios/axios)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 - [Styled Components](https://styled-components.com)
