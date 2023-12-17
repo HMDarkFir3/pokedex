@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { FlatList, View } from "react-native";
 
-import { usePokemon } from "@hooks/usePokemon";
+import { usePokemon } from "@/hooks/usePokemon";
 
-import { AbilityCard } from "@components/Cards/AbilityCard";
-import { StatCard } from "@components/Cards/StatCard";
-import { Separator } from "@components/Separator";
+import { AbilityCard } from "@/components/Cards/AbilityCard";
+import { StatCard } from "@/components/Cards/StatCard";
+import { Separator } from "@/components/Separator";
 
 import {
   Container,

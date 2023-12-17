@@ -2,10 +2,10 @@ import { FC } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components/native";
 
-import { Home } from "@screens/Home";
-import { Pokemon } from "@screens/Pokemon";
-import { Pokedex } from "@screens/Pokedex";
-import { Error } from "@screens/Error";
+import { Home } from "@/screens/Home";
+import { Pokemon } from "@/screens/Pokemon";
+import { Pokedex } from "@/screens/Pokedex";
+import { Error } from "@/screens/Error";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { PokemonMovesDTO } from "@dtos/PokemonMovesDTO";
+import { PokemonMovesDTO } from "@/dtos/PokemonMovesDTO";
 
 import { Container, Wrapper, Name, LearnedLevel } from "./styles";
 interface Props {

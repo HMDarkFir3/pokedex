@@ -1,6 +1,5 @@
-import { useState, useCallback, FC } from "react";
+import { useState, useEffect, useCallback, FC } from "react";
 import { FlatList } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import {
   useSharedValue,
@@ -10,19 +9,19 @@ import {
 } from "react-native-reanimated";
 import { useTheme } from "styled-components/native";
 
-import { usePokemon } from "@hooks/usePokemon";
-import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
+import { usePokemon } from "@/hooks/usePokemon";
+import { usePokemonEvolution } from "@/hooks/usePokemonEvolution";
 
-import { BackButton } from "@components/Buttons/BackButton";
-import { TypeCard } from "@components/Cards/TypeCard";
-import { DescritionButton } from "@components/Cards/DescriptionCard";
-import { Info } from "@components/Info";
-import { Evolution } from "@components/Evolution";
-import { Moves } from "@components/Moves";
-import { Loading } from "@components/Loading";
+import { BackButton } from "@/components/Buttons/BackButton";
+import { TypeCard } from "@/components/Cards/TypeCard";
+import { DescritionButton } from "@/components/Cards/DescriptionCard";
+import { Info } from "@/components/Info";
+import { Evolution } from "@/components/Evolution";
+import { Moves } from "@/components/Moves";
+import { Loading } from "@/components/Loading";
 
-import { pokeTypeColor } from "@utils/pokeTypeColor";
-import { pokeDescriptionButton } from "@utils/pokeDescriptionButton";
+import { pokeTypeColor } from "@/utils/pokeTypeColor";
+import { pokeDescriptionButton } from "@/utils/pokeDescriptionButton";
 
 import {
   Container,
@@ -38,7 +37,7 @@ import {
   DescriptionsWrapper,
   DescritionButtonWrapper,
 } from "./styles";
-import { Separator } from "@components/Separator";
+import { Separator } from "@/components/Separator";
 
 export const Pokemon: FC = () => {
   const {
@@ -53,7 +52,7 @@ export const Pokemon: FC = () => {
     usePokemonEvolution();
   const { colors } = useTheme();
 
-  const [backgroundColor, setBackgroundColor] = useState<string>("red");
+  const [backgroundColor, setBackgroundColor] = useState<string>("");
   const [pokemonDescription, setPokemonDescription] = useState<string>("");
   const [descriptionSelected, setDescriptionSelected] = useState<
     "info" | "evolution" | "moves"
@@ -121,30 +120,30 @@ export const Pokemon: FC = () => {
     }
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      const types = pokemonType.map((type) => type.type.name);
+  const formattedPokemonDescription = useCallback(() => {
+    const types = pokemonType.map((type) => type.type.name);
 
-      setBackgroundColor(`${pokeTypeColor[types[0]]}`);
+    setBackgroundColor(`${pokeTypeColor[types[0]]}`);
 
-      if (pokemonFlavorTextEntrie.length > 0) {
-        pokemonFlavorTextEntrie.some((description) => {
-          if (description.language.name === "en") {
-            setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
-            return;
-          }
-        });
-      } else {
-        setPokemonDescription("");
-      }
-    }, [pokemonType, pokemonFlavorTextEntrie])
-  );
+    if (pokemonFlavorTextEntrie.length > 0) {
+      pokemonFlavorTextEntrie.some((description) => {
+        if (description.language.name === "en") {
+          setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
+          return;
+        }
+      });
+    } else {
+      setPokemonDescription("");
+    }
+  }, [pokemonType, pokemonFlavorTextEntrie]);
 
-  useFocusEffect(
-    useCallback(() => {
-      fetchPokemonEvolution();
-    }, [pokemonSpecies])
-  );
+  useEffect(() => {
+    formattedPokemonDescription();
+  }, []);
+
+  useEffect(() => {
+    fetchPokemonEvolution();
+  }, [pokemonSpecies]);
 
   if (isLoading) {
     return <Loading />;

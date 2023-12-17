@@ -1,16 +1,16 @@
 import { useState, createContext, FC, ReactNode } from "react";
 import { Alert } from "react-native";
 
-import { api } from "@services/api";
+import { api } from "@/services/api";
 
-import { Results } from "@dtos/PokemonsDTO";
-import { PokemonDTO } from "@dtos/PokemonDTO";
-import { PokemonTypeDTO } from "@dtos/PokemonTypeDTO";
-import { PokemonSpeciesDTO } from "@dtos/PokemonSpeciesDTO";
-import { PokemonFlavorTextEntriesDTO } from "@dtos/PokemonFlavorTextEntriesDTO";
-import { PokemonAbilitiesDTO } from "@dtos/PokemonAbilitiesDTO";
-import { PokemonStatsDTO } from "@dtos/PokemonStatsDTO";
-import { PokemonMovesDTO } from "@dtos/PokemonMovesDTO";
+import { Results } from "@/dtos/PokemonsDTO";
+import { PokemonDTO } from "@/dtos/PokemonDTO";
+import { PokemonTypeDTO } from "@/dtos/PokemonTypeDTO";
+import { PokemonSpeciesDTO } from "@/dtos/PokemonSpeciesDTO";
+import { PokemonFlavorTextEntriesDTO } from "@/dtos/PokemonFlavorTextEntriesDTO";
+import { PokemonAbilitiesDTO } from "@/dtos/PokemonAbilitiesDTO";
+import { PokemonStatsDTO } from "@/dtos/PokemonStatsDTO";
+import { PokemonMovesDTO } from "@/dtos/PokemonMovesDTO";
 
 export const PokemonContext = createContext({} as PokemonContextData);
 

@@ -4,12 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import { useTheme as useStyledTheme } from "styled-components/native";
 import { Sun, Moon } from "phosphor-react-native";
 
-import { usePokemon } from "@hooks/usePokemon";
-import { useTheme } from "@hooks/useTheme";
-import { useKeyboard } from "@hooks/useKeyboard";
+import { usePokemon } from "@/hooks/usePokemon";
+import { useTheme } from "@/hooks/useTheme";
+import { useKeyboard } from "@/hooks/useKeyboard";
 
-import { Input } from "@components/Input";
-import { Button } from "@components/Buttons/Button";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Buttons/Button";
 
 import { Container, Content, Title, ToggleButton } from "./styles";
 

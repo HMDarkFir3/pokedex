@@ -17,6 +17,9 @@
         "backgroundColor": "#212121"
       }
     },
+    "experiments": {
+      "tsconfigPaths": true
+    },
     "extra": {
       "eas": {
         "projectId": "c2376682-1d41-4180-b508-6f55f4f0a665"

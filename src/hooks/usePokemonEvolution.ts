@@ -2,7 +2,7 @@ import { useContext } from "react";
 import {
   PokemonEvolutionContext,
   PokemonEvolutionContextData,
-} from "../contexts/PokemonEvolutionContext";
+} from "@/contexts/PokemonEvolutionContext";
 
 export const usePokemonEvolution = (): PokemonEvolutionContextData =>
   useContext(PokemonEvolutionContext);

@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback, FC } from "react";
 import { TouchableOpacityProps } from "react-native";
 
-import { PokemonEvolutionChainDTO } from "@dtos/PokemonEvolutionChainDTO";
+import { PokemonEvolutionChainDTO } from "@/dtos/PokemonEvolutionChainDTO";
 
-import { usePokemon } from "@hooks/usePokemon";
-import { usePokemonEvolution } from "@hooks/usePokemonEvolution";
+import { usePokemon } from "@/hooks/usePokemon";
+import { usePokemonEvolution } from "@/hooks/usePokemonEvolution";
 
 import { Container, Wrapper, ImageWrapper, Image, Name, Level } from "./styles";
 

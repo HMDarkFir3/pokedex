@@ -3,7 +3,7 @@ import { View } from "react-native";
 
 import { useTheme } from "styled-components/native";
 
-import { AppRoutes } from "@routes/app.routes";
+import { AppRoutes } from "@/routes/app.routes";
 
 export const Routes: FC = () => {
   const { colors } = useTheme();

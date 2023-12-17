@@ -2,7 +2,7 @@ import { useMemo, FC } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Check } from "phosphor-react-native";
 
-import { SmallButton } from "@components/Buttons/SmallButton";
+import { SmallButton } from "@/components/Buttons/SmallButton";
 
 import { Container, Wrapper, Image, Title, BackButton } from "./styles";
 

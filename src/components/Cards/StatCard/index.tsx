@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { PokemonStatsDTO } from "@dtos/PokemonStatsDTO";
+import { PokemonStatsDTO } from "@/dtos/PokemonStatsDTO";
 
-import { stats } from "@utils/stats";
+import { stats } from "@/utils/stats";
 
 import {
   Container,

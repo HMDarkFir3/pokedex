@@ -1,10 +1,10 @@
 import { useState, createContext, FC, ReactNode } from "react";
 
-import { api } from "@services/api";
+import { api } from "@/services/api";
 
-import { PokemonEvolutionChainDTO } from "@dtos/PokemonEvolutionChainDTO";
+import { PokemonEvolutionChainDTO } from "@/dtos/PokemonEvolutionChainDTO";
 
-import { usePokemon } from "@hooks/usePokemon";
+import { usePokemon } from "@/hooks/usePokemon";
 
 export const PokemonEvolutionContext = createContext(
   {} as PokemonEvolutionContextData
@@ -23,10 +23,8 @@ interface PokemonEvolutionProviderProps {
 export const PokemonEvolutionProvider: FC<PokemonEvolutionProviderProps> = ({
   children,
 }) => {
-  //Hooks
   const { pokemonSpecies } = usePokemon();
 
-  //Evolution States
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<
     PokemonEvolutionChainDTO[]
   >([]);

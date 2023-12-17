@@ -1,10 +1,7 @@
 import { FC } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { RectButtonProps } from "react-native-gesture-handler";
 
-import { Results } from "@dtos/PokemonsDTO";
-
-import { usePokemon } from "@hooks/usePokemon";
+import { Results } from "@/dtos/PokemonsDTO";
 
 import { Container, Image, Wrapper, Name, Index } from "./styles";
 
@@ -17,17 +14,8 @@ export const PrimaryCard: FC<Props> = (props) => {
   const { index, ...rest } = props;
   const { name } = props.data;
 
-  const { fetchPokemon } = usePokemon();
-
-  const { navigate } = useNavigation();
-
-  function onPressPokemon(pokemonId: string) {
-    fetchPokemon(pokemonId);
-    navigate("Pokemon");
-  }
-
   return (
-    <Container {...rest} onPress={() => onPressPokemon(name)}>
+    <Container {...rest}>
       <Image
         source={{
           uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${

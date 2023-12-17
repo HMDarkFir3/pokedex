@@ -3,9 +3,9 @@ import { TextInput, TextInputProps, ActivityIndicator } from "react-native";
 import { useTheme } from "styled-components/native";
 import { MagnifyingGlass, PaperPlaneRight } from "phosphor-react-native";
 
-import { usePokemon } from "@hooks/usePokemon";
+import { usePokemon } from "@/hooks/usePokemon";
 
-import { RoundedButton } from "@components/Buttons/RoundedButton";
+import { RoundedButton } from "@/components/Buttons/RoundedButton";
 
 import { Container, CustomInput } from "./styles";
 
