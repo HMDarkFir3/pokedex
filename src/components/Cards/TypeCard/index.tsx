@@ -1,13 +1,13 @@
 import { FC } from "react";
 
-import { PokemonTypeDTO } from "@/dtos/PokemonTypeDTO";
+import { PokemonDTO } from "@/dtos/PokemonDTO";
 
 import { pokeTypeColor } from "@/utils/pokeTypeColor";
 
 import { Container, Title } from "./styles";
 
 interface Props {
-  data: PokemonTypeDTO;
+  data: PokemonDTO.Types;
   index: number;
 }
 

@@ -1,4 +1,4 @@
-export const pokeTypeColor = {
+export const typeColor = {
   bug: "#dced51",
   dark: "#4f3a2d",
   dragon: "#755edf",

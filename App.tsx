@@ -1,8 +1,9 @@
 import "react-native-gesture-handler";
 import { FC } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import {
@@ -12,8 +13,6 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import { PokemonProvider } from "@/contexts/PokemonContext";
-import { PokemonEvolutionProvider } from "@/contexts/PokemonEvolutionContext";
 
 import { Routes } from "@/routes/index";
 
@@ -36,13 +35,9 @@ export const App: FC = () => {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <PokemonProvider>
-            <PokemonEvolutionProvider>
-              <GestureHandlerRootView style={{ flex: 1 }}>
-                <Routes />
-              </GestureHandlerRootView>
-            </PokemonEvolutionProvider>
-          </PokemonProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Routes />
+          </GestureHandlerRootView>
         </ThemeProvider>
       </QueryClientProvider>
     </NavigationContainer>

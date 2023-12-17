@@ -1,36 +1,26 @@
-import { useState, useEffect, useCallback, FC } from "react";
+import { useState, useEffect, FC } from "react";
 import { TouchableOpacityProps } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { PokemonEvolutionChainDTO } from "@/dtos/PokemonEvolutionChainDTO";
-
-import { usePokemon } from "@/hooks/usePokemon";
-import { usePokemonEvolution } from "@/hooks/usePokemonEvolution";
 
 import { Container, Wrapper, ImageWrapper, Image, Name, Level } from "./styles";
 
 interface Props extends TouchableOpacityProps {
   data: PokemonEvolutionChainDTO;
+  currentName: string;
   textColor: string;
-  pokemonCurrentName: string;
-  onDescriptionSelected: (descriptionType: string) => void;
 }
 
 export const Evolution: FC<Props> = (props) => {
-  const { textColor, pokemonCurrentName, onDescriptionSelected } = props;
+  const { currentName, textColor } = props;
   const { species_name, image_url, min_level, item } = props.data;
 
-  const { fetchPokemon } = usePokemon();
-  const { pokemonEvolutionChain } = usePokemonEvolution();
+  const { navigate } = useNavigation();
 
   const [evolutionType, setEvolutionType] = useState<string>("");
 
-  const handlePokemon = useCallback(
-    (pokemonName: string) => {
-      fetchPokemon(pokemonName);
-      onDescriptionSelected("info");
-    },
-    [pokemonEvolutionChain]
-  );
+  const onPokemon = () => navigate("Pokemon", { pokemonId: species_name });
 
   useEffect(() => {
     if (min_level) {
@@ -42,8 +32,8 @@ export const Evolution: FC<Props> = (props) => {
 
   return (
     <Container
-      onPress={() => handlePokemon(species_name)}
-      enabled={species_name !== pokemonCurrentName}
+      onPress={() => onPokemon()}
+      enabled={species_name !== currentName}
     >
       <Wrapper>
         <ImageWrapper>

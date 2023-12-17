@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useTheme as useStyledTheme } from "styled-components/native";
 import { Sun, Moon } from "phosphor-react-native";
 
-import { usePokemon } from "@/hooks/usePokemon";
 import { useTheme } from "@/hooks/useTheme";
 import { useKeyboard } from "@/hooks/useKeyboard";
 
@@ -14,7 +13,6 @@ import { Button } from "@/components/Buttons/Button";
 import { Container, Content, Title, ToggleButton } from "./styles";
 
 export const Home: FC = () => {
-  const { isLoading, fetchPokemon } = usePokemon();
   const { onToggleTheme } = useTheme();
   const keyboard = useKeyboard();
   const { navigate } = useNavigation();
@@ -26,21 +24,9 @@ export const Home: FC = () => {
 
   const onPressSelection = () => navigate("Pokedex");
 
-  const onPressSearch = async () => {
-    if (search.trim() === "") {
-      Alert.alert("Warning!", "Please, blank field.");
-      return;
-    }
-
-    inputRef.current?.blur();
-
-    const response = await fetchPokemon(search);
-
-    if (response) {
-      navigate("Pokemon");
-    } else {
-      navigate("Error", { message: "Pokemon not found." });
-    }
+  const onPressSearch = () => {
+    setSearch("");
+    navigate("Pokemon", { pokemonId: search });
   };
 
   const inputOnBlur = () => {
@@ -73,7 +59,6 @@ export const Home: FC = () => {
           onChangeText={setSearch}
           onBlur={inputOnBlur}
           onSearch={onPressSearch}
-          editable={!isLoading}
         />
 
         <Button

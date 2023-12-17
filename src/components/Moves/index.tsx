@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import { PokemonMovesDTO } from "@/dtos/PokemonMovesDTO";
+import { PokemonDTO } from "@/dtos/PokemonDTO";
 
 import { Container, Wrapper, Name, LearnedLevel } from "./styles";
 interface Props {
-  data: PokemonMovesDTO;
+  data: PokemonDTO.Moves;
 }
 
 export const Moves: FC<Props> = (props) => {

@@ -1,4 +1,4 @@
-export const pokeDescriptionButton = [
+export const descriptionButton = [
   {
     id: 0,
     title: "info",

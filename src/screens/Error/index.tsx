@@ -11,11 +11,11 @@ interface Params {
 }
 
 export const Error: FC = () => {
-  const { goBack } = useNavigation();
+  const { navigate } = useNavigation();
   const { params } = useRoute();
   const { message } = params as Params;
 
-  const onBackPress = () => goBack();
+  const onBackPress = () => navigate("Home");
 
   const randomPokemon = useMemo(() => Math.floor(Math.random() * 898) + 1, []);
 

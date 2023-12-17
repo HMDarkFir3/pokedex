@@ -3,20 +3,18 @@ import { TextInput, TextInputProps, ActivityIndicator } from "react-native";
 import { useTheme } from "styled-components/native";
 import { MagnifyingGlass, PaperPlaneRight } from "phosphor-react-native";
 
-import { usePokemon } from "@/hooks/usePokemon";
-
 import { RoundedButton } from "@/components/Buttons/RoundedButton";
 
 import { Container, CustomInput } from "./styles";
 
 interface Props extends TextInputProps {
+  isLoading?: boolean;
   onSearch: () => void;
 }
 
 export const Input = forwardRef<TextInput, Props>((props, ref) => {
-  const { onSearch, value, ...rest } = props;
+  const { onSearch, value, isLoading = false, ...rest } = props;
 
-  const { isLoading } = usePokemon();
   const { colors } = useTheme();
 
   return (
@@ -29,11 +27,11 @@ export const Input = forwardRef<TextInput, Props>((props, ref) => {
       />
 
       {value === "" ? (
-        <RoundedButton type="primary" enabled={isLoading}>
+        <RoundedButton type="primary">
           <MagnifyingGlass size={24} color={colors.text700} weight="bold" />
         </RoundedButton>
       ) : (
-        <RoundedButton type="secondary" onPress={onSearch} enabled={!isLoading}>
+        <RoundedButton type="secondary" onPress={onSearch}>
           {isLoading ? (
             <ActivityIndicator size="small" color={colors.text100} />
           ) : (

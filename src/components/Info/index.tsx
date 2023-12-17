@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FlatList, View } from "react-native";
 
-import { usePokemon } from "@/hooks/usePokemon";
+import { PokemonDTO } from "@/dtos/PokemonDTO";
 
 import { AbilityCard } from "@/components/Cards/AbilityCard";
 import { StatCard } from "@/components/Cards/StatCard";
@@ -19,27 +19,24 @@ import {
 } from "./styles";
 
 interface Props {
+  pokemon: PokemonDTO.Response;
+  description: string;
   backgroundColor: string;
-  pokemonDescription: string;
 }
 
 export const Info: FC<Props> = (props) => {
-  const { backgroundColor, pokemonDescription } = props;
-
-  const { pokemon, pokemonAbilities, pokemonStats } = usePokemon();
+  const { pokemon, description, backgroundColor } = props;
 
   return (
     <Container>
-      {pokemonDescription !== "" && (
-        <Description>{pokemonDescription}</Description>
-      )}
+      {description !== "" && <Description>{description}</Description>}
 
       <Wrapper>
-        <Abilities pokemonDescription={!!pokemonDescription}>
+        <Abilities description={!!description}>
           <Title>Abilities</Title>
 
           <FlatList
-            data={pokemonAbilities}
+            data={pokemon.abilities}
             keyExtractor={(item) => String(item.slot)}
             renderItem={({ item }) => (
               <AbilityCard data={item} backgroundColor={backgroundColor} />
@@ -69,7 +66,7 @@ export const Info: FC<Props> = (props) => {
           <Title>Stats</Title>
 
           <View>
-            {pokemonStats.map((item, index) => (
+            {pokemon.stats.map((item, index) => (
               <StatCard
                 key={item.stat.name}
                 data={item}

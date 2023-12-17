@@ -9,4 +9,3 @@ export interface PokemonEvolutionChainDTO {
   trigger_name: string | null;
   image_url?: string | null;
 }
-[];

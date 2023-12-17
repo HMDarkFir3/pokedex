@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
@@ -21,11 +21,11 @@ export const Pokedex: FC = () => {
   const { title, colors } = useTheme();
 
   const onPressPokemon = (pokemonName: string) =>
-    navigate("Pokemon", { pokemonName: pokemonName });
+    navigate("Pokemon", { pokemonId: pokemonName });
 
   if (isError) navigate("Error", { message: "Error on fetch pokemons." });
 
-  if (isPending) return <Loading />;
+  if (isPending || isError) return <Loading />;
 
   return (
     <Container>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/native";
 
 interface AbilitiesProps {
-  pokemonDescription: boolean;
+  description: boolean;
 }
 
 export const Container = styled.View``;
@@ -22,8 +22,8 @@ export const Abilities = styled.View<AbilitiesProps>`
 
   margin-top: 20px;
 
-  ${({ pokemonDescription }) =>
-    !pokemonDescription &&
+  ${({ description }) =>
+    !description &&
     css`
       margin-top: 0;
     `}

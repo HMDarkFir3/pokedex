@@ -1,5 +1,7 @@
-import { useState, useEffect, useCallback, FC } from "react";
+import { useState, useEffect, FC } from "react";
 import { FlatList } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
 import { ScrollView } from "react-native-gesture-handler";
 import {
   useSharedValue,
@@ -9,8 +11,7 @@ import {
 } from "react-native-reanimated";
 import { useTheme } from "styled-components/native";
 
-import { usePokemon } from "@/hooks/usePokemon";
-import { usePokemonEvolution } from "@/hooks/usePokemonEvolution";
+import { getPokemon } from "@/services/pokemon";
 
 import { BackButton } from "@/components/Buttons/BackButton";
 import { TypeCard } from "@/components/Cards/TypeCard";
@@ -20,8 +21,7 @@ import { Evolution } from "@/components/Evolution";
 import { Moves } from "@/components/Moves";
 import { Loading } from "@/components/Loading";
 
-import { pokeTypeColor } from "@/utils/pokeTypeColor";
-import { pokeDescriptionButton } from "@/utils/pokeDescriptionButton";
+import { descriptionButton } from "@/utils/descriptionButton";
 
 import {
   Container,
@@ -39,21 +39,21 @@ import {
 } from "./styles";
 import { Separator } from "@/components/Separator";
 
+interface Params {
+  pokemonId: string;
+}
+
 export const Pokemon: FC = () => {
-  const {
-    pokemon,
-    pokemonType,
-    pokemonMoves,
-    pokemonSpecies,
-    pokemonFlavorTextEntrie,
-    isLoading,
-  } = usePokemon();
-  const { pokemonEvolutionChain, fetchPokemonEvolution } =
-    usePokemonEvolution();
+  const { navigate } = useNavigation();
+  const route = useRoute();
+  const { pokemonId } = route.params as Params;
+
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["pokemon", pokemonId],
+    queryFn: () => getPokemon(pokemonId),
+  });
   const { colors } = useTheme();
 
-  const [backgroundColor, setBackgroundColor] = useState<string>("");
-  const [pokemonDescription, setPokemonDescription] = useState<string>("");
   const [descriptionSelected, setDescriptionSelected] = useState<
     "info" | "evolution" | "moves"
   >("info");
@@ -75,7 +75,7 @@ export const Pokemon: FC = () => {
     };
   });
 
-  const onPressDescriptionSelected = (descriptionType: string) => {
+  const onDescriptionSelected = (descriptionType: string) => {
     switch (descriptionType) {
       case "info": {
         pokeImageOpacity.value = withDelay(
@@ -120,49 +120,24 @@ export const Pokemon: FC = () => {
     }
   };
 
-  const formattedPokemonDescription = useCallback(() => {
-    const types = pokemonType.map((type) => type.type.name);
+  if (isError) navigate("Error", { message: "Error on fetch pokemon." });
 
-    setBackgroundColor(`${pokeTypeColor[types[0]]}`);
-
-    if (pokemonFlavorTextEntrie.length > 0) {
-      pokemonFlavorTextEntrie.some((description) => {
-        if (description.language.name === "en") {
-          setPokemonDescription(description.flavor_text.replace(/\s/g, " "));
-          return;
-        }
-      });
-    } else {
-      setPokemonDescription("");
-    }
-  }, [pokemonType, pokemonFlavorTextEntrie]);
-
-  useEffect(() => {
-    formattedPokemonDescription();
-  }, []);
-
-  useEffect(() => {
-    fetchPokemonEvolution();
-  }, [pokemonSpecies]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isPending || isError) return <Loading />;
 
   return (
-    <Container backgroundColor={backgroundColor}>
+    <Container backgroundColor={data.backgroundColor}>
       <BackButton iconColor={colors.text100} />
 
       <Content>
         <Wrapper>
           <Title>
-            <Name>{pokemon.name}</Name>
-            <Index>#{pokemon.id}</Index>
+            <Name>{data.pokemon.name}</Name>
+            <Index>#{data.pokemon.id}</Index>
           </Title>
 
           <TypeWrapper>
             <FlatList
-              data={pokemonType}
+              data={data.pokemon.types}
               keyExtractor={(item) => String(item.slot)}
               renderItem={({ item, index }) => (
                 <TypeCard data={item} index={index} />
@@ -175,7 +150,7 @@ export const Pokemon: FC = () => {
 
         <AnimatedImage style={animatedPokeImageStyle}>
           <Image
-            source={{ uri: pokemon?.sprites?.other.home?.front_default }}
+            source={{ uri: data.pokemon?.sprites?.other.home?.front_default }}
           />
         </AnimatedImage>
       </Content>
@@ -183,7 +158,7 @@ export const Pokemon: FC = () => {
       <Descriptions style={animatedPokeDescriptionsPosition}>
         <DescritionButtonWrapper>
           <FlatList
-            data={pokeDescriptionButton}
+            data={descriptionButton}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <DescritionButton
@@ -191,10 +166,10 @@ export const Pokemon: FC = () => {
                 isActive={descriptionSelected === item.title}
                 backgroundColor={
                   descriptionSelected === item.title
-                    ? backgroundColor
+                    ? data.backgroundColor
                     : "transparent"
                 }
-                onPress={() => onPressDescriptionSelected(item.title)}
+                onPress={() => onDescriptionSelected(item.title)}
               />
             )}
             horizontal={true}
@@ -213,8 +188,9 @@ export const Pokemon: FC = () => {
             showsVerticalScrollIndicator={false}
           >
             <Info
-              backgroundColor={backgroundColor}
-              pokemonDescription={pokemonDescription}
+              pokemon={data.pokemon}
+              description={data.description}
+              backgroundColor={data.backgroundColor}
             />
           </ScrollView>
         )}
@@ -222,14 +198,13 @@ export const Pokemon: FC = () => {
         <DescriptionsWrapper>
           {descriptionSelected === "evolution" && (
             <FlatList
-              data={pokemonEvolutionChain}
+              data={data.evolutionChain}
               keyExtractor={(item) => String(item.id)}
               renderItem={({ item }) => (
                 <Evolution
                   data={item}
-                  textColor={backgroundColor}
-                  pokemonCurrentName={pokemon.name}
-                  onDescriptionSelected={onPressDescriptionSelected}
+                  currentName={data.pokemon.name}
+                  textColor={data.backgroundColor}
                 />
               )}
               style={{ width: "100%" }}
@@ -240,7 +215,7 @@ export const Pokemon: FC = () => {
 
         {descriptionSelected === "moves" && (
           <FlatList
-            data={pokemonMoves}
+            data={data.pokemon.moves}
             keyExtractor={(item) => item.move.name}
             renderItem={({ item }) => <Moves data={item} />}
             ItemSeparatorComponent={() => <Separator />}

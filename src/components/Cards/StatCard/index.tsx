@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { PokemonStatsDTO } from "@/dtos/PokemonStatsDTO";
+import { PokemonDTO } from "@/dtos/PokemonDTO";
 
 import { stats } from "@/utils/stats";
 
@@ -14,7 +14,7 @@ import {
 } from "./styles";
 
 interface Props {
-  data: PokemonStatsDTO;
+  data: PokemonDTO.Stats;
   backgroundColor: string;
   index: number;
 }
