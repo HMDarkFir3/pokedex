@@ -7,9 +7,9 @@
 </h1>
 
 <p align="center" >
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/hmdarkfir3/pokedex?style=for-the-badge">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/hmdarkfir3/pokedex-react-native?style=for-the-badge">
   
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hmdarkfir3/pokedex?style=for-the-badge">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/hmdarkfir3/pokedex-react-native?style=for-the-badge">
   
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" />
 </p>
@@ -31,10 +31,10 @@ To clone and run this app, you will need to [Git](https://git-scm.com), [NodeJs]
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/HMDarkFir3/pokedex.git
+$ git clone https://github.com/HMDarkFir3/pokedex-react-native.git
 
 # Access the project folder in the terminal/cmd
-$ cd pokedex
+$ cd pokedex-react-native
 ```
 
 ### 🎲 Running the Application
